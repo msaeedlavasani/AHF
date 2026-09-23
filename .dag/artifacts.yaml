@@ -52,3 +52,75 @@ artifacts:
     title: Identity Model candidate for Foundation review
     state: AVAILABLE
     path: docs/foundation/decisions/identity-model-candidate-v0.md
+  - id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
+    title: Clean-Start Foundation Completeness canonical document
+    state: AVAILABLE
+    path: docs/foundation/05-clean-start-foundation-completeness.md
+  - id: FOUNDATION_UNRESOLVED_REGISTER@v0
+    title: Foundation unresolved decision register
+    state: AVAILABLE
+    path: docs/foundation/unresolved.md
+  - id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+    title: Focused Clean-Start Foundation DAG tests
+    state: AVAILABLE
+    path: test/foundation_completeness_dag_test.rb
+  - id: FOUNDATION_AUDIT_REVIEW@v0
+    title: Repository-native review of the accepted Clean-Start Foundation Audit
+    state: MISSING
+    path: .dag/outputs/foundation-audit-review.yaml
+  - id: LEGACY_REPOSITORY_COVERAGE@v0
+    title: Mechanical tracked-path coverage of the pinned legacy repository
+    state: MISSING
+    path: .dag/outputs/legacy-repository-coverage.yaml
+  - id: CAPABILITY_DISPOSITION_LEDGER@v0
+    title: Capability and candidate disposition ledger
+    state: MISSING
+    path: .dag/outputs/capability-disposition-ledger.yaml
+  - id: LKI_RECONCILIATION@v0
+    title: Reconciliation of Legacy Knowledge Index seed records to capabilities
+    state: MISSING
+    path: .dag/outputs/lki-reconciliation.yaml
+  - id: AUDIT_LIMITATIONS_VERIFICATION@v0
+    title: Follow-up verification requirements for audit limitations
+    state: MISSING
+    path: .dag/outputs/audit-limitations-verification.yaml
+  - id: FOUNDATION_COMPLETENESS_VALIDATOR@v0
+    title: Deterministic legacy Foundation coverage validator
+    state: MISSING
+    path: bin/validate-legacy-foundation-coverage
+  - id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+    title: Governance and Agent Contract review evidence
+    state: MISSING
+    path: .dag/outputs/governance-agent-contract-review.yaml
+  - id: PRODUCT_DOMAIN_REVALIDATION@v0
+    title: Product and Domain revalidation evidence
+    state: MISSING
+    path: .dag/outputs/product-domain-revalidation.yaml
+  - id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+    title: Historical Failure and Evidence Model review
+    state: MISSING
+    path: .dag/outputs/historical-failure-evidence-model.yaml
+  - id: IDENTITY_PERSISTENCE_BOUNDARIES_DOC@v0
+    title: Resolved Identity and Persistence Boundaries document
+    state: MISSING
+    path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+  - id: EXECUTION_OUTCOME_RECOVERY_CONTRACTS_DOC@v0
+    title: Resolved Execution, Outcome, and Recovery Contracts document
+    state: MISSING
+    path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
+  - id: PRIVACY_SENSING_ACCOUNT_LIFECYCLE_DOC@v0
+    title: Resolved Privacy, Sensing, and Account Lifecycle document
+    state: MISSING
+    path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
+  - id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE_DOC@v0
+    title: Resolved UX, Design, Localization, Accessibility, and Performance document
+    state: MISSING
+    path: docs/foundation/decisions/ux-design-localization-accessibility-performance-v0.md
+  - id: ARCHITECTURE_OPERATIONS_TOOLING_BOUNDARIES_DOC@v0
+    title: Resolved Architecture, Operations, and Tooling Boundaries document
+    state: MISSING
+    path: docs/foundation/decisions/architecture-operations-tooling-boundaries-v0.md
+  - id: CLEAN_START_FOUNDATION_BASELINE_DOC@v0
+    title: Resolved Clean-Start Foundation Baseline document
+    state: MISSING
+    path: docs/foundation/decisions/clean-start-foundation-baseline-v0.md

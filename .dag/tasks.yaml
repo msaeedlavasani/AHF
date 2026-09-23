@@ -481,3 +481,887 @@ tasks:
       remote: origin
       branch: main
       evidence_path: .dag/publications/FOUNDATION-004-IDENTITY-MODEL.yaml
+
+  - id: AHF-DAG-MAINT-003
+    title: Establish Clean-Start Foundation Completeness DAG
+    purpose: >-
+      Record the Owner-resolved Clean-Start Foundation completeness contract
+      and establish deterministic repository-native work for audit review,
+      mechanical legacy coverage, capability disposition, Foundation review,
+      Owner decision gates, boundary resolution, and baseline review without
+      executing or resolving that future work.
+    priority: 1000
+    requires:
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+      - type: ARTIFACT
+        id: LEGACY_KNOWLEDGE_INDEX@v0
+      - type: ARTIFACT
+        id: IDENTITY_MODEL_CANDIDATE@v0
+    depends_on:
+      - FOUNDATION-004-IDENTITY-MODEL
+    produces:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
+      - type: ARTIFACT
+        id: FOUNDATION_UNRESOLVED_REGISTER@v0
+      - type: ARTIFACT
+        id: DAG_DECISIONS_MANIFEST@v0
+      - type: ARTIFACT
+        id: DAG_ARTIFACTS_MANIFEST@v0
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+      - type: ARTIFACT
+        id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+    acceptance_criteria:
+      - id: completeness_contract_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/05-clean-start-foundation-completeness.md
+          text: "Status: RESOLVED"
+      - id: mechanical_path_coverage_required
+        check:
+          type: file_contains
+          path: docs/foundation/05-clean-start-foundation-completeness.md
+          text: every tracked legacy path
+      - id: audit_review_is_seeded
+        check:
+          type: file_contains
+          path: .dag/tasks.yaml
+          text: FOUNDATION-AUDIT-REVIEW
+      - id: identity_candidate_stays_draft
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-model-candidate-v0.md
+          text: "Status: DRAFT"
+      - id: focused_graph_tests_exist
+        check:
+          type: file_exists
+          path: test/foundation_completeness_dag_test.rb
+      - id: owner_gates_remain_unresolved
+        check:
+          type: file_contains
+          path: docs/foundation/unresolved.md
+          text: Clean-Start completeness gates
+    required_evidence:
+      - id: completeness_contract
+        path: docs/foundation/05-clean-start-foundation-completeness.md
+        sha256: f0bcfc914b5a37d75fb21ccd3c2b4d9a4fbae303b162d4b1f505a19ddd27129f
+      - id: focused_graph_tests
+        path: test/foundation_completeness_dag_test.rb
+        sha256: facacb467f1c56b3bc188542a9d7f7cc9ddef696a676f121c1979b6ea96717d6
+      - id: unresolved_register
+        path: docs/foundation/unresolved.md
+        sha256: 2c325ece9b1ed3d870316a709e36973ce110e00c7e9014c0072f0a33cb0ee366
+      - id: publication_marker
+        path: .dag/publications/AHF-DAG-MAINT-003.yaml
+        sha256: 84d6f0379aa3f94dc9ed151be41b9ea91eda55bf616f8998288a1d0966d5d24b
+    validations:
+      - id: dag_structure
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - bin/ahf-dag
+            - validate
+      - id: dag_test_suite
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -Itest
+            - -e
+            - "Dir['test/*_test.rb'].sort.each { |file| require File.expand_path(file) }"
+    attempts:
+      - id: AHF-DAG-MAINT-003/attempt-1
+        outcome: PASSED
+        evidence:
+          - completeness_contract
+          - focused_graph_tests
+          - unresolved_register
+          - publication_marker
+        validations:
+          - dag_structure
+          - dag_test_suite
+        produced:
+          - type: DECISION
+            id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+            state: RESOLVED
+          - type: ARTIFACT
+            id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: FOUNDATION_UNRESOLVED_REGISTER@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_DECISIONS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_ARTIFACTS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_TASKS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+            state: AVAILABLE
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/AHF-DAG-MAINT-003.yaml
+
+  - id: FOUNDATION-AUDIT-REVIEW
+    title: Review the accepted Clean-Start Foundation Audit
+    purpose: >-
+      Convert the Owner-accepted 2026-09-23 audit basis into repository-native
+      review evidence, preserving its sequencing correction, findings,
+      provenance, limitations, gaps, and explicit verification obligations
+      without treating unavailable evidence as accepted or adopting legacy
+      material.
+    priority: 900
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
+      - type: ARTIFACT
+        id: LEGACY_KNOWLEDGE_INDEX@v0
+    depends_on:
+      - AHF-DAG-MAINT-003
+    produces:
+      - type: ARTIFACT
+        id: FOUNDATION_AUDIT_REVIEW@v0
+    acceptance_criteria:
+      - id: audit_review_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/foundation-audit-review.yaml
+      - id: audit_date_is_preserved
+        check:
+          type: file_contains
+          path: .dag/outputs/foundation-audit-review.yaml
+          text: "audit_date: 2026-09-23"
+      - id: remote_ref_limitation_is_preserved
+        check:
+          type: file_contains
+          path: .dag/outputs/foundation-audit-review.yaml
+          text: "remote_refs_not_refreshed: true"
+      - id: unavailable_evidence_is_preserved
+        check:
+          type: file_contains
+          path: .dag/outputs/foundation-audit-review.yaml
+          text: unverified_evidence_classes
+      - id: follow_up_verification_is_required
+        check:
+          type: file_contains
+          path: .dag/outputs/foundation-audit-review.yaml
+          text: verification_requirements
+    required_evidence:
+      - id: audit_review
+        path: .dag/outputs/foundation-audit-review.yaml
+    validations:
+      - id: audit_review_yaml_parses
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/foundation-audit-review.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-AUDIT-REVIEW.yaml
+
+  - id: FOUNDATION-LKI-COMPLETENESS
+    title: Establish mechanical legacy knowledge completeness and initial capability ledger
+    purpose: >-
+      Account for every tracked path at the pinned legacy revision by stable
+      capability mapping or explicit exclusion with rationale; reconcile all
+      18 seed LKI records; distinguish ephemeral output from durable evidence;
+      preserve correction, supersession, and failure history; begin the
+      Capability/Disposition Ledger; and record follow-up verification for
+      audit limitations. Candidate dispositions never authorize adoption.
+    priority: 850
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
+      - type: ARTIFACT
+        id: FOUNDATION_AUDIT_REVIEW@v0
+      - type: ARTIFACT
+        id: LEGACY_KNOWLEDGE_INDEX@v0
+    depends_on:
+      - FOUNDATION-AUDIT-REVIEW
+    produces:
+      - type: ARTIFACT
+        id: LEGACY_REPOSITORY_COVERAGE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: LKI_RECONCILIATION@v0
+      - type: ARTIFACT
+        id: AUDIT_LIMITATIONS_VERIFICATION@v0
+      - type: ARTIFACT
+        id: FOUNDATION_COMPLETENESS_VALIDATOR@v0
+    acceptance_criteria:
+      - id: tracked_path_coverage_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/legacy-repository-coverage.yaml
+      - id: tracked_paths_support_capability_mapping
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-repository-coverage.yaml
+          text: capability_ids
+      - id: tracked_paths_support_exclusion_rationale
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-repository-coverage.yaml
+          text: exclusion_rationale
+      - id: capability_ledger_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/capability-disposition-ledger.yaml
+      - id: ledger_records_stable_ids
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: stable_id
+      - id: ledger_records_exact_provenance
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: exact_provenance
+      - id: ledger_records_evidence_class
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: evidence_class
+      - id: ledger_records_relationships
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: relationships
+      - id: ledger_records_confidence_and_gaps
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: confidence_and_gaps
+      - id: ledger_records_review_state
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: review_state
+      - id: ledger_records_disposition_state
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: disposition_state
+      - id: ledger_preserves_history_relationships
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: historical_relationships
+      - id: candidate_dispositions_are_declared
+        check:
+          type: file_contains
+          path: .dag/outputs/capability-disposition-ledger.yaml
+          text: allowed_dispositions
+      - id: lki_reconciliation_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/lki-reconciliation.yaml
+      - id: all_seed_records_are_accounted_for
+        check:
+          type: file_contains
+          path: .dag/outputs/lki-reconciliation.yaml
+          text: "seed_record_count: 18"
+      - id: overloaded_seed_records_are_classified
+        check:
+          type: file_contains
+          path: .dag/outputs/lki-reconciliation.yaml
+          text: overloaded_records
+      - id: capability_splits_are_recorded
+        check:
+          type: file_contains
+          path: .dag/outputs/lki-reconciliation.yaml
+          text: capability_splits
+      - id: audit_verification_follow_up_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/audit-limitations-verification.yaml
+      - id: coverage_validator_is_executable
+        check:
+          type: file_executable
+          path: bin/validate-legacy-foundation-coverage
+    required_evidence:
+      - id: tracked_path_coverage
+        path: .dag/outputs/legacy-repository-coverage.yaml
+      - id: capability_ledger
+        path: .dag/outputs/capability-disposition-ledger.yaml
+      - id: lki_reconciliation
+        path: .dag/outputs/lki-reconciliation.yaml
+      - id: audit_limitations_verification
+        path: .dag/outputs/audit-limitations-verification.yaml
+      - id: completeness_validator
+        path: bin/validate-legacy-foundation-coverage
+    validations:
+      - id: all_tracked_paths_and_capabilities_validate
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - bin/validate-legacy-foundation-coverage
+            - .dag/outputs/legacy-repository-coverage.yaml
+            - .dag/outputs/capability-disposition-ledger.yaml
+            - .dag/outputs/lki-reconciliation.yaml
+            - .dag/outputs/audit-limitations-verification.yaml
+            - .dag/outputs/legacy-knowledge-index.yaml
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-LKI-COMPLETENESS.yaml
+
+  - id: FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+    title: Review Governance and Agent Contract evidence
+    purpose: >-
+      Review mechanically discovered governance, specification, agent,
+      Task Passport, and task-contract capabilities; preserve provenance and
+      gaps; and record candidate disposition updates without adopting legacy
+      governance or tooling.
+    priority: 800
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: LEGACY_REPOSITORY_COVERAGE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: LKI_RECONCILIATION@v0
+      - type: ARTIFACT
+        id: AUDIT_LIMITATIONS_VERIFICATION@v0
+    depends_on:
+      - FOUNDATION-LKI-COMPLETENESS
+    produces:
+      - type: ARTIFACT
+        id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+    acceptance_criteria:
+      - id: governance_review_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/governance-agent-contract-review.yaml
+      - id: provenance_is_preserved
+        check:
+          type: file_contains
+          path: .dag/outputs/governance-agent-contract-review.yaml
+          text: provenance
+      - id: disposition_updates_are_recorded
+        check:
+          type: file_contains
+          path: .dag/outputs/governance-agent-contract-review.yaml
+          text: disposition_updates
+    required_evidence:
+      - id: governance_review
+        path: .dag/outputs/governance-agent-contract-review.yaml
+    validations:
+      - id: governance_review_yaml_parses
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/governance-agent-contract-review.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT.yaml
+
+  - id: FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+    title: Revalidate Product and Domain evidence
+    purpose: >-
+      Review mechanically discovered product and domain capabilities against
+      the Clean Foundation, preserve provenance and gaps, and record candidate
+      disposition updates without automatically adopting legacy behavior or
+      resolving open product decisions.
+    priority: 800
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: LEGACY_REPOSITORY_COVERAGE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: LKI_RECONCILIATION@v0
+      - type: ARTIFACT
+        id: AUDIT_LIMITATIONS_VERIFICATION@v0
+    depends_on:
+      - FOUNDATION-LKI-COMPLETENESS
+    produces:
+      - type: ARTIFACT
+        id: PRODUCT_DOMAIN_REVALIDATION@v0
+    acceptance_criteria:
+      - id: product_domain_review_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/product-domain-revalidation.yaml
+      - id: provenance_is_preserved
+        check:
+          type: file_contains
+          path: .dag/outputs/product-domain-revalidation.yaml
+          text: provenance
+      - id: disposition_updates_are_recorded
+        check:
+          type: file_contains
+          path: .dag/outputs/product-domain-revalidation.yaml
+          text: disposition_updates
+    required_evidence:
+      - id: product_domain_review
+        path: .dag/outputs/product-domain-revalidation.yaml
+    validations:
+      - id: product_domain_review_yaml_parses
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/product-domain-revalidation.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION.yaml
+
+  - id: FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+    title: Review Historical Failure and Evidence Model
+    purpose: >-
+      Review mechanically discovered correction, supersession, failure,
+      acceptance, generated, browser, device, and deployed evidence; define
+      review evidence for durable versus ephemeral material; and record
+      candidate disposition updates without converting unavailable evidence
+      into acceptance claims.
+    priority: 800
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: LEGACY_REPOSITORY_COVERAGE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: LKI_RECONCILIATION@v0
+      - type: ARTIFACT
+        id: AUDIT_LIMITATIONS_VERIFICATION@v0
+    depends_on:
+      - FOUNDATION-LKI-COMPLETENESS
+    produces:
+      - type: ARTIFACT
+        id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+    acceptance_criteria:
+      - id: historical_evidence_review_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/historical-failure-evidence-model.yaml
+      - id: provenance_is_preserved
+        check:
+          type: file_contains
+          path: .dag/outputs/historical-failure-evidence-model.yaml
+          text: provenance
+      - id: ephemeral_and_durable_evidence_are_distinguished
+        check:
+          type: file_contains
+          path: .dag/outputs/historical-failure-evidence-model.yaml
+          text: ephemeral_generated_output
+      - id: disposition_updates_are_recorded
+        check:
+          type: file_contains
+          path: .dag/outputs/historical-failure-evidence-model.yaml
+          text: disposition_updates
+    required_evidence:
+      - id: historical_evidence_review
+        path: .dag/outputs/historical-failure-evidence-model.yaml
+    validations:
+      - id: historical_evidence_review_yaml_parses
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/historical-failure-evidence-model.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL.yaml
+
+  - id: FOUNDATION-RESOLVE-IDENTITY-AND-PERSISTENCE-BOUNDARIES
+    title: Resolve Identity and Persistence Boundaries
+    purpose: >-
+      Resolve the Clean AHF Identity and Persistence boundaries only after
+      completeness, all review evidence, the DRAFT Identity Model candidate,
+      and the explicit Owner gate are available. Legacy schema remains
+      evidence and is not automatically adopted.
+    priority: 700
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: DECISION
+        id: OWNER_GATE_IDENTITY_PERSISTENCE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+      - type: ARTIFACT
+        id: PRODUCT_DOMAIN_REVALIDATION@v0
+      - type: ARTIFACT
+        id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+      - type: ARTIFACT
+        id: IDENTITY_MODEL_CANDIDATE@v0
+    depends_on:
+      - FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+      - FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+      - FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+    produces:
+      - type: DECISION
+        id: IDENTITY_AND_PERSISTENCE_BOUNDARIES@v0
+      - type: ARTIFACT
+        id: IDENTITY_PERSISTENCE_BOUNDARIES_DOC@v0
+    acceptance_criteria:
+      - id: resolved_boundary_document_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+      - id: boundary_is_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+          text: "Status: RESOLVED"
+    required_evidence:
+      - id: resolved_boundary_document
+        path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+    validations:
+      - id: resolved_status_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+          text: "Status: RESOLVED"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-RESOLVE-IDENTITY-AND-PERSISTENCE-BOUNDARIES.yaml
+
+  - id: FOUNDATION-RESOLVE-EXECUTION-OUTCOME-AND-RECOVERY-CONTRACTS
+    title: Resolve Execution, Outcome, and Recovery Contracts
+    purpose: >-
+      Resolve execution, outcome, completion, checkpoint, and recovery
+      contracts only from complete review evidence and an explicit Owner gate,
+      without automatically adopting legacy runtime behavior.
+    priority: 700
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: DECISION
+        id: OWNER_GATE_EXECUTION_OUTCOME_RECOVERY@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+      - type: ARTIFACT
+        id: PRODUCT_DOMAIN_REVALIDATION@v0
+      - type: ARTIFACT
+        id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+    depends_on:
+      - FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+      - FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+      - FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+    produces:
+      - type: DECISION
+        id: EXECUTION_OUTCOME_AND_RECOVERY_CONTRACTS@v0
+      - type: ARTIFACT
+        id: EXECUTION_OUTCOME_RECOVERY_CONTRACTS_DOC@v0
+    acceptance_criteria:
+      - id: resolved_contract_document_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
+      - id: contract_is_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
+          text: "Status: RESOLVED"
+    required_evidence:
+      - id: resolved_contract_document
+        path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
+    validations:
+      - id: resolved_status_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
+          text: "Status: RESOLVED"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-RESOLVE-EXECUTION-OUTCOME-AND-RECOVERY-CONTRACTS.yaml
+
+  - id: FOUNDATION-RESOLVE-PRIVACY-SENSING-AND-ACCOUNT-LIFECYCLE
+    title: Resolve Privacy, Sensing, and Account Lifecycle
+    purpose: >-
+      Resolve privacy, camera and sensing boundaries, and account lifecycle
+      contracts only from complete review evidence and an explicit Owner gate,
+      without automatically adopting legacy behavior or implementation.
+    priority: 700
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: DECISION
+        id: OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+      - type: ARTIFACT
+        id: PRODUCT_DOMAIN_REVALIDATION@v0
+      - type: ARTIFACT
+        id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+    depends_on:
+      - FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+      - FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+      - FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+    produces:
+      - type: DECISION
+        id: PRIVACY_SENSING_AND_ACCOUNT_LIFECYCLE@v0
+      - type: ARTIFACT
+        id: PRIVACY_SENSING_ACCOUNT_LIFECYCLE_DOC@v0
+    acceptance_criteria:
+      - id: resolved_contract_document_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
+      - id: contract_is_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
+          text: "Status: RESOLVED"
+    required_evidence:
+      - id: resolved_contract_document
+        path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
+    validations:
+      - id: resolved_status_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
+          text: "Status: RESOLVED"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-RESOLVE-PRIVACY-SENSING-AND-ACCOUNT-LIFECYCLE.yaml
+
+  - id: FOUNDATION-RESOLVE-UX-DESIGN-LOCALIZATION-ACCESSIBILITY-PERFORMANCE
+    title: Resolve UX, Design, Localization, Accessibility, and Performance
+    purpose: >-
+      Resolve UX, design-system, localization, accessibility, and performance
+      boundaries only from complete review evidence and an explicit Owner gate,
+      without automatically adopting legacy interfaces, assets, or tooling.
+    priority: 700
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: DECISION
+        id: OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+      - type: ARTIFACT
+        id: PRODUCT_DOMAIN_REVALIDATION@v0
+      - type: ARTIFACT
+        id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+    depends_on:
+      - FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+      - FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+      - FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+    produces:
+      - type: DECISION
+        id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
+      - type: ARTIFACT
+        id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE_DOC@v0
+    acceptance_criteria:
+      - id: resolved_contract_document_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/ux-design-localization-accessibility-performance-v0.md
+      - id: contract_is_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/ux-design-localization-accessibility-performance-v0.md
+          text: "Status: RESOLVED"
+    required_evidence:
+      - id: resolved_contract_document
+        path: docs/foundation/decisions/ux-design-localization-accessibility-performance-v0.md
+    validations:
+      - id: resolved_status_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/ux-design-localization-accessibility-performance-v0.md
+          text: "Status: RESOLVED"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-RESOLVE-UX-DESIGN-LOCALIZATION-ACCESSIBILITY-PERFORMANCE.yaml
+
+  - id: FOUNDATION-RESOLVE-ARCHITECTURE-OPERATIONS-AND-TOOLING-BOUNDARIES
+    title: Resolve Architecture, Operations, and Tooling Boundaries
+    purpose: >-
+      Resolve application architecture, operations, infrastructure, CI,
+      quality-gate, and tooling boundaries only from complete review evidence
+      and an explicit Owner gate. Candidate tool dispositions do not authorize
+      adoption.
+    priority: 700
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: DECISION
+        id: OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+      - type: ARTIFACT
+        id: PRODUCT_DOMAIN_REVALIDATION@v0
+      - type: ARTIFACT
+        id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+    depends_on:
+      - FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+      - FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+      - FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+    produces:
+      - type: DECISION
+        id: ARCHITECTURE_OPERATIONS_AND_TOOLING_BOUNDARIES@v0
+      - type: ARTIFACT
+        id: ARCHITECTURE_OPERATIONS_TOOLING_BOUNDARIES_DOC@v0
+    acceptance_criteria:
+      - id: resolved_boundary_document_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/architecture-operations-tooling-boundaries-v0.md
+      - id: boundary_is_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/architecture-operations-tooling-boundaries-v0.md
+          text: "Status: RESOLVED"
+    required_evidence:
+      - id: resolved_boundary_document
+        path: docs/foundation/decisions/architecture-operations-tooling-boundaries-v0.md
+    validations:
+      - id: resolved_status_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/architecture-operations-tooling-boundaries-v0.md
+          text: "Status: RESOLVED"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-RESOLVE-ARCHITECTURE-OPERATIONS-AND-TOOLING-BOUNDARIES.yaml
+
+  - id: FOUNDATION-BASELINE-REVIEW
+    title: Review and resolve the Clean-Start Foundation Baseline
+    purpose: >-
+      Verify that all five boundary decisions are resolved from complete,
+      provenance-preserving evidence and establish the canonical Clean-Start
+      Foundation Baseline. Only this resolved baseline may make future
+      implementation-architecture work eligible; this Task creates no
+      implementation work.
+    priority: 600
+    requires:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: DECISION
+        id: IDENTITY_AND_PERSISTENCE_BOUNDARIES@v0
+      - type: DECISION
+        id: EXECUTION_OUTCOME_AND_RECOVERY_CONTRACTS@v0
+      - type: DECISION
+        id: PRIVACY_SENSING_AND_ACCOUNT_LIFECYCLE@v0
+      - type: DECISION
+        id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
+      - type: DECISION
+        id: ARCHITECTURE_OPERATIONS_AND_TOOLING_BOUNDARIES@v0
+      - type: ARTIFACT
+        id: CAPABILITY_DISPOSITION_LEDGER@v0
+      - type: ARTIFACT
+        id: IDENTITY_PERSISTENCE_BOUNDARIES_DOC@v0
+      - type: ARTIFACT
+        id: EXECUTION_OUTCOME_RECOVERY_CONTRACTS_DOC@v0
+      - type: ARTIFACT
+        id: PRIVACY_SENSING_ACCOUNT_LIFECYCLE_DOC@v0
+      - type: ARTIFACT
+        id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE_DOC@v0
+      - type: ARTIFACT
+        id: ARCHITECTURE_OPERATIONS_TOOLING_BOUNDARIES_DOC@v0
+    depends_on:
+      - FOUNDATION-RESOLVE-IDENTITY-AND-PERSISTENCE-BOUNDARIES
+      - FOUNDATION-RESOLVE-EXECUTION-OUTCOME-AND-RECOVERY-CONTRACTS
+      - FOUNDATION-RESOLVE-PRIVACY-SENSING-AND-ACCOUNT-LIFECYCLE
+      - FOUNDATION-RESOLVE-UX-DESIGN-LOCALIZATION-ACCESSIBILITY-PERFORMANCE
+      - FOUNDATION-RESOLVE-ARCHITECTURE-OPERATIONS-AND-TOOLING-BOUNDARIES
+    produces:
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_BASELINE@v0
+      - type: ARTIFACT
+        id: CLEAN_START_FOUNDATION_BASELINE_DOC@v0
+    acceptance_criteria:
+      - id: baseline_document_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/clean-start-foundation-baseline-v0.md
+      - id: baseline_is_resolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/clean-start-foundation-baseline-v0.md
+          text: "Status: RESOLVED"
+      - id: implementation_eligibility_is_explicit
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/clean-start-foundation-baseline-v0.md
+          text: implementation-architecture work may become eligible
+    required_evidence:
+      - id: resolved_baseline_document
+        path: docs/foundation/decisions/clean-start-foundation-baseline-v0.md
+    validations:
+      - id: resolved_status_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/clean-start-foundation-baseline-v0.md
+          text: "Status: RESOLVED"
+    attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-BASELINE-REVIEW.yaml

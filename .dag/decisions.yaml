@@ -12,3 +12,39 @@ decisions:
   - id: TASK_DAG_CONTRACT@v0
     title: Task/DAG Contract v0
     state: RESOLVED
+  - id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+    title: Clean-Start Foundation Completeness v0
+    state: RESOLVED
+  - id: OWNER_GATE_IDENTITY_PERSISTENCE@v0
+    title: Owner gate for Identity and Persistence boundary resolution
+    state: UNRESOLVED
+  - id: OWNER_GATE_EXECUTION_OUTCOME_RECOVERY@v0
+    title: Owner gate for Execution, Outcome, and Recovery contract resolution
+    state: UNRESOLVED
+  - id: OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0
+    title: Owner gate for Privacy, Sensing, and Account Lifecycle resolution
+    state: UNRESOLVED
+  - id: OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
+    title: Owner gate for UX, Design, Localization, Accessibility, and Performance resolution
+    state: UNRESOLVED
+  - id: OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0
+    title: Owner gate for Architecture, Operations, and Tooling boundary resolution
+    state: UNRESOLVED
+  - id: IDENTITY_AND_PERSISTENCE_BOUNDARIES@v0
+    title: Identity and Persistence Boundaries v0
+    state: DRAFT
+  - id: EXECUTION_OUTCOME_AND_RECOVERY_CONTRACTS@v0
+    title: Execution, Outcome, and Recovery Contracts v0
+    state: DRAFT
+  - id: PRIVACY_SENSING_AND_ACCOUNT_LIFECYCLE@v0
+    title: Privacy, Sensing, and Account Lifecycle v0
+    state: DRAFT
+  - id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
+    title: UX, Design, Localization, Accessibility, and Performance v0
+    state: DRAFT
+  - id: ARCHITECTURE_OPERATIONS_AND_TOOLING_BOUNDARIES@v0
+    title: Architecture, Operations, and Tooling Boundaries v0
+    state: DRAFT
+  - id: CLEAN_START_FOUNDATION_BASELINE@v0
+    title: Clean-Start Foundation Baseline v0
+    state: DRAFT
