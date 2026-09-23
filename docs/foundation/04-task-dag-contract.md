@@ -76,9 +76,38 @@ A Task is `DONE` if and only if a preserved successful attempt independently sat
 - every acceptance criterion validates;
 - every required evidence item is included and exists, with its digest matching when one is declared;
 - every required deterministic validation is included and passes; and
-- every produced node has a valid completion snapshot.
+- every produced node has a valid completion snapshot; and
+- for Tasks governed by the remote-publication rule, the commit containing
+  the Task's publication marker is contained by its declared remote branch.
 
 Agent self-report is not sufficient evidence of `DONE`. Attempt outcome alone cannot make a Task `DONE`.
+
+A local commit alone is not sufficient for final `DONE`.
+
+The successful lifecycle is:
+
+```text
+Execute
+→ Evidence
+→ Local validation/tests
+→ Commit
+→ Push
+→ Verify remote contains exact commit
+→ DONE
+→ derive next Task
+```
+
+Remote publication verification is fail-closed. It performs an ordinary fetch
+and ancestry check; it never pushes, force-pushes, rewrites a remote, or resolves
+a Decision. An unexpected divergence requires `STOP_FOR_REVIEW` before any
+publication action.
+
+Each governed Task declares a unique repository path for its publication
+marker. Git derives the commit that contains that marker, and the DAG verifies
+that the configured remote branch contains the derived commit. This avoids a
+circular requirement to write an unknown future commit SHA into its own
+contents. The two Tasks completed before this rule retain explicit historical
+exemptions; their preserved completion meaning is not rewritten.
 
 `IN_PROGRESS` and `FAILED` are derived from the latest preserved attempt when no valid successful attempt establishes `DONE`.
 

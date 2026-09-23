@@ -3,6 +3,7 @@
 require "digest"
 require "fileutils"
 require "minitest/autorun"
+require "open3"
 require "tmpdir"
 require "yaml"
 
@@ -28,7 +29,7 @@ class AhfDagTest < Minitest::Test
     { "id" => id, "title" => id, "state" => state, "path" => path }
   end
 
-  def task(id, priority: 1, requires: [], depends_on: [], produces: [], attempts: [])
+  def task(id, priority: 1, requires: [], depends_on: [], produces: [], attempts: [], publication: nil)
     {
       "id" => id,
       "title" => id,
@@ -46,7 +47,13 @@ class AhfDagTest < Minitest::Test
       "validations" => [
         { "id" => "file", "check" => { "type" => "file_exists", "path" => "evidence.txt" } }
       ],
-      "attempts" => attempts
+      "attempts" => attempts,
+      "publication" => publication || {
+        "mode" => "REQUIRED",
+        "remote" => "origin",
+        "branch" => "main",
+        "evidence_path" => ".dag/publications/#{id}.yaml"
+      }
     }
   end
 
@@ -101,7 +108,20 @@ class AhfDagTest < Minitest::Test
       assert_includes engine.status.first.reasons.map(&:code), "VALIDATION_MISSING"
     end
 
-    with_repository(tasks: [task("T", attempts: [passed_attempt])]) do |_root, engine|
+    historical = { "mode" => "HISTORICAL_PRE_RULE" }
+    with_repository do |root, _engine|
+      run_git(root, "init")
+      run_git(root, "config", "user.name", "AHF DAG Test")
+      run_git(root, "config", "user.email", "dag-test@example.invalid")
+      run_git(root, "add", ".dag", "evidence.txt")
+      run_git(root, "commit", "-m", "historical evidence")
+      commit = git_output(root, "rev-parse", "HEAD").strip
+      attempt = passed_attempt.merge("recorded_commit" => commit)
+      completed_task = task("AHF-CLEAN-FOUNDATION-002", attempts: [attempt], publication: historical)
+      write_manifest(root, "tasks.yaml", "tasks", [completed_task])
+      run_git(root, "add", ".dag/tasks.yaml")
+      run_git(root, "commit", "-m", "record historical completion")
+      engine = AhfDag::Engine.new(AhfDag::Repository.new(root))
       assert_equal "DONE", engine.status.first.state
     end
   end
@@ -164,10 +184,115 @@ class AhfDagTest < Minitest::Test
     end
   end
 
+  def test_required_remote_publication_controls_done
+    Dir.mktmpdir("ahf-dag-remote") do |remote_parent|
+      remote = File.join(remote_parent, "origin.git")
+      run_git(remote_parent, "init", "--bare", remote)
+
+      publication = {
+        "mode" => "REQUIRED",
+        "remote" => "origin",
+        "branch" => "main",
+        "evidence_path" => ".dag/publications/T.yaml"
+      }
+      completed_task = task("T", attempts: [passed_attempt]).merge("publication" => publication)
+
+      with_repository(tasks: [completed_task]) do |root, _engine|
+        run_git(root, "init")
+        run_git(root, "config", "user.name", "AHF DAG Test")
+        run_git(root, "config", "user.email", "dag-test@example.invalid")
+        run_git(root, "remote", "add", "origin", remote)
+        run_git(root, "add", ".dag", "evidence.txt")
+        run_git(root, "commit", "-m", "base history")
+        run_git(root, "push", "origin", "HEAD:refs/heads/main")
+
+        FileUtils.mkdir_p(File.join(root, ".dag", "publications"))
+        File.write(
+          File.join(root, ".dag", "publications", "T.yaml"),
+          YAML.dump("schema_version" => 0, "task_id" => "T", "remote" => "origin", "branch" => "main")
+        )
+        run_git(root, "add", ".dag/publications/T.yaml")
+        run_git(root, "commit", "-m", "test publication")
+
+        unpublished_engine = AhfDag::Engine.new(AhfDag::Repository.new(root))
+        assert_equal "FAILED", unpublished_engine.status.first.state
+        assert_includes unpublished_engine.status.first.reasons.map(&:code), "PUBLICATION_NOT_VERIFIED"
+        assert_equal "NO_READY_TASK", unpublished_engine.next_result["result"]
+
+        run_git(root, "push", "origin", "HEAD:refs/heads/main")
+        published_engine = AhfDag::Engine.new(AhfDag::Repository.new(root))
+        assert_equal "DONE", published_engine.status.first.state
+      end
+    end
+  end
+
+  def test_remote_publication_divergence_stops_for_review
+    Dir.mktmpdir("ahf-dag-divergence") do |remote_parent|
+      remote = File.join(remote_parent, "origin.git")
+      seed = File.join(remote_parent, "seed")
+      run_git(remote_parent, "init", "--bare", remote)
+      FileUtils.mkdir_p(seed)
+      run_git(seed, "init")
+      run_git(seed, "config", "user.name", "AHF DAG Test")
+      run_git(seed, "config", "user.email", "dag-test@example.invalid")
+      File.write(File.join(seed, "remote.txt"), "remote history\n")
+      run_git(seed, "add", "remote.txt")
+      run_git(seed, "commit", "-m", "remote history")
+      run_git(seed, "push", remote, "HEAD:refs/heads/main")
+
+      publication = {
+        "mode" => "REQUIRED",
+        "remote" => "origin",
+        "branch" => "main",
+        "evidence_path" => ".dag/publications/T.yaml"
+      }
+      completed_task = task("T", attempts: [passed_attempt], publication: publication)
+
+      with_repository(tasks: [completed_task]) do |root, _engine|
+        FileUtils.mkdir_p(File.join(root, ".dag", "publications"))
+        File.write(
+          File.join(root, ".dag", "publications", "T.yaml"),
+          YAML.dump("schema_version" => 0, "task_id" => "T", "remote" => "origin", "branch" => "main")
+        )
+        run_git(root, "init")
+        run_git(root, "config", "user.name", "AHF DAG Test")
+        run_git(root, "config", "user.email", "dag-test@example.invalid")
+        run_git(root, "remote", "add", "origin", remote)
+        run_git(root, "add", ".dag", "evidence.txt")
+        run_git(root, "commit", "-m", "local divergent history")
+
+        engine = AhfDag::Engine.new(AhfDag::Repository.new(root))
+        assert_equal "FAILED", engine.status.first.state
+        assert_includes engine.status.first.reasons.map(&:code), "PUBLICATION_DIVERGENCE"
+        assert_equal "STOP_FOR_REVIEW", engine.next_result["result"]
+      end
+    end
+  end
+
+  def test_post_rule_task_cannot_claim_historical_publication_exemption
+    future_task = task("FUTURE", publication: { "mode" => "HISTORICAL_PRE_RULE" })
+    with_repository(tasks: [future_task]) do |_root, engine|
+      refute engine.validator.valid?
+      assert engine.validator.errors.any? { |error| error.include?("not eligible for historical publication exemption") }
+    end
+  end
+
   private
 
   def write_manifest(root, filename, key, entries)
     document = { "schema_version" => 0, key => entries }
     File.write(File.join(root, ".dag", filename), YAML.dump(document))
+  end
+
+
+  def run_git(directory, *arguments)
+    _stdout, stderr, status = Open3.capture3("git", *arguments, chdir: directory)
+    assert status.success?, "git #{arguments.join(" ")} failed: #{stderr}"
+  end
+
+  def git_output(directory, *arguments)
+    stdout, stderr, status = Open3.capture3("git", *arguments, chdir: directory)
+    assert status.success?, "git #{arguments.join(" ")} failed: #{stderr}"
+    stdout
   end
 end

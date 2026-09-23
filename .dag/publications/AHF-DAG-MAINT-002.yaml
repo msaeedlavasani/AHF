@@ -1,0 +1,7 @@
+schema_version: 0
+task_id: AHF-DAG-MAINT-002
+remote: origin
+branch: main
+verification_rule: >-
+  The commit containing this marker must be contained by the declared remote
+  branch before the Task can derive DONE.

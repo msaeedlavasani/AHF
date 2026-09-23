@@ -40,6 +40,10 @@ artifacts:
     title: Task/DAG focused automated tests
     state: AVAILABLE
     path: test/ahf_dag_test.rb
+  - id: REMOTE_PUBLICATION_MARKER@v0
+    title: Remote publication rule bootstrap marker
+    state: AVAILABLE
+    path: .dag/publications/AHF-DAG-MAINT-002.yaml
   - id: LEGACY_KNOWLEDGE_INDEX@v0
     title: Structured legacy AHF knowledge index
     state: AVAILABLE

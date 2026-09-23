@@ -12,6 +12,11 @@ module AhfDag
   REQUIRE_TYPES = %w[DECISION ARTIFACT].freeze
   PRODUCE_TYPES = %w[DECISION ARTIFACT].freeze
   CHECK_TYPES = %w[file_exists file_executable file_contains command_succeeds].freeze
+  PUBLICATION_MODES = %w[HISTORICAL_PRE_RULE REQUIRED].freeze
+  HISTORICAL_PUBLICATION_TASKS = %w[
+    AHF-CLEAN-FOUNDATION-002
+    FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
+  ].freeze
 
   Reason = Struct.new(:code, :message)
   TaskStatus = Struct.new(:id, :title, :priority, :state, :reasons)
@@ -77,7 +82,7 @@ module AhfDag
   class Validator
     DECISION_KEYS = %w[id title state superseded_by].freeze
     ARTIFACT_KEYS = %w[id title state path invalidated_by].freeze
-    TASK_KEYS = %w[id title purpose priority requires depends_on produces acceptance_criteria required_evidence validations attempts].freeze
+    TASK_KEYS = %w[id title purpose priority requires depends_on produces acceptance_criteria required_evidence validations attempts publication].freeze
 
     attr_reader :repository
 
@@ -164,7 +169,36 @@ module AhfDag
         validate_evidence(task)
         validate_checks(task, "validations")
         validate_attempts(task)
+        validate_publication(task)
       end
+    end
+
+    def validate_publication(task)
+      publication = task["publication"]
+      unless publication.is_a?(Hash)
+        add("task #{task["id"]}: publication must be a mapping")
+        return
+      end
+
+      mode = publication["mode"]
+      unless PUBLICATION_MODES.include?(mode)
+        add("task #{task["id"]}: publication mode must be one of #{PUBLICATION_MODES.join(", ")}")
+        return
+      end
+
+      if mode == "HISTORICAL_PRE_RULE"
+        add("task #{task["id"]}: historical publication mode may contain only mode") unless publication.keys == ["mode"]
+        unless HISTORICAL_PUBLICATION_TASKS.include?(task["id"])
+          add("task #{task["id"]}: is not eligible for historical publication exemption")
+        end
+        return
+      end
+
+      expected_keys = %w[branch evidence_path mode remote]
+      add("task #{task["id"]}: REQUIRED publication must contain only #{expected_keys.join(", ")}") unless publication.keys.sort == expected_keys
+      add("task #{task["id"]}: publication remote must be a non-empty string") unless non_empty_string?(publication["remote"])
+      add("task #{task["id"]}: publication branch must be a non-empty string") unless non_empty_string?(publication["branch"])
+      validate_relative_path(publication["evidence_path"], "task #{task["id"]}: publication evidence_path")
     end
 
     def validate_node_collection(collection, kind, allowed_keys)
@@ -297,9 +331,16 @@ module AhfDag
           add("#{label} must be a mapping")
           next
         end
-        unknown = attempt.keys - %w[id outcome evidence validations produced]
+        unknown = attempt.keys - %w[id outcome evidence validations produced recorded_commit]
         add("#{label}: unknown fields #{unknown.sort.join(", ")}") unless unknown.empty?
         add("#{label}: outcome must be one of #{ATTEMPT_OUTCOMES.join(", ")}") unless ATTEMPT_OUTCOMES.include?(attempt["outcome"])
+        recorded_commit = attempt["recorded_commit"]
+        if recorded_commit && recorded_commit !~ /\A[0-9a-f]{40}\z/
+          add("#{label}: recorded_commit must be a 40-character lowercase Git SHA")
+        end
+        if task.dig("publication", "mode") == "HISTORICAL_PRE_RULE" && !recorded_commit
+          add("#{label}: historical attempt requires recorded_commit")
+        end
         validate_id_references(attempt["evidence"], evidence_ids, "#{label}: evidence")
         validate_id_references(attempt["validations"], validation_ids, "#{label}: validations")
         validate_produced_snapshot(task, attempt["produced"], label)
@@ -442,6 +483,14 @@ module AhfDag
         }
       end
 
+      divergence = status.flat_map(&:reasons).select { |reason| reason.code == "PUBLICATION_DIVERGENCE" }
+      unless divergence.empty?
+        return {
+          "result" => "STOP_FOR_REVIEW",
+          "reasons" => divergence.map(&:message).uniq.sort
+        }
+      end
+
       unresolved = status.flat_map(&:reasons).select { |reason| reason.code == "DECISION_UNRESOLVED" }
       unless unresolved.empty?
         return {
@@ -518,7 +567,7 @@ module AhfDag
           failures << Reason.new("EVIDENCE_MISSING", "attempt does not include required evidence #{evidence["id"]}")
           next
         end
-        evidence_result = validate_evidence_file(evidence)
+        evidence_result = validate_evidence_file(evidence, task, attempt)
         failures << Reason.new("EVIDENCE_INVALID", "#{evidence["id"]}: #{evidence_result}") unless evidence_result == true
       end
 
@@ -542,7 +591,78 @@ module AhfDag
         output_validity(output, snapshot).each { |reason| failures << reason }
       end
 
+      publication_result = validate_remote_publication(task)
+      unless publication_result == true
+        code = publication_result.start_with?("remote divergence:") ? "PUBLICATION_DIVERGENCE" : "PUBLICATION_NOT_VERIFIED"
+        failures << Reason.new(code, publication_result)
+      end
+
       failures.sort_by { |reason| [reason.code, reason.message] }
+    end
+
+    def validate_remote_publication(task)
+      publication = task["publication"]
+      return true if publication["mode"] == "HISTORICAL_PRE_RULE"
+
+      evidence_path = publication["evidence_path"]
+      absolute_evidence_path = repository.resolve_path(evidence_path)
+      return "publication evidence #{evidence_path} does not exist" unless File.file?(absolute_evidence_path)
+
+      marker = YAML.safe_load(File.read(absolute_evidence_path), permitted_classes: [], permitted_symbols: [], aliases: false)
+      unless marker.is_a?(Hash) && marker["task_id"] == task["id"] &&
+             marker["remote"] == publication["remote"] && marker["branch"] == publication["branch"]
+        return "publication evidence #{evidence_path} does not match Task, remote, and branch"
+      end
+
+      evidence_commit = publication_commit(task)
+      return "publication evidence #{evidence_path} is not committed" unless evidence_commit
+
+      remote = publication["remote"]
+      branch = publication["branch"]
+      remote_stdout, remote_stderr, remote_status = Open3.capture3(
+        "git", "ls-remote", "--heads", remote, "refs/heads/#{branch}",
+        chdir: repository.root
+      )
+      unless remote_status.success?
+        return "could not inspect #{remote}/#{branch}: #{remote_stderr.lines.first.to_s.strip}"
+      end
+      remote_commit = remote_stdout.lines.map { |line| line.split.first }.find { |sha| sha&.match?(/\A[0-9a-f]{40}\z/) }
+      return "remote branch #{remote}/#{branch} does not exist" unless remote_commit
+
+      _fetch_stdout, fetch_stderr, fetch_status = Open3.capture3(
+        "git", "fetch", "--quiet", "--no-tags", remote, "refs/heads/#{branch}",
+        chdir: repository.root
+      )
+      unless fetch_status.success?
+        return "could not fetch #{remote}/#{branch}: #{fetch_stderr.lines.first.to_s.strip}"
+      end
+      fetched_stdout, fetched_stderr, fetched_status = Open3.capture3(
+        "git", "rev-parse", "FETCH_HEAD",
+        chdir: repository.root
+      )
+      unless fetched_status.success? && fetched_stdout.strip == remote_commit
+        return "fetched #{remote}/#{branch} did not match inspected remote commit: #{fetched_stderr.lines.first.to_s.strip}"
+      end
+
+      _ancestor_stdout, _ancestor_stderr, ancestor_status = Open3.capture3(
+        "git", "merge-base", "--is-ancestor", evidence_commit, remote_commit,
+        chdir: repository.root
+      )
+      return true if ancestor_status.success?
+
+      _behind_stdout, _behind_stderr, behind_status = Open3.capture3(
+        "git", "merge-base", "--is-ancestor", remote_commit, evidence_commit,
+        chdir: repository.root
+      )
+      if behind_status.success?
+        return "remote #{remote}/#{branch} has not yet published evidence commit #{evidence_commit}"
+      end
+
+      "remote divergence: #{remote}/#{branch} does not contain publication evidence commit #{evidence_commit}"
+    rescue Psych::Exception => e
+      "publication evidence #{evidence_path} is invalid YAML: #{e.message.lines.first.strip}"
+    rescue SystemCallError => e
+      "publication verification could not run: #{e.message}"
     end
 
     def output_validity(output, snapshot)
@@ -576,13 +696,34 @@ module AhfDag
       end
     end
 
-    def validate_evidence_file(evidence)
-      path = repository.resolve_path(evidence["path"])
-      return "file #{evidence["path"]} does not exist" unless File.file?(path)
+    def validate_evidence_file(evidence, task, attempt)
+      commit = attempt["recorded_commit"] || publication_commit(task)
+      if commit
+        content, stderr, status = Open3.capture3(
+          "git", "show", "#{commit}:#{evidence["path"]}",
+          chdir: repository.root
+        )
+        return "file #{evidence["path"]} is absent from evidence commit #{commit}: #{stderr.lines.first.to_s.strip}" unless status.success?
+      else
+        path = repository.resolve_path(evidence["path"])
+        return "file #{evidence["path"]} does not exist" unless File.file?(path)
+        content = File.binread(path)
+      end
       return true unless evidence["sha256"]
-      actual = Digest::SHA256.file(path).hexdigest
+      actual = Digest::SHA256.hexdigest(content)
       return true if actual == evidence["sha256"]
       "sha256 mismatch for #{evidence["path"]}"
+    end
+
+    def publication_commit(task)
+      publication = task["publication"]
+      return nil unless publication && publication["mode"] == "REQUIRED"
+      evidence_path = publication["evidence_path"]
+      stdout, _stderr, status = Open3.capture3(
+        "git", "log", "-1", "--format=%H", "--", evidence_path,
+        chdir: repository.root
+      )
+      status.success? && stdout.strip.match?(/\A[0-9a-f]{40}\z/) ? stdout.strip : nil
     end
 
     def run_check(check)

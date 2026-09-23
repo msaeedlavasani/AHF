@@ -89,6 +89,7 @@ tasks:
     attempts:
       - id: AHF-CLEAN-FOUNDATION-002/attempt-1
         outcome: PASSED
+        recorded_commit: 9afd682c098f38b9d0fe22718c7f57cec8617d48
         evidence:
           - resolved_contract
           - focused_test_suite
@@ -120,6 +121,8 @@ tasks:
           - type: ARTIFACT
             id: TASK_DAG_TESTS@v0
             state: AVAILABLE
+    publication:
+      mode: HISTORICAL_PRE_RULE
 
   - id: FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
     title: Create the Legacy Knowledge Index
@@ -287,6 +290,7 @@ tasks:
     attempts:
       - id: FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX/attempt-1
         outcome: PASSED
+        recorded_commit: cfa70f312bffee8882f7471151f9126c06aaad8d
         evidence:
           - legacy_knowledge_index
         validations:
@@ -295,6 +299,128 @@ tasks:
           - type: ARTIFACT
             id: LEGACY_KNOWLEDGE_INDEX@v0
             state: AVAILABLE
+    publication:
+      mode: HISTORICAL_PRE_RULE
+
+  - id: AHF-DAG-MAINT-002
+    title: Establish Remote Publication as part of Task completion
+    purpose: >-
+      Make verified remote publication a deterministic prerequisite of final
+      Task completion while preserving pre-rule successful history and
+      avoiding a self-referential commit-SHA bootstrap.
+    priority: 1000
+    requires:
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+      - type: ARTIFACT
+        id: TASK_DAG_ENGINE@v0
+      - type: ARTIFACT
+        id: TASK_DAG_TESTS@v0
+    depends_on:
+      - FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
+    produces:
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+      - type: ARTIFACT
+        id: TASK_DAG_ENGINE@v0
+      - type: ARTIFACT
+        id: TASK_DAG_TESTS@v0
+      - type: ARTIFACT
+        id: REMOTE_PUBLICATION_MARKER@v0
+    acceptance_criteria:
+      - id: lifecycle_documented
+        check:
+          type: file_contains
+          path: docs/foundation/04-task-dag-contract.md
+          text: A local commit alone is not sufficient for final `DONE`.
+      - id: publication_is_enforced
+        check:
+          type: file_contains
+          path: lib/ahf_dag.rb
+          text: PUBLICATION_NOT_VERIFIED
+      - id: publication_test_exists
+        check:
+          type: file_contains
+          path: test/ahf_dag_test.rb
+          text: test_required_remote_publication_controls_done
+      - id: bootstrap_marker_exists
+        check:
+          type: file_exists
+          path: .dag/publications/AHF-DAG-MAINT-002.yaml
+      - id: next_task_requires_publication
+        check:
+          type: file_contains
+          path: .dag/tasks.yaml
+          text: .dag/publications/FOUNDATION-004-IDENTITY-MODEL.yaml
+    required_evidence:
+      - id: resolved_contract
+        path: docs/foundation/04-task-dag-contract.md
+        sha256: 102906975aca3fc96ad37c8f303efc5e1c591c9c4e5155bfedf08aec6e2532f3
+      - id: publication_engine
+        path: lib/ahf_dag.rb
+        sha256: 6313ce0d871fda2959b4e1e6102712600bc367b487bc81a298e2a38529054d7f
+      - id: publication_tests
+        path: test/ahf_dag_test.rb
+        sha256: c2c2359905c7ff6625bf277637bc493926bc6348718833e9a10e145de7c3a1a8
+      - id: publication_marker
+        path: .dag/publications/AHF-DAG-MAINT-002.yaml
+        sha256: ae1a7d47d495d345ab8439c5ba93e2a0cdaca1046c6e7f2228758f34f5189bb1
+    validations:
+      - id: dag_structure
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - bin/ahf-dag
+            - validate
+      - id: dag_engine_tests
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -Itest
+            - test/ahf_dag_test.rb
+    attempts:
+      - id: AHF-DAG-MAINT-002/attempt-1
+        outcome: PASSED
+        evidence:
+          - resolved_contract
+          - publication_engine
+          - publication_tests
+          - publication_marker
+        validations:
+          - dag_structure
+          - dag_engine_tests
+        produced:
+          - type: DECISION
+            id: TASK_DAG_CONTRACT@v0
+            state: RESOLVED
+          - type: ARTIFACT
+            id: TASK_DAG_CONTRACT_DOC@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_TASKS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: TASK_DAG_ENGINE@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: TASK_DAG_TESTS@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: REMOTE_PUBLICATION_MARKER@v0
+            state: AVAILABLE
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/AHF-DAG-MAINT-002.yaml
 
   - id: FOUNDATION-004-IDENTITY-MODEL
     title: Define the AHF Identity Model
@@ -316,6 +442,7 @@ tasks:
         id: LEGACY_KNOWLEDGE_INDEX@v0
     depends_on:
       - FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
+      - AHF-DAG-MAINT-002
     produces:
       - type: ARTIFACT
         id: IDENTITY_MODEL_CANDIDATE@v0
@@ -334,3 +461,8 @@ tasks:
           path: docs/foundation/decisions/identity-model-candidate-v0.md
           text: "Status: DRAFT"
     attempts: []
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/FOUNDATION-004-IDENTITY-MODEL.yaml

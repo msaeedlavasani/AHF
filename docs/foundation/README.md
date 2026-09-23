@@ -49,6 +49,10 @@ Decision
 → READY / BLOCKED
 → Execution
 → Evidence
+→ Local validation/tests
+→ Commit
+→ Push
+→ Verify remote contains exact commit
 → DONE
 → dependent work becomes READY
 ```
