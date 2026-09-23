@@ -662,7 +662,7 @@ tasks:
           argv:
             - ruby
             - -e
-            - "require 'yaml'; tasks = YAML.safe_load(File.read('.dag/tasks.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false).fetch('tasks'); audit = tasks.find { |task| task.fetch('id') == 'FOUNDATION-AUDIT-REVIEW' }; abort 'audit task has attempts' unless audit.fetch('attempts').empty?"
+            - "require 'open3'; require 'yaml'; content, error, status = Open3.capture3('git', 'show', 'ba346e38e32701d72a001dd4daf1e1ef83e2f012:.dag/tasks.yaml'); abort error unless status.success?; tasks = YAML.safe_load(content, permitted_classes: [], permitted_symbols: [], aliases: false).fetch('tasks'); audit = tasks.find { |task| task.fetch('id') == 'FOUNDATION-AUDIT-REVIEW' }; abort 'audit task had attempts at MAINT-004 completion' unless audit.fetch('attempts').empty?"
     required_evidence:
       - id: corrected_graph_tests
         path: test/foundation_completeness_dag_test.rb
@@ -692,7 +692,7 @@ tasks:
           argv:
             - ruby
             - -e
-            - "require 'yaml'; tasks = YAML.safe_load(File.read('.dag/tasks.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false).fetch('tasks'); audit = tasks.find { |task| task.fetch('id') == 'FOUNDATION-AUDIT-REVIEW' }; abort 'audit task has attempts' unless audit.fetch('attempts').empty?"
+            - "require 'open3'; require 'yaml'; content, error, status = Open3.capture3('git', 'show', 'ba346e38e32701d72a001dd4daf1e1ef83e2f012:.dag/tasks.yaml'); abort error unless status.success?; tasks = YAML.safe_load(content, permitted_classes: [], permitted_symbols: [], aliases: false).fetch('tasks'); audit = tasks.find { |task| task.fetch('id') == 'FOUNDATION-AUDIT-REVIEW' }; abort 'audit task had attempts at MAINT-004 completion' unless audit.fetch('attempts').empty?"
     attempts:
       - id: AHF-DAG-MAINT-004/attempt-1
         outcome: PASSED
@@ -715,6 +715,82 @@ tasks:
       remote: origin
       branch: main
       evidence_path: .dag/publications/AHF-DAG-MAINT-004.yaml
+
+  - id: AHF-DAG-MAINT-005
+    title: Complete historical-state correction for MAINT-004
+    purpose: >-
+      Make MAINT-004's audit-attempt acceptance and validation checks inspect
+      MAINT-004's published completion state instead of the mutable current
+      manifest. Preserve all genuine current-state invariants, Foundation
+      sequencing, Task scope, Owner decisions, and unexecuted audit work.
+    priority: 1000
+    requires:
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+      - type: ARTIFACT
+        id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+    depends_on:
+      - AHF-DAG-MAINT-004
+    produces:
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+    acceptance_criteria:
+      - id: maint_004_checks_published_completion_state
+        check:
+          type: file_contains
+          path: .dag/tasks.yaml
+          text: "ba346e38e32701d72a001dd4daf1e1ef83e2f012:.dag/tasks.yaml"
+      - id: historical_check_has_explicit_semantics
+        check:
+          type: file_contains
+          path: .dag/tasks.yaml
+          text: audit task had attempts at MAINT-004 completion
+    required_evidence:
+      - id: corrected_task_manifest
+        path: .dag/tasks.yaml
+      - id: publication_marker
+        path: .dag/publications/AHF-DAG-MAINT-005.yaml
+        sha256: af32ca858f716fc39e85021cf5ea96c7cfa736c3be81d59eb08d78617e7d00f2
+    validations:
+      - id: dag_structure
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - bin/ahf-dag
+            - validate
+      - id: full_test_suite
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -Itest
+            - -e
+            - "Dir['test/*_test.rb'].sort.each { |file| require File.expand_path(file) }"
+    attempts:
+      - id: AHF-DAG-MAINT-005/attempt-1
+        outcome: PASSED
+        evidence:
+          - corrected_task_manifest
+          - publication_marker
+        validations:
+          - dag_structure
+          - full_test_suite
+        produced:
+          - type: ARTIFACT
+            id: DAG_TASKS_MANIFEST@v0
+            state: AVAILABLE
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/AHF-DAG-MAINT-005.yaml
 
   - id: FOUNDATION-AUDIT-REVIEW
     title: Review the accepted Clean-Start Foundation Audit
