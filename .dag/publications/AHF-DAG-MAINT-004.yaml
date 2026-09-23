@@ -1,0 +1,7 @@
+schema_version: 0
+task_id: AHF-DAG-MAINT-004
+remote: origin
+branch: main
+verification_rule: >-
+  The commit containing this marker must be an ancestor of the configured
+  remote branch before the Task can derive DONE.

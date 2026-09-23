@@ -617,6 +617,105 @@ tasks:
       branch: main
       evidence_path: .dag/publications/AHF-DAG-MAINT-003.yaml
 
+  - id: AHF-DAG-MAINT-004
+    title: Correct Foundation seed-state test semantics
+    purpose: >-
+      Make the active test verify the published MAINT-003 seed commit instead
+      of prohibiting legitimate later Task attempts. MAINT-003's exact evidence
+      remains preserved by its commit-addressed evidence validation. This
+      maintenance Task does not execute future Foundation work, resolve Owner
+      decisions, adopt audit findings, or change the seeded Task ordering and
+      acceptance contracts.
+    priority: 1000
+    requires:
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: DECISION
+        id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+      - type: ARTIFACT
+        id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+    depends_on:
+      - AHF-DAG-MAINT-003
+    produces:
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+      - type: ARTIFACT
+        id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+    acceptance_criteria:
+      - id: active_test_uses_seed_commit
+        check:
+          type: file_contains
+          path: test/foundation_completeness_dag_test.rb
+          text: "SEED_COMMIT = \"fa2ef8449fd458e418622e9c16c8a52363a3723d\""
+      - id: active_test_asserts_historical_seed_state
+        check:
+          type: file_contains
+          path: test/foundation_completeness_dag_test.rb
+          text: test_new_foundation_work_was_unexecuted_when_seeded
+      - id: audit_review_remains_unexecuted
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; tasks = YAML.safe_load(File.read('.dag/tasks.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false).fetch('tasks'); audit = tasks.find { |task| task.fetch('id') == 'FOUNDATION-AUDIT-REVIEW' }; abort 'audit task has attempts' unless audit.fetch('attempts').empty?"
+    required_evidence:
+      - id: corrected_graph_tests
+        path: test/foundation_completeness_dag_test.rb
+        sha256: 57429dd2ad39bd3d32e116e84bbb1d4ec6f83550dcfd6ed0676f1f85f90938cb
+      - id: publication_marker
+        path: .dag/publications/AHF-DAG-MAINT-004.yaml
+        sha256: 950c5dc46de267fcad6b45a66696c7684d3c47418bd2786f3a6e0af09043646a
+    validations:
+      - id: dag_structure
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - bin/ahf-dag
+            - validate
+      - id: full_test_suite
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -Itest
+            - -e
+            - "Dir['test/*_test.rb'].sort.each { |file| require File.expand_path(file) }"
+      - id: audit_review_attempts_are_empty
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; tasks = YAML.safe_load(File.read('.dag/tasks.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false).fetch('tasks'); audit = tasks.find { |task| task.fetch('id') == 'FOUNDATION-AUDIT-REVIEW' }; abort 'audit task has attempts' unless audit.fetch('attempts').empty?"
+    attempts:
+      - id: AHF-DAG-MAINT-004/attempt-1
+        outcome: PASSED
+        evidence:
+          - corrected_graph_tests
+          - publication_marker
+        validations:
+          - dag_structure
+          - full_test_suite
+          - audit_review_attempts_are_empty
+        produced:
+          - type: ARTIFACT
+            id: DAG_TASKS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: FOUNDATION_COMPLETENESS_DAG_TESTS@v0
+            state: AVAILABLE
+    publication:
+      mode: REQUIRED
+      remote: origin
+      branch: main
+      evidence_path: .dag/publications/AHF-DAG-MAINT-004.yaml
+
   - id: FOUNDATION-AUDIT-REVIEW
     title: Review the accepted Clean-Start Foundation Audit
     purpose: >-

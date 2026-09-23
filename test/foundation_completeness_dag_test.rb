@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 require "minitest/autorun"
+require "open3"
 require "yaml"
 
 class FoundationCompletenessDagTest < Minitest::Test
   ROOT = File.expand_path("..", __dir__)
+  SEED_COMMIT = "fa2ef8449fd458e418622e9c16c8a52363a3723d"
   REVIEW_BRANCHES = %w[
     FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
     FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
@@ -100,7 +102,7 @@ class FoundationCompletenessDagTest < Minitest::Test
     end
   end
 
-  def test_new_foundation_work_has_not_been_executed
+  def test_new_foundation_work_was_unexecuted_when_seeded
     future_task_ids = [
       "FOUNDATION-AUDIT-REVIEW",
       "FOUNDATION-LKI-COMPLETENESS",
@@ -110,7 +112,7 @@ class FoundationCompletenessDagTest < Minitest::Test
     ]
 
     future_task_ids.each do |task_id|
-      assert_empty task(task_id).fetch("attempts"), "#{task_id} must remain unexecuted"
+      assert_empty seed_tasks.fetch(task_id).fetch("attempts"), "#{task_id} was executed in the seed commit"
     end
   end
 
@@ -128,5 +130,25 @@ class FoundationCompletenessDagTest < Minitest::Test
 
   def task(id)
     @tasks.fetch(id)
+  end
+
+  def seed_tasks
+    @seed_tasks ||= begin
+      content, error, status = Open3.capture3(
+        "git",
+        "show",
+        "#{SEED_COMMIT}:.dag/tasks.yaml",
+        chdir: ROOT
+      )
+      raise "cannot read seed manifest: #{error}" unless status.success?
+
+      document = YAML.safe_load(
+        content,
+        permitted_classes: [],
+        permitted_symbols: [],
+        aliases: false
+      )
+      document.fetch("tasks").to_h { |task| [task.fetch("id"), task] }
+    end
   end
 end
