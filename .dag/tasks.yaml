@@ -1325,15 +1325,38 @@ tasks:
           type: file_contains
           path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
           text: "Status: RESOLVED"
+      - id: closure_audit_passed
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+          text: "Closure audit: PASS"
+      - id: cross_gate_requirements_are_routed
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+          text: STREAK_CREDIT_POLICY
     required_evidence:
       - id: resolved_boundary_document
         path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+      - id: preserved_owner_checkpoint
+        path: docs/foundation/decisions/identity-persistence-owner-checkpoint-v0.md
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-RESOLVE-IDENTITY-AND-PERSISTENCE-BOUNDARIES.yaml
     validations:
       - id: resolved_status_is_recorded
         check:
           type: file_contains
           path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
           text: "Status: RESOLVED"
+      - id: closure_audit_is_recorded
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
+          text: "Closure audit: PASS"
+      - id: owner_checkpoint_is_preserved
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/identity-persistence-owner-checkpoint-v0.md
     attempts: []
     publication:
       mode: REQUIRED

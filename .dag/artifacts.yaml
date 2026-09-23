@@ -106,7 +106,7 @@ artifacts:
     path: .dag/outputs/historical-failure-evidence-model.yaml
   - id: IDENTITY_PERSISTENCE_BOUNDARIES_DOC@v0
     title: Resolved Identity and Persistence Boundaries document
-    state: MISSING
+    state: AVAILABLE
     path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
   - id: EXECUTION_OUTCOME_RECOVERY_CONTRACTS_DOC@v0
     title: Resolved Execution, Outcome, and Recovery Contracts document

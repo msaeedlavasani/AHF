@@ -35,13 +35,15 @@ The resolved v0 Foundation consists of:
 4. [Task/DAG Contract](04-task-dag-contract.md)
 5. [Clean-Start Foundation Completeness](05-clean-start-foundation-completeness.md)
 6. [Execution, Outcome, and Recovery Contracts](decisions/execution-outcome-recovery-contracts-v0.md)
+7. [Identity and Persistence Boundaries](decisions/identity-and-persistence-boundaries-v0.md)
 
 The [unresolved register](unresolved.md) records matters that remain open. The [candidate-tool register](candidate-tools.md) records evaluation status without selecting a stack. The [`decisions/`](decisions/) directory is reserved for later Foundation decision records.
 
 The [Identity and Persistence Owner Decision Checkpoint](decisions/identity-persistence-owner-checkpoint-v0.md)
-preserves approved interim decisions while its Owner gate remains explicitly
-**UNRESOLVED**. A checkpoint is evidence for later resolution; it is not itself
-gate resolution.
+preserves the append-only history of approved interim decisions. The
+[consolidated Identity and Persistence Boundaries v0 contract](decisions/identity-and-persistence-boundaries-v0.md)
+is the resolved canonical decision; the checkpoint remains historical evidence
+and does not compete with or replace that contract.
 
 ## Canonical work selection
 

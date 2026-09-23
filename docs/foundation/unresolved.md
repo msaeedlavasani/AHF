@@ -29,6 +29,15 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - exact Set Result schema
 - exact Workout Outcome schema
 - adaptation algorithm/policy
+- legal retention duration and backup purge mechanics
+- de-identification implementation, data eligibility, consent/notice, and legal basis
+- training/improvement data privacy implementation
+- Account Sharing Identity Confidence solution
+- Streak Credit Policy, Freeze economics, eligibility formula, and anti-abuse policy
+- physical transaction mechanism for `START`
+- Draft persistence and execution-package serialization
+- user-meaningful persistence failure UX
+- date-of-birth representation and detailed User/Training Profile schema
 - whether Restart Current Set exists as a product capability
 - whether Skip Rest exists
 - whether a separate permanent End Workout action exists in addition to Exit
@@ -36,7 +45,7 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - Workout Passport serialization/schema
 - local persistence implementation
 - sync/outbox/idempotency mechanics
-- multi-device takeover/reconciliation mechanics
+- multi-device authority lease/takeover protocol and reconciliation mechanics
 - workout-day/timezone identity mechanics
 - adherence/scoring formulas
 - UX state/screen decisions
@@ -46,18 +55,25 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 
 The following Owner gates remain explicitly **UNRESOLVED**:
 
-- Identity and Persistence boundary resolution — approved interim decisions are
-  preserved in
-  [`decisions/identity-persistence-owner-checkpoint-v0.md`](decisions/identity-persistence-owner-checkpoint-v0.md),
-  but the Owner gate remains **UNRESOLVED**
 - Privacy, Sensing, and Account Lifecycle resolution
 - UX, Design, Localization, Accessibility, and Performance resolution
 - Architecture, Operations, and Tooling boundary resolution
 
-The Execution, Outcome, and Recovery Owner gate and v0 contract are
+The Identity and Persistence Owner gate and v0 contract are **RESOLVED** in
+[`decisions/identity-and-persistence-boundaries-v0.md`](decisions/identity-and-persistence-boundaries-v0.md).
+Its interim Owner checkpoint remains preserved as historical decision evidence
+in [`decisions/identity-persistence-owner-checkpoint-v0.md`](decisions/identity-persistence-owner-checkpoint-v0.md).
+
+The Execution, Outcome, and Recovery Owner gate and v0 contract are also
 **RESOLVED** in
 [`decisions/execution-outcome-recovery-contracts-v0.md`](decisions/execution-outcome-recovery-contracts-v0.md).
 The remaining boundary decisions and the final Clean-Start Foundation Baseline
 are not resolved; their machine-readable output placeholders remain **DRAFT**.
 The repository-native DAG records their prerequisites and must not resolve them
 automatically.
+
+Cross-gate unresolved requirements remain explicit: `ACCOUNT_SHARING_IDENTITY_CONFIDENCE`
+and privacy, de-identification, and account-deletion implementation concerns
+route to `OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0`. `STREAK_CREDIT_POLICY`
+is routed to an appropriate future Product/Engagement contract; no Owner gate
+is invented here.
