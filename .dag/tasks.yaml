@@ -841,6 +841,10 @@ tasks:
     required_evidence:
       - id: audit_review
         path: .dag/outputs/foundation-audit-review.yaml
+        sha256: beb02eb4d936250f7ccef5ce9eaffa719ddb0c0f5b911b503b51a9157ec1dcf5
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-AUDIT-REVIEW.yaml
+        sha256: 036315a95834e0c4d3e29c4ae6fc1fe58797239b4dd0ed0a250763555019d207
     validations:
       - id: audit_review_yaml_parses
         check:
@@ -849,7 +853,18 @@ tasks:
             - ruby
             - -e
             - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/foundation-audit-review.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-AUDIT-REVIEW/attempt-1
+        outcome: PASSED
+        evidence:
+          - audit_review
+          - publication_marker
+        validations:
+          - audit_review_yaml_parses
+        produced:
+          - type: ARTIFACT
+            id: FOUNDATION_AUDIT_REVIEW@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

@@ -1,0 +1,291 @@
+schema_version: 0
+artifact_id: FOUNDATION_AUDIT_REVIEW@v0
+generated_by_task: FOUNDATION-AUDIT-REVIEW
+audit_date: "2026-09-23" # acceptance literal: audit_date: 2026-09-23
+review_state: OWNER_REVIEWED_BASIS_ACCEPTED
+
+authority_boundary:
+  audit_role: historical and requirements evidence for Clean-Start completeness work
+  findings_role: discovery and review inputs
+  candidate_dispositions_role: non-binding candidates
+  resolves_owner_decisions: false
+  authorizes_legacy_adoption: false
+  authorizes_implementation: false
+  unavailable_evidence_is_acceptance: false
+
+source_evidence:
+  kind: owner-reviewed external audit report
+  owner_supplied_path: /Users/msl/Documents/Codex/2026-09-23/referenced-chatgpt-conversation-this-is-an/outputs/clean-start-foundation-audit.md
+  sha256: 5d0cfbe9c87e6a9250e1e95c711e9a6f90fdc16e546bfdf0801344ffdc80303b
+  title: Apex Home Fit Clean-Start Foundation Audit
+  prepared: "2026-09-23"
+  canonical_repository:
+    url: https://github.com/msaeedlavasani/AHF.git
+    audited_revision: bd1089a22878704e126aeda5b981945c1416e322
+  legacy_repository:
+    repository: Apex-Home-Fitness
+    audited_revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    branch_observed: feat/workout-v2-first-slice
+  owner_acceptance:
+    decision_id: CLEAN_START_FOUNDATION_COMPLETENESS@v0
+    contract: docs/foundation/05-clean-start-foundation-completeness.md
+
+review_outcome:
+  audit_basis: ACCEPTED_WITH_CANONICAL_SEQUENCE_CORRECTION
+  findings: PRESERVED_AS_EVIDENCE
+  candidate_dispositions: NON_BINDING
+  legacy_material_adopted: []
+  owner_decisions_resolved: []
+  foundation_004: DRAFT_EVIDENCE_NOT_A_RESOLVED_DECISION
+
+sequencing_correction:
+  audit_proposal_status: EVIDENCE_ONLY
+  owner_correction: >-
+    The Capability/Disposition Ledger begins during
+    FOUNDATION-LKI-COMPLETENESS and is incrementally refined downstream; it is
+    not deferred until all review branches finish.
+  canonical_order:
+    - FOUNDATION-AUDIT-REVIEW
+    - FOUNDATION-LKI-COMPLETENESS
+    - CAPABILITY_DISPOSITION_LEDGER_BEGINS
+    - PARALLEL_REVIEW_BRANCHES_WHERE_DEPENDENCIES_PERMIT
+    - OWNER_DECISION_GATES
+    - BOUNDARY_RESOLUTION_TASKS
+    - FOUNDATION-BASELINE-REVIEW
+    - IMPLEMENTATION_ARCHITECTURE_MAY_THEN_BECOME_ELIGIBLE
+
+executive_findings:
+  - id: AUDIT-FINDING-001
+    finding: The audit environment could not freshly query GitHub, so remote refs and publication were not independently verified there.
+    treatment: Preserve the limitation; do not infer publication failure or remote currency.
+  - id: AUDIT-FINDING-002
+    finding: The 18-entry Legacy Knowledge Index is seed discovery, not exhaustive; the pinned legacy tree contained 723 tracked paths.
+    treatment: Mechanically account for every tracked path and reconcile every seed record.
+  - id: AUDIT-FINDING-003
+    finding: Material evidence exists beyond the index across product, governance, execution, identity, privacy, localization, AI, observability, recovery, devices, accessibility, persistence, CI, deployment, and correction history.
+    treatment: Treat each area as a discovery lead, never automatic authority or adoption.
+  - id: AUDIT-FINDING-004
+    finding: FOUNDATION-004 is sound DRAFT identity evidence, not a resolved decision.
+    treatment: Require it only as input to later Owner-gated resolution.
+  - id: AUDIT-FINDING-005
+    finding: Completeness, review branches, Owner gates, boundary resolution, and baseline review must precede implementation architecture.
+    treatment: Follow the Owner-corrected repository DAG.
+
+historical_repository_observations:
+  canonical_repository:
+    audited_revision: bd1089a22878704e126aeda5b981945c1416e322
+    branch_observed: main
+    tracked_file_count: 18
+    audit_environment_remote_query_succeeded: false
+    audit_environment_dag_validate: PASS
+    audit_environment_dag_next: NO_READY_TASK
+    untracked_path_observed_and_untouched: .freebuff/
+  legacy_repository:
+    audited_revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    branch_observed: feat/workout-v2-first-slice
+    worktree_state_observed: CLEAN
+    tracked_file_count: 723
+    tracked_roots_observed:
+      src: 280
+      docs: 182
+      tests: 122
+      scripts: 36
+      public: 24
+      reports: 23
+      prisma: 20
+      ops: 9
+      infra: 6
+    local_refs_were_not_proven_current: true
+    correction_history_leads:
+      prescribed_entry_identity: [3e921cd, 4692e68, fbc3d1d]
+      outcome_semantics: [31b3a16]
+      offline_snapshot_versioning: [f37006c]
+      readiness_and_session_boundaries: [968b0d2, 9e58033]
+      evidence_and_checkpoint_gates: [b981ec8, 161101e, d627c86]
+      governed_deployment_and_storage: [e82e9cb, 30c4e5f]
+    interpretation: >-
+      These commits are provenance leads showing reconciliation needs, not
+      proof that historical claims or implementations remain valid.
+
+completeness_requirements:
+  - Record exact repository, revision, branch, worktree state, tracked-path count, accessible refs, and exclusions.
+  - Enumerate every tracked path and relevant history rather than relying on category labels.
+  - Give every capability stable identity, exact provenance, evidence class, relationships, confidence and gaps, review state, and disposition state.
+  - Account for all LKI records, split overloaded records, and record omissions and obsolete claims.
+  - Sequence unresolved Owner decisions before dependent contracts.
+  - Require explicit Task inputs, outputs, evidence, validation, dependencies, and publication proof.
+
+candidate_disposition_policy:
+  authority: NON_BINDING
+  allowed_values: [UNREVIEWED, REVALIDATE, ADOPT_CANDIDATE, MODIFY_CANDIDATE, SUPERSEDE_CANDIDATE, REJECT_CANDIDATE, HISTORICAL_EVIDENCE]
+  adoption_rule: Independent review and a recorded resolved Foundation decision are required.
+
+capability_leads:
+  - id: AUDIT-CAP-001
+    area: Product intent, user journey, and personalization
+    sources: [docs/product/PRODUCT-VISION.md, docs/product/PRODUCT-STRATEGY.md, docs/INDEX.md]
+    candidate_dispositions: [REVALIDATE, ADOPT_CANDIDATE]
+  - id: AUDIT-CAP-002
+    area: Domain vocabulary, program composition, prescription, outcomes, and adaptation
+    sources: [docs/adr/0001*, docs/adr/0006*, docs/adr/0012*, docs/architecture/AL-*, docs/architecture/MG-*]
+    candidate_dispositions: [REVALIDATE, MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-003
+    area: Exercise identity, entry occurrence identity, provenance, and ambiguity
+    sources: [docs/adr/0001-canonical-exercise-identity.md, docs/architecture/MG-*, prisma/]
+    candidate_dispositions: [HISTORICAL_EVIDENCE, REVALIDATE]
+  - id: AUDIT-CAP-004
+    area: Account, authentication, deletion, anonymization, and admin trust
+    sources: [docs/adr/0004*, docs/adr/0020*, docs/ADMIN_AUTH.md, src/services/accountDeletionService.ts]
+    candidate_dispositions: [MODIFY_CANDIDATE, REVALIDATE]
+  - id: AUDIT-CAP-005
+    area: Governance authority, ADR lifecycle, and documentation status
+    sources: [docs/governance/, docs/adr/README.md, scripts/governance-runtime.mjs]
+    candidate_dispositions: [REVALIDATE]
+  - id: AUDIT-CAP-006
+    area: Task admission, task contract, dependency graph, evidence, and agent boundaries
+    sources: [docs/TASKS.md, docs/DEVELOPMENT-ADMISSION.md, docs/admissions/, AGENTS.md, .specify/]
+    candidate_dispositions: [MODIFY_CANDIDATE]
+    gap: The literal Task Passport term was not found; analogous mechanisms require separate discovery.
+  - id: AUDIT-CAP-007
+    area: Specification lifecycle and traceability
+    sources: [.specify/constitution.md, docs/specs/, docs/AI_CHANGE_TEMPLATE.md]
+    candidate_dispositions: [ADOPT_CANDIDATE]
+  - id: AUDIT-CAP-008
+    area: Design system, assets, directionality, responsiveness, motion, and accessibility
+    sources: [docs/DESIGN_SYSTEM.md, docs/ASSETS.md, docs/UI-CONFORMANCE-GATE.md, src/i18n/]
+    candidate_dispositions: [MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-009
+    area: Workout progression, pause, exit, skip, and completion semantics
+    sources: [docs/specs/0001-workout-experience/, src/lib/workout/, docs/adr/0002*]
+    candidate_dispositions: [REVALIDATE]
+  - id: AUDIT-CAP-010
+    area: Recovery, offline snapshots, checkpoints, conflicts, and cross-device continuation
+    sources: [src/lib/offline/, docs/checkpoints/, docs/INTEGRATION-CHECKPOINT-POLICY.md]
+    candidate_dispositions: [MODIFY_CANDIDATE, REVALIDATE]
+  - id: AUDIT-CAP-011
+    area: Camera sensing, consent, uncertainty, and manual fallback
+    sources: [docs/adr/0019*, docs/adr/0021*, docs/checkpoints/CP-*]
+    candidate_dispositions: [HISTORICAL_EVIDENCE, REVALIDATE]
+  - id: AUDIT-CAP-012
+    area: Mentor instructions, exercise guidance, 3D assets, and provenance
+    sources: [src/components/workout/experience/mentor/, src/lib/exercise/passport.ts, docs/ASSETS.md]
+    candidate_dispositions: [REVALIDATE]
+  - id: AUDIT-CAP-013
+    area: AI program generation, safety prompts, ingestion, and source provenance
+    sources: [infra/ai/prompts/, docs/AI_API.md, docs/architecture/MG-04*]
+    candidate_dispositions: [MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-014
+    area: Localization, routing, directionality, and media delivery
+    sources: [docs/adr/0010*, docs/architecture/MG-07*, src/i18n/]
+    candidate_dispositions: [MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-015
+    area: Security, privacy, consent, retention, and mutation authority
+    sources: [docs/adr/0014*, docs/adr/0020*, docs/ADMIN_AUTH.md, docs/governance/]
+    candidate_dispositions: [REVALIDATE]
+  - id: AUDIT-CAP-016
+    area: Persistence, migrations, backfills, compatibility, rollout, and rollback
+    sources: [prisma/schema.prisma, prisma/migrations/, supabase/, scripts/]
+    candidate_dispositions: [HISTORICAL_EVIDENCE, MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-017
+    area: Error handling, readiness, degradation, and failure classification
+    sources: [src/, scripts/, docs/incidents/, docs/PITFALLS.md]
+    candidate_dispositions: [MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-018
+    area: Analytics, observability, diagnostics, and audit trail
+    sources: [src/services/analytics*, src/services/logger*, src/services/monitoring*]
+    candidate_dispositions: [REVALIDATE]
+  - id: AUDIT-CAP-019
+    area: Testing, acceptance oracles, evidence strength, flakes, and debt
+    sources: [tests/, docs/CI.md, reports/, docs/checkpoints/]
+    candidate_dispositions: [ADOPT_CANDIDATE, REVALIDATE]
+  - id: AUDIT-CAP-020
+    area: CI, merge, branching, admission, and release gates
+    sources: [.github/workflows/, docs/CI.md, docs/governance/, scripts/]
+    candidate_dispositions: [MODIFY_CANDIDATE]
+  - id: AUDIT-CAP-021
+    area: Infrastructure, environments, deployment, backup, and rollback
+    sources: [Dockerfile, docker-compose.yml, infra/, ops/, docs/checkpoints/]
+    candidate_dispositions: [HISTORICAL_EVIDENCE, REVALIDATE]
+  - id: AUDIT-CAP-022
+    area: Performance, device readiness, accessibility quality, and test debt
+    sources: [tests/, reports/, docs/checkpoints/]
+    candidate_dispositions: [REVALIDATE]
+  - id: AUDIT-CAP-023
+    area: Dependency, runtime, toolchain, and external-service strategy
+    sources: [package-lock.json, .nvmrc, Dockerfile, prisma/, infra/]
+    candidate_dispositions: [HISTORICAL_EVIDENCE]
+  - id: AUDIT-CAP-024
+    area: Historical incidents, regressions, corrections, and closure evidence
+    sources: [docs/incidents/, docs/PITFALLS.md, reports/, docs/checkpoints/, git history]
+    candidate_dispositions: [HISTORICAL_EVIDENCE]
+
+lki_reconciliation_findings:
+  seed_record_count: 18
+  current_index_status_literal: COMPLETE
+  complete_semantics: COMPLETE records the original indexing task's completion, not Foundation completeness.
+  explicit_omission_leads:
+    - security, privacy, and data handling
+    - account lifecycle and deletion
+    - localization, routing, and media
+    - AI generation, ingestion, and source provenance
+    - analytics and observability
+    - error handling, readiness, and degradation
+    - accessibility, performance, and mobile evidence
+    - dependency and toolchain strategy
+    - persistence, migration, backfill, and compatibility governance
+    - test debt and database mutation governance
+  overloaded_records: [LKI-PRODUCT-001, LKI-GOVERNANCE-001, LKI-GOVERNANCE-002, LKI-INFRA-001, LKI-CI-001]
+  evidence_boundary_gap: Tracked reports may be durable evidence even when generated browser output is ephemeral; classify each path.
+  history_gap: Seed summaries do not systematically link failures, reversals, deferred acceptance, regressions, or supersession.
+  task_passport_gap: Record exact search scope and separate analogous mechanisms without claiming equivalence.
+
+foundation_004_review:
+  artifact_id: IDENTITY_MODEL_CANDIDATE@v0
+  status: DRAFT
+  assessment: SOUND_DRAFT_EVIDENCE_NOT_RESOLVED
+  binding_candidate_statements: []
+  later_task: FOUNDATION-RESOLVE-IDENTITY-AND-PERSISTENCE-BOUNDARIES
+
+owner_question_evidence:
+  status: UNRESOLVED_REVIEW_INPUTS
+  topics:
+    - Foundation authority hierarchy and legacy product-statement relevance
+    - identity, program, prescription, execution, result, session, and outcome boundaries
+    - completion, recovery, checkpoint, offline, and conflict promises
+    - sensing, storage, consent, deletion, retention, and camera scope
+    - locale, directionality, accessibility, device, and performance commitments
+    - governance, agent authority, evidence classes, and Task Passport fields
+    - specification and acceptance-evidence lifecycle
+    - infrastructure, security, service, and tooling boundaries
+    - capability-by-capability legacy dispositions
+  resolution_performed_by_this_task: false
+
+audit_limitations:
+  remote_refs_not_refreshed: true
+  audit_environment_network_limitation: GitHub DNS/network access was unavailable.
+  unverified_evidence_classes:
+    - generated browser reports unavailable from the local source tree
+    - physical-device results not independently recreated
+    - deployed-environment evidence not independently recreated
+  acceptance_claims_created_from_unavailable_evidence: []
+
+verification_requirements:
+  - id: VERIFY-REMOTE-REFS
+    status: REQUIRED
+    requirement: Refresh relevant remote refs and record exact heads without rewriting pinned observations.
+  - id: VERIFY-GENERATED-BROWSER-EVIDENCE
+    status: REQUIRED_WHERE_CLAIMED
+    requirement: Record availability, revision, integrity, and durable-versus-ephemeral classification.
+  - id: VERIFY-PHYSICAL-DEVICE-EVIDENCE
+    status: REQUIRED_WHERE_CLAIMED
+    requirement: Require reproducible or Owner-accepted current evidence before fresh device claims.
+  - id: VERIFY-DEPLOYED-ENVIRONMENT-EVIDENCE
+    status: REQUIRED_WHERE_CLAIMED
+    requirement: Distinguish documentation from verified deployed state and record context and verifier.
+
+next_task_handoff:
+  task_id: FOUNDATION-LKI-COMPLETENESS
+  required_outcome: >-
+    Account for every tracked legacy path, reconcile all 18 seed records,
+    begin the capability/disposition ledger, and retain unresolved verification
+    requirements without adopting any candidate.
