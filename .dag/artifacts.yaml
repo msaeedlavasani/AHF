@@ -1,0 +1,50 @@
+schema_version: 0
+artifacts:
+  - id: PRODUCT_CONSTITUTION_DOC@v0
+    title: Product Constitution canonical document
+    state: AVAILABLE
+    path: docs/foundation/01-product-constitution.md
+  - id: DOMAIN_GLOSSARY_DOC@v0
+    title: Domain Glossary canonical document
+    state: AVAILABLE
+    path: docs/foundation/02-domain-glossary.md
+  - id: DOMAIN_MODEL_DOC@v0
+    title: Domain Model canonical document
+    state: AVAILABLE
+    path: docs/foundation/03-domain-model.md
+  - id: TASK_DAG_CONTRACT_DOC@v0
+    title: Task/DAG Contract canonical document
+    state: AVAILABLE
+    path: docs/foundation/04-task-dag-contract.md
+  - id: DAG_DECISIONS_MANIFEST@v0
+    title: Decision manifest
+    state: AVAILABLE
+    path: .dag/decisions.yaml
+  - id: DAG_ARTIFACTS_MANIFEST@v0
+    title: Artifact manifest
+    state: AVAILABLE
+    path: .dag/artifacts.yaml
+  - id: DAG_TASKS_MANIFEST@v0
+    title: Task manifest
+    state: AVAILABLE
+    path: .dag/tasks.yaml
+  - id: TASK_DAG_ENGINE@v0
+    title: Task/DAG deterministic engine
+    state: AVAILABLE
+    path: lib/ahf_dag.rb
+  - id: TASK_DAG_CLI@v0
+    title: Task/DAG command-line wrapper
+    state: AVAILABLE
+    path: bin/ahf-dag
+  - id: TASK_DAG_TESTS@v0
+    title: Task/DAG focused automated tests
+    state: AVAILABLE
+    path: test/ahf_dag_test.rb
+  - id: LEGACY_DECISION_CANDIDATES@v0
+    title: Classified legacy AHF decision candidates
+    state: MISSING
+    path: .dag/outputs/legacy-decision-candidates.yaml
+  - id: IDENTITY_MODEL_CANDIDATE@v0
+    title: Identity Model candidate for Foundation review
+    state: MISSING
+    path: docs/foundation/decisions/identity-model-candidate-v0.md

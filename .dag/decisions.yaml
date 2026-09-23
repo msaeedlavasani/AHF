@@ -1,0 +1,14 @@
+schema_version: 0
+decisions:
+  - id: PRODUCT_CONSTITUTION@v0
+    title: Product Constitution v0
+    state: RESOLVED
+  - id: DOMAIN_GLOSSARY@v0
+    title: Domain Glossary v0
+    state: RESOLVED
+  - id: DOMAIN_MODEL@v0
+    title: Domain Model v0
+    state: RESOLVED
+  - id: TASK_DAG_CONTRACT@v0
+    title: Task/DAG Contract v0
+    state: RESOLVED

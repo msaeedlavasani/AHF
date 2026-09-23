@@ -1,0 +1,226 @@
+schema_version: 0
+tasks:
+  - id: AHF-CLEAN-FOUNDATION-002
+    title: Implement Minimal Repository-Native Task/DAG v0
+    purpose: >-
+      Implement the resolved Task/DAG v0 contract as the canonical,
+      deterministic mechanism for selecting executable repository work.
+    priority: 1000
+    requires:
+      - type: DECISION
+        id: PRODUCT_CONSTITUTION@v0
+      - type: DECISION
+        id: DOMAIN_GLOSSARY@v0
+      - type: DECISION
+        id: DOMAIN_MODEL@v0
+      - type: ARTIFACT
+        id: PRODUCT_CONSTITUTION_DOC@v0
+      - type: ARTIFACT
+        id: DOMAIN_GLOSSARY_DOC@v0
+      - type: ARTIFACT
+        id: DOMAIN_MODEL_DOC@v0
+    depends_on: []
+    produces:
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+      - type: ARTIFACT
+        id: DAG_DECISIONS_MANIFEST@v0
+      - type: ARTIFACT
+        id: DAG_ARTIFACTS_MANIFEST@v0
+      - type: ARTIFACT
+        id: DAG_TASKS_MANIFEST@v0
+      - type: ARTIFACT
+        id: TASK_DAG_ENGINE@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CLI@v0
+      - type: ARTIFACT
+        id: TASK_DAG_TESTS@v0
+    acceptance_criteria:
+      - id: contract_documented
+        check:
+          type: file_contains
+          path: docs/foundation/04-task-dag-contract.md
+          text: "**Status: RESOLVED**"
+      - id: decisions_manifest_exists
+        check:
+          type: file_exists
+          path: .dag/decisions.yaml
+      - id: artifacts_manifest_exists
+        check:
+          type: file_exists
+          path: .dag/artifacts.yaml
+      - id: tasks_manifest_exists
+        check:
+          type: file_exists
+          path: .dag/tasks.yaml
+      - id: cli_is_executable
+        check:
+          type: file_executable
+          path: bin/ahf-dag
+      - id: harvest_is_seeded
+        check:
+          type: file_contains
+          path: .dag/tasks.yaml
+          text: FOUNDATION-003-LEGACY-DECISION-HARVEST
+    required_evidence:
+      - id: resolved_contract
+        path: docs/foundation/04-task-dag-contract.md
+        sha256: 31e055454208c23291cc5daa4e5016dc1314e42e82d9bfb904812fe5e3ad953c
+      - id: focused_test_suite
+        path: test/ahf_dag_test.rb
+        sha256: 655ced1f97de649e562743f0466be970b6a309e6ed49cdc8a59fee00f68a7a28
+    validations:
+      - id: dag_structure
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - bin/ahf-dag
+            - validate
+      - id: dag_engine_tests
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -Itest
+            - test/ahf_dag_test.rb
+    attempts:
+      - id: AHF-CLEAN-FOUNDATION-002/attempt-1
+        outcome: PASSED
+        evidence:
+          - resolved_contract
+          - focused_test_suite
+        validations:
+          - dag_structure
+          - dag_engine_tests
+        produced:
+          - type: DECISION
+            id: TASK_DAG_CONTRACT@v0
+            state: RESOLVED
+          - type: ARTIFACT
+            id: TASK_DAG_CONTRACT_DOC@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_DECISIONS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_ARTIFACTS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: DAG_TASKS_MANIFEST@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: TASK_DAG_ENGINE@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: TASK_DAG_CLI@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: TASK_DAG_TESTS@v0
+            state: AVAILABLE
+
+  - id: FOUNDATION-003-LEGACY-DECISION-HARVEST
+    title: Harvest and classify legacy AHF decisions
+    purpose: >-
+      Use the old Apex-Home-Fitness repository strictly as an evidence,
+      knowledge, and migration source. Extract explicit historical
+      product, domain, and execution decisions and classify them for the
+      Clean Foundation. Nothing transfers automatically. Candidates must
+      be classified as REVALIDATE, REVIEW, or REJECT / SUPERSEDE where
+      appropriate, and remain candidates until reviewed under the Clean
+      Foundation.
+    priority: 100
+    requires:
+      - type: DECISION
+        id: PRODUCT_CONSTITUTION@v0
+      - type: DECISION
+        id: DOMAIN_GLOSSARY@v0
+      - type: DECISION
+        id: DOMAIN_MODEL@v0
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: ARTIFACT
+        id: TASK_DAG_CONTRACT_DOC@v0
+    depends_on:
+      - AHF-CLEAN-FOUNDATION-002
+    produces:
+      - type: ARTIFACT
+        id: LEGACY_DECISION_CANDIDATES@v0
+    acceptance_criteria:
+      - id: candidate_artifact_exists
+        check:
+          type: file_exists
+          path: .dag/outputs/legacy-decision-candidates.yaml
+      - id: revalidate_classification_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-decision-candidates.yaml
+          text: REVALIDATE
+      - id: review_classification_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-decision-candidates.yaml
+          text: REVIEW
+      - id: rejection_classification_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-decision-candidates.yaml
+          text: REJECT
+      - id: supersede_classification_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-decision-candidates.yaml
+          text: SUPERSEDE
+    required_evidence:
+      - id: classified_candidates
+        path: .dag/outputs/legacy-decision-candidates.yaml
+    validations:
+      - id: candidate_yaml_parses
+        check:
+          type: command_succeeds
+          argv:
+            - ruby
+            - -e
+            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/legacy-decision-candidates.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
+    attempts: []
+
+  - id: FOUNDATION-004-IDENTITY-MODEL
+    title: Define the AHF Identity Model
+    purpose: >-
+      Prepare an Identity Model candidate for Foundation review only after
+      the legacy decision harvest is complete. This Task entry does not
+      design or resolve the Identity Model.
+    priority: 90
+    requires:
+      - type: DECISION
+        id: PRODUCT_CONSTITUTION@v0
+      - type: DECISION
+        id: DOMAIN_GLOSSARY@v0
+      - type: DECISION
+        id: DOMAIN_MODEL@v0
+      - type: DECISION
+        id: TASK_DAG_CONTRACT@v0
+      - type: ARTIFACT
+        id: LEGACY_DECISION_CANDIDATES@v0
+    depends_on:
+      - FOUNDATION-003-LEGACY-DECISION-HARVEST
+    produces:
+      - type: ARTIFACT
+        id: IDENTITY_MODEL_CANDIDATE@v0
+    acceptance_criteria:
+      - id: identity_candidate_exists
+        check:
+          type: file_exists
+          path: docs/foundation/decisions/identity-model-candidate-v0.md
+    required_evidence:
+      - id: identity_candidate
+        path: docs/foundation/decisions/identity-model-candidate-v0.md
+    validations:
+      - id: candidate_remains_unresolved
+        check:
+          type: file_contains
+          path: docs/foundation/decisions/identity-model-candidate-v0.md
+          text: "Status: DRAFT"
+    attempts: []

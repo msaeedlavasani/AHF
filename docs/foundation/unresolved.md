@@ -24,7 +24,6 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - Spec Kit adoption
 - design-token tooling
 - CI architecture
-- task/DAG implementation
 - orchestration implementation
 - Exercise Obligation as an independent domain entity
 - exact Set Result schema

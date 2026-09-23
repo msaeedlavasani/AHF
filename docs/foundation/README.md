@@ -32,21 +32,15 @@ The resolved v0 Foundation consists of:
 1. [Product Constitution](01-product-constitution.md)
 2. [Domain Glossary](02-domain-glossary.md)
 3. [Domain Model](03-domain-model.md)
+4. [Task/DAG Contract](04-task-dag-contract.md)
 
 The [unresolved register](unresolved.md) records matters that remain open. The [candidate-tool register](candidate-tools.md) records evaluation status without selecting a stack. The [`decisions/`](decisions/) directory is reserved for later Foundation decision records.
 
-## Next Foundation priority
+## Canonical work selection
 
-**NEXT FOUNDATION PRIORITY:**
+The repository-native Task/DAG is the canonical mechanism for determining executable project work after its bootstrap by `AHF-CLEAN-FOUNDATION-002`.
 
-**AHF-CLEAN-FOUNDATION-002**  
-**Minimal Task/DAG Contract**
-
-**Purpose:**
-
-Reach a repository-native, machine-readable dependency model as early as possible so the Owner and architecture conversation do not become permanent manual task orchestrators.
-
-The intended conceptual flow is:
+Its conceptual flow is:
 
 ```text
 Decision
@@ -61,4 +55,4 @@ Decision
 
 The DAG must eventually understand dependencies on unresolved/resolved decisions, not only dependencies between implementation tasks.
 
-The DAG is not implemented by this task.
+Use `bin/ahf-dag validate`, `bin/ahf-dag status`, and `bin/ahf-dag next` to validate the contract, inspect derived state, and select the single deterministic next Task.
