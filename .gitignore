@@ -1,0 +1,8 @@
+# macOS metadata
+.DS_Store
+
+# Local FreeBuff workspace metadata
+.freebuff/
+
+# Root-local archive
+/Archive.zip
