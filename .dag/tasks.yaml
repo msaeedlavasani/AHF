@@ -59,11 +59,11 @@ tasks:
         check:
           type: file_executable
           path: bin/ahf-dag
-      - id: harvest_is_seeded
+      - id: legacy_knowledge_index_is_seeded
         check:
           type: file_contains
           path: .dag/tasks.yaml
-          text: FOUNDATION-003-LEGACY-DECISION-HARVEST
+          text: FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
     required_evidence:
       - id: resolved_contract
         path: docs/foundation/04-task-dag-contract.md
@@ -121,16 +121,20 @@ tasks:
             id: TASK_DAG_TESTS@v0
             state: AVAILABLE
 
-  - id: FOUNDATION-003-LEGACY-DECISION-HARVEST
-    title: Harvest and classify legacy AHF decisions
+  - id: FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
+    title: Create the Legacy Knowledge Index
     purpose: >-
-      Use the old Apex-Home-Fitness repository strictly as an evidence,
-      knowledge, and migration source. Extract explicit historical
-      product, domain, and execution decisions and classify them for the
-      Clean Foundation. Nothing transfers automatically. Candidates must
-      be classified as REVALIDATE, REVIEW, or REJECT / SUPERSEDE where
-      appropriate, and remain candidates until reviewed under the Clean
-      Foundation.
+      Create a structured, repository-native index of useful knowledge in
+      the legacy Apex-Home-Fitness repository so future AHF work can locate
+      relevant historical evidence without repeatedly rediscovering the old
+      repository. Indexing does not imply adoption, and nothing transfers
+      automatically. Historical material may later be independently
+      reviewed for revalidation, adoption, modification, supersession,
+      rejection, or retention as historical evidence only. Locate and index
+      the historical Task Passport / task-contract approach without
+      redesigning it so later Clean Foundation work can decide whether to
+      ADOPT, MODIFY, or REJECT it before ahf-dag gains any Task Passport
+      capability.
     priority: 100
     requires:
       - type: DECISION
@@ -147,50 +151,145 @@ tasks:
       - AHF-CLEAN-FOUNDATION-002
     produces:
       - type: ARTIFACT
-        id: LEGACY_DECISION_CANDIDATES@v0
+        id: LEGACY_KNOWLEDGE_INDEX@v0
     acceptance_criteria:
-      - id: candidate_artifact_exists
+      - id: knowledge_index_exists
         check:
           type: file_exists
-          path: .dag/outputs/legacy-decision-candidates.yaml
-      - id: revalidate_classification_present
+          path: .dag/outputs/legacy-knowledge-index.yaml
+      - id: product_domain_decisions_category_present
         check:
           type: file_contains
-          path: .dag/outputs/legacy-decision-candidates.yaml
-          text: REVALIDATE
-      - id: review_classification_present
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Product / Domain Decisions
+      - id: governance_spec_kit_category_present
         check:
           type: file_contains
-          path: .dag/outputs/legacy-decision-candidates.yaml
-          text: REVIEW
-      - id: rejection_classification_present
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Governance / Spec Kit
+      - id: design_system_ux_category_present
         check:
           type: file_contains
-          path: .dag/outputs/legacy-decision-candidates.yaml
-          text: REJECT
-      - id: supersede_classification_present
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Design System / UX Contracts
+      - id: workout_execution_category_present
         check:
           type: file_contains
-          path: .dag/outputs/legacy-decision-candidates.yaml
-          text: SUPERSEDE
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Workout Execution Semantics
+      - id: identity_persistence_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Identity / Persistence
+      - id: recovery_checkpoint_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Recovery / Checkpoint
+      - id: camera_sensing_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Camera / Sensing
+      - id: mentor_assets_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Mentor / Assets
+      - id: tests_acceptance_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Tests / Acceptance Evidence
+      - id: infrastructure_deployment_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Infrastructure / Deployment
+      - id: ci_quality_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: CI / Quality Gates
+      - id: failures_lessons_category_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Historical Failures / Lessons
+      - id: stable_id_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "stable_id:"
+      - id: category_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "category:"
+      - id: source_provenance_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "source:"
+      - id: provenance_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "provenance:"
+      - id: concise_summary_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "summary:"
+      - id: historical_status_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "historical_status:"
+      - id: relationships_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "related_concepts:"
+      - id: dependencies_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "dependencies:"
+      - id: reuse_status_supported
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: "reuse_status:"
+      - id: initial_reuse_status_is_unreviewed
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: UNREVIEWED
+      - id: task_passport_discovery_present
+        check:
+          type: file_contains
+          path: .dag/outputs/legacy-knowledge-index.yaml
+          text: Task Passport
     required_evidence:
-      - id: classified_candidates
-        path: .dag/outputs/legacy-decision-candidates.yaml
+      - id: legacy_knowledge_index
+        path: .dag/outputs/legacy-knowledge-index.yaml
     validations:
-      - id: candidate_yaml_parses
+      - id: knowledge_index_yaml_parses
         check:
           type: command_succeeds
           argv:
             - ruby
             - -e
-            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/legacy-decision-candidates.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
+            - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/legacy-knowledge-index.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
     attempts: []
 
   - id: FOUNDATION-004-IDENTITY-MODEL
     title: Define the AHF Identity Model
     purpose: >-
       Prepare an Identity Model candidate for Foundation review only after
-      the legacy decision harvest is complete. This Task entry does not
+      the Legacy Knowledge Index is complete. This Task entry does not
       design or resolve the Identity Model.
     priority: 90
     requires:
@@ -203,9 +302,9 @@ tasks:
       - type: DECISION
         id: TASK_DAG_CONTRACT@v0
       - type: ARTIFACT
-        id: LEGACY_DECISION_CANDIDATES@v0
+        id: LEGACY_KNOWLEDGE_INDEX@v0
     depends_on:
-      - FOUNDATION-003-LEGACY-DECISION-HARVEST
+      - FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
     produces:
       - type: ARTIFACT
         id: IDENTITY_MODEL_CANDIDATE@v0

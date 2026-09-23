@@ -40,10 +40,10 @@ artifacts:
     title: Task/DAG focused automated tests
     state: AVAILABLE
     path: test/ahf_dag_test.rb
-  - id: LEGACY_DECISION_CANDIDATES@v0
-    title: Classified legacy AHF decision candidates
+  - id: LEGACY_KNOWLEDGE_INDEX@v0
+    title: Structured legacy AHF knowledge index
     state: MISSING
-    path: .dag/outputs/legacy-decision-candidates.yaml
+    path: .dag/outputs/legacy-knowledge-index.yaml
   - id: IDENTITY_MODEL_CANDIDATE@v0
     title: Identity Model candidate for Foundation review
     state: MISSING
