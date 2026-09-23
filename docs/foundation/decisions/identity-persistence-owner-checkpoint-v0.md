@@ -494,6 +494,73 @@ Possible provenance classes may include:
 
 This checkpoint does not freeze the final taxonomy or schema.
 
+## Third interim checkpoint
+
+The following Owner-approved and derived decisions extend this same
+checkpoint. They do not resolve the Owner gate or authorize its downstream
+resolution task.
+
+## 28. Closed Set Result is a stable historical fact
+
+A closed Set Result is a stable historical fact bound to its Set Execution.
+
+## 29. Corrections preserve provenance
+
+Correction of factual execution evidence must preserve correction provenance;
+historical evidence must not be silently overwritten. A complete snapshot for
+every correction is not required.
+
+## 30. Provisional Outcome and finalization
+
+A Provisional Outcome is evolving state for the same Workout Session, not a
+stream of duplicate Outcome entities. Finalization produces the final truth
+for that Session and must remain idempotent.
+
+## 31. Derived state is not authoritative historical evidence
+
+Derived, cached, or projected state is recomputable and is not authoritative
+historical evidence.
+
+## 32. Retention preserves referential lineage
+
+Retention and compaction must preserve sufficient referential lineage to
+understand the remaining historical Prescription → Session → Execution →
+Outcome relationships.
+
+Deletion and compaction are purpose-aware; age alone does not determine
+whether domain evidence may be discarded. Exact retention durations remain
+deferred.
+
+Operational retry and transport history may be compacted or deleted according
+to operational retention, provided domain truth and unresolved conflicts are
+preserved.
+
+## 33. Explicit multi-device execution takeover is permitted
+
+One Active Execution Authority remains the intended invariant. A second
+device may explicitly take over when continuation is requested. The UX must
+make takeover explicit rather than silently creating concurrent authority;
+the previous device may be offline.
+
+If conflicting histories later arrive, neither may silently overwrite the
+other. Lease and takeover protocol remain deferred.
+
+## 34. Conflicting execution history is durable evidence
+
+A conflicting execution history is itself durable operational evidence until
+reconciliation. The system must not discard one side merely to manufacture a
+clean state.
+
+## 35. Reconciliation preserves provenance and does not fabricate truth
+
+Reconciliation must not fabricate historical truth. It may determine a
+canonical interpretation, identify genuine duplicates, and determine which
+evidence is appropriate for downstream Training Profile or Adaptation use,
+while preserving sufficient provenance of the conflicting execution
+evidence.
+
+The exact reconciliation algorithm and UX remain deferred.
+
 ## Explicitly unresolved and deferred
 
 This checkpoint does not infer decisions for:
@@ -526,6 +593,18 @@ This checkpoint does not infer decisions for:
 - complete substitution/Skip/Defer policy;
 - adjustment provenance taxonomy; and
 - validation rules for allowed substitutions.
+
+## Cross-gate unresolved requirement: account sharing identity confidence
+
+`ACCOUNT_SHARING_IDENTITY_CONFIDENCE` is an unresolved cross-gate requirement.
+AHF must address the risk that multiple people use one User or Account
+identity, because misattributed activity can corrupt authentication
+assumptions, Training Profile, execution evidence, and Adaptation.
+
+This checkpoint does not choose a solution and does not assume single-device-
+only accounts, mandatory biometric identity checks, camera-based identity
+surveillance, or another specific mechanism. Detailed resolution is routed to
+`OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0`.
 
 These remain inputs to the unfinished Owner-gate discussion and their
 appropriate later contracts.
