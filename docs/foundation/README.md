@@ -38,6 +38,11 @@ The resolved v0 Foundation consists of:
 
 The [unresolved register](unresolved.md) records matters that remain open. The [candidate-tool register](candidate-tools.md) records evaluation status without selecting a stack. The [`decisions/`](decisions/) directory is reserved for later Foundation decision records.
 
+The [Identity and Persistence Owner Decision Checkpoint](decisions/identity-persistence-owner-checkpoint-v0.md)
+preserves approved interim decisions while its Owner gate remains explicitly
+**UNRESOLVED**. A checkpoint is evidence for later resolution; it is not itself
+gate resolution.
+
 ## Canonical work selection
 
 The repository-native Task/DAG is the canonical mechanism for determining executable project work after its bootstrap by `AHF-CLEAN-FOUNDATION-002`.

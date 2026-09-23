@@ -46,7 +46,10 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 
 The following Owner gates remain explicitly **UNRESOLVED**:
 
-- Identity and Persistence boundary resolution
+- Identity and Persistence boundary resolution — approved interim decisions are
+  preserved in
+  [`decisions/identity-persistence-owner-checkpoint-v0.md`](decisions/identity-persistence-owner-checkpoint-v0.md),
+  but the Owner gate remains **UNRESOLVED**
 - Privacy, Sensing, and Account Lifecycle resolution
 - UX, Design, Localization, Accessibility, and Performance resolution
 - Architecture, Operations, and Tooling boundary resolution
