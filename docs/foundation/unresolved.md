@@ -32,14 +32,19 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - legal retention duration and backup purge mechanics
 - de-identification implementation
 - training/improvement data privacy implementation
-- Account Sharing Identity Confidence solution
+- ACCOUNT_SHARING_IDENTITY_CONFIDENCE mechanisms (including accidental or
+  deliberate sharing, attribution uncertainty, and contaminated-profile recovery)
+- FAMILY_PLAN_AND_ENTITLEMENT_POLICY
+- AGE_ELIGIBILITY_AND_VERIFICATION mechanisms and jurisdictional thresholds
+- FUTURE_MINOR_GUARDIAN_MODEL
 - legal basis for each processing purpose and jurisdiction-specific consent requirements
 - legality/consent granularity of bundled sensing activation, including jurisdictions requiring purpose separation
 - sensing/data classification taxonomy and raw video/frame retention policy
 - upload policy and model-training dataset eligibility
 - encryption/security implementation and camera/sensing architecture
 - local/cloud/hybrid inference and hardware requirements
-- biometric/identity interpretation and minors/age policy
+- biometric/identity interpretation and minor age/consent rules beyond the
+  resolved Adult-only v1 scope
 - Terms/Privacy notice implementation
 - exact de-identification algorithms, re-identification thresholds, and
   jurisdictional definition of anonymous data
@@ -50,7 +55,7 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - Research Dataset security, access control, and physical store separation
 - research reward type/value, qualification milestones, revocation, and
   fraud/abuse policy
-- minors participating in Research
+- Minor Research support after v1
 - Streak Credit Policy, Freeze economics, eligibility formula, and anti-abuse policy
 - physical transaction mechanism for `START`
 - Draft persistence and execution-package serialization

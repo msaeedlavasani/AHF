@@ -400,3 +400,211 @@ This second interim checkpoint does not resolve:
 These additions preserve the first checkpoint's unresolved matters and do not
 resolve the Privacy/Sensing/Account Lifecycle Owner gate or any other Owner
 gate.
+
+## Third interim checkpoint
+
+The following Owner-approved and derived decisions extend this same
+checkpoint. They do not resolve the Owner gate or authorize its downstream
+resolution task.
+
+## 26. Authentication identity is not person/training identity
+
+Authentication identifiers and mechanisms such as email, phone number,
+OAuth/social login, credentials, and device access establish access to an
+Account according to future authentication policy. They must not
+automatically be treated as proof that every historical Workout/Training
+observation was physically performed by the same human.
+
+Exact authentication architecture remains deferred.
+
+## 27. Identity uncertainty must not silently rewrite history
+
+If AHF later has evidence that a Workout or observation may have been
+performed by another person, historical evidence must not be silently
+deleted, reassigned, or rewritten as certain. The system must be capable of
+preserving attribution uncertainty/contestation where materially relevant.
+
+This does not define schema or confidence scoring.
+
+## 28. Sensing anomaly is not verified person identity
+
+Signals such as materially different movement, body geometry, capability,
+performance, or sensing characteristics may eventually contribute to
+identity-confidence handling. They must not by themselves silently become a
+factual assertion that a different person definitely used the Account.
+
+## 29. Account-sharing protection must not require default surveillance
+
+AHF must address misattributed Training data without making invasive identity
+surveillance a default requirement. Foundation does not require facial
+recognition, biometric identification, invasive device fingerprinting, or
+continuous identity surveillance. Future explicitly reviewed mechanisms
+remain possible.
+
+## Superseded provisional multi-profile direction
+
+The earlier provisional direction, “one Account/Household may contain
+multiple personal Training Profiles,” is **SUPERSEDED** and must not become
+the canonical model. Its historical existence and rationale are preserved:
+it represented a provisional way to accommodate several people's private
+training contexts under one household/account grouping. That historical note
+does not establish an identity model, storage shape, or sharing permission.
+
+## 30. One personal Account represents one private personal User/Training context
+
+AHF should preserve a personal Account boundary around that person's:
+
+- User Profile;
+- Training Profile;
+- Training History;
+- sensing/privacy context; and
+- Research participation context.
+
+Do not design multiple people's private Training Profiles as ordinary sibling
+profiles inside one shared personal Account. This is a product/domain boundary,
+not a database cardinality or schema decision.
+
+## 31. Future Family Plan links independent Accounts
+
+If AHF later introduces Family/Household plans, the intended direction is:
+
+```text
+Family Plan / Subscription
+→ independent Account A
+→ independent Account B
+→ independent Account C
+```
+
+The Family/Subscription relationship is primarily an entitlement/billing
+relationship. It does not inherently merge members' private User Profiles,
+Training Profiles, Training History, sensing data, Research data, or privacy
+settings.
+
+## 32. Family membership does not imply cross-member data access
+
+Membership in the same future Family Plan must not automatically grant
+members access to each other's private Training/Sensing/Research data. Any
+future intentional sharing capability requires its own explicit
+product/privacy/authorization design.
+
+## 33. Payer is not data authority
+
+Paying for another person's entitlement or being the payer/organizer of a
+future Family Plan does not inherently make that payer the owner/controller of
+another adult member's private Training/Sensing/Research data. Billing
+authority and private-data authority are distinct.
+
+## 34. Family Plan economics are deferred
+
+`FAMILY_PLAN_AND_ENTITLEMENT_POLICY` remains unresolved. This checkpoint does
+not decide member counts, flexible seats, pricing, free/paid additional seats,
+Family tiers, payer capabilities, invite/remove flows, independent/shared
+login mechanics, transfers, or subscription economics. Architecture must not
+unnecessarily prevent a future flexible Family Plan, but the plan is not part
+of this gate's current product design.
+
+## 35. Minor status is jurisdiction/policy context
+
+Future support for minors must not assume one universal age threshold.
+Applicable age, consent, and guardian rules may vary by jurisdiction and
+processing purpose. Exact thresholds and legal rules remain unresolved.
+
+## 36. AHF v1 is adult-only
+
+Minor/Child Accounts and Guardian relationships are OUT of v1 scope. This is a
+v1 product-scope decision, not a claim that AHF will never support minors.
+Architecture should avoid unnecessarily making future Minor/Guardian support
+impossible.
+
+## 37. Minor Research is out of v1
+
+Because v1 does not support Minor Accounts, the voluntary Research Program in
+v1 must not admit minors. Future Minor Research requires separate explicit
+product/privacy/legal review. This supersedes the earlier unresolved item
+“minors participating in Research” for v1; future Minor Research remains
+deferred.
+
+## 38. Age eligibility must be establishable; its mechanism is deferred
+
+AHF must eventually be able to establish eligibility for adult-only or
+restricted capabilities with sufficient reliability for applicable policy.
+This checkpoint does not choose exact date-of-birth storage, birth year, age
+band, self-declaration, document verification, third-party age verification,
+biometric age estimation, or a jurisdiction service. Future design should
+consider data minimization and legal/product requirements.
+
+`AGE_ELIGIBILITY_AND_VERIFICATION` remains unresolved.
+
+## 39. Family Plan must not bypass Minor policy
+
+A future Family Plan must not implicitly permit Minor use merely because a
+payer can purchase or invite additional members. Minor support requires its
+own explicitly approved lifecycle and guardian/privacy model.
+
+## Future Minor/Guardian principles
+
+These are future design constraints, not v1 implementation requirements:
+
+- A future Child Account should remain conceptually distinct from a parent's
+  personal Training Profile.
+- Guardian authority, if introduced, should be explicit authorization; the
+  child's Training History is not the parent's Training History.
+- Guardian access should eventually be capability/policy scoped rather than
+  assumed unrestricted.
+- Minor Research requires separate treatment from adult Research.
+
+Do not implement or fully resolve these future mechanisms here.
+
+## Account Sharing Identity Confidence remains unresolved
+
+`ACCOUNT_SHARING_IDENTITY_CONFIDENCE` remains unresolved. The preferred
+product direction is multiple people who legitimately use AHF having
+independent personal Accounts, with a possible future Family Plan providing
+entitlement linkage.
+
+This does not resolve accidental sharing, credential sharing, deliberate
+misuse, detecting misattributed Workout evidence, attribution-confidence
+representation, or recovery from contaminated Training Profile evidence.
+Those mechanisms remain unresolved. This direction does not require default
+surveillance.
+
+## Additional unresolved matters
+
+This third interim checkpoint preserves as unresolved:
+
+- `FAMILY_PLAN_AND_ENTITLEMENT_POLICY`;
+- `ACCOUNT_SHARING_IDENTITY_CONFIDENCE` mechanisms;
+- `AGE_ELIGIBILITY_AND_VERIFICATION` mechanisms; and
+- `FUTURE_MINOR_GUARDIAN_MODEL`.
+
+It also preserves every unresolved Privacy/Sensing/Research matter from the
+first and second checkpoints, including authentication architecture, identity
+uncertainty schema/scoring, Family Plan economics, age verification, legal and
+jurisdictional requirements, Research consent/withdrawal and data lifecycle,
+de-identification, retention, security, and sensing architecture. No new Owner
+gate is created by these requirements.
+
+## Consistency check
+
+This checkpoint was cross-checked against the earlier Privacy/Sensing
+checkpoints and the resolved Identity/Persistence and Execution/Outcome/
+Recovery contracts. The intended distinctions remain:
+
+```text
+Account != Authentication Identifier != Subscription/Entitlement
+Account != another person's Training Profile
+Payer != automatic Data Authority
+Family relationship != implicit private-data sharing
+V1 Adult-only != future Minor support architecturally prohibited
+```
+
+The personal Account boundary does not change the resolved Identity/Persistence
+rule that attributable User data follows its deletion lifecycle and validly
+anonymous data has no usable reverse linkage. The v1 adult-only scope does not
+select an age threshold or verification mechanism. No contradiction is
+introduced with the resolved Execution/Outcome/Recovery contract; base Workout
+execution remains available without sensing, and ordinary Sensing activation
+remains distinct from voluntary Research and the Anonymous Learning Lab.
+
+This checkpoint does not resolve the Privacy/Sensing/Account Lifecycle Owner
+gate or any other Owner gate.
