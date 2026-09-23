@@ -1101,6 +1101,10 @@ tasks:
     required_evidence:
       - id: governance_review
         path: .dag/outputs/governance-agent-contract-review.yaml
+        sha256: 599f0067a418d35c2f731342af1dcf59bb9033a6b0da0c0075dc71339296e407
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT.yaml
+        sha256: f16e001ad63bc3bd294fed0d17c6d6372e498933fd0dc9092190fa1a5421b30e
     validations:
       - id: governance_review_yaml_parses
         check:
@@ -1109,7 +1113,18 @@ tasks:
             - ruby
             - -e
             - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/governance-agent-contract-review.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT/attempt-1
+        outcome: PASSED
+        evidence:
+          - governance_review
+          - publication_marker
+        validations:
+          - governance_review_yaml_parses
+        produced:
+          - type: ARTIFACT
+            id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

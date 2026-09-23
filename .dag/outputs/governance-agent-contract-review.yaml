@@ -1,0 +1,161 @@
+schema_version: 0
+artifact_id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
+generated_by_task: FOUNDATION-GOVERNANCE-AND-AGENT-CONTRACT
+review_state: REVIEWED_NON_BINDING
+
+authority_boundary:
+  source_role: historical evidence and review input only
+  candidate_dispositions_are_authority: false
+  legacy_governance_adopted: false
+  clean_foundation_decisions_resolved: []
+  implementation_authorized: false
+  task_passport_redesigned: false
+
+provenance:
+  source_repository:
+    name: Apex-Home-Fitness
+    url: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    branch: feat/workout-v2-first-slice
+    worktree_state: CLEAN_AS_OBSERVED
+  canonical_evidence:
+    - artifact: LEGACY_KNOWLEDGE_INDEX@v0
+      path: .dag/outputs/legacy-knowledge-index.yaml
+      records:
+        - LKI-GOVERNANCE-001
+        - LKI-GOVERNANCE-002
+    - artifact: CAPABILITY_DISPOSITION_LEDGER@v0
+      path: .dag/outputs/capability-disposition-ledger.yaml
+      capability_ids:
+        - CAP-GOVERNANCE-AGENT
+        - CAP-CI-QUALITY
+        - CAP-TOOLCHAIN-SERVICES
+    - artifact: LEGACY_REPOSITORY_COVERAGE@v0
+      path: .dag/outputs/legacy-repository-coverage.yaml
+      coverage_rule: every tracked path remains mechanically accounted for
+  legacy_source_paths:
+    - AGENTS.md
+    - docs/TASKS.md
+    - docs/governance/DOCUMENTATION-GOVERNANCE.md
+    - docs/governance/DEVELOPMENT-ADMISSION.md
+    - docs/governance/OWNER_DECISION_GATE.md
+    - docs/governance/AHF-SPECKIT-BROWNFIELD-ADOPTION-DESIGN.md
+    - .specify/constitution.md
+    - docs/specs/README.md
+    - scripts/governance-runtime.mjs
+    - scripts/task-profile.example.json
+    - docs/specs/0001-workout-experience/tasks.md
+    - docs/specs/0001-workout-experience/dependencies.md
+    - docs/admissions/WP-18.admission.json
+
+review_scope:
+  reviewed_capabilities:
+    - id: CAP-GOVERNANCE-AGENT
+      evidence: legacy agent rules, documentation authority, Spec Kit router,
+        owner decision gate, task admission, and task-contract records
+    - id: CAP-CI-QUALITY
+      evidence: validation, CI, acceptance, and admission references connected
+        to the reviewed governance/task-contract records
+    - id: CAP-TOOLCHAIN-SERVICES
+      evidence: runtime/tooling references used by the reviewed governance and
+        task-contract mechanisms
+  observed_contracts:
+    authority_and_status:
+      - AGENTS.md supplies agent workflow and status labels, while code/config
+        is treated as implementation evidence rather than automatic intent.
+      - Documentation governance uses find-before-create, explicit status,
+        supersession, historical preservation, and one executable backlog.
+      - docs/TASKS.md is declared the only executable backlog; other planning
+        artifacts do not authorize work independently.
+    specification_and_admission:
+      - The legacy Spec Kit design is explicitly by-reference and must not
+        create a parallel authority or task store.
+      - STANDARD and CRITICAL work use a fail-closed admission contract with
+        specification, owner authorization, and evidence gates.
+      - Candidate constitution additions are distinguished from confirmed
+        routed authorities.
+    task_contract_and_evidence:
+      - Task records carry scope, profile, dependencies, authorization,
+        validation, and close-out evidence in the canonical backlog/runtime.
+      - Historical close-outs and checkpoint records preserve exact source and
+        validation evidence; they do not silently authorize unrelated work.
+
+task_passport_discovery:
+  literal_term_search: NOT_FOUND_IN_TRACKED_SOURCE_AT_PINNED_REVISION
+  searched_scope:
+    - docs/TASKS.md
+    - docs/governance/
+    - docs/specs/
+    - docs/admissions/
+    - AGENTS.md
+    - .specify/
+    - scripts/
+  analogous_mechanisms:
+    - machine-readable docs/TASKS.md entries
+    - dependency and capability edges
+    - task profiles
+    - admission JSON
+    - required evidence and close-out paths
+    - governance-runtime validation
+  interpretation: >-
+    The historical repository contains a composite task-contract and evidence
+    approach, but no tracked artifact literally named Task Passport. This is a
+    discovery result only and is not equivalent to a canonical Clean AHF Task
+    Passport.
+  future_review_options:
+    - ADOPT
+    - MODIFY
+    - REJECT
+  clean_ahf_action: >-
+    Do not redesign Task Passport or extend ahf-dag to emit one in this task.
+
+disposition_policy:
+  allowed_values:
+    - UNREVIEWED
+    - REVALIDATE
+    - ADOPT_CANDIDATE
+    - MODIFY_CANDIDATE
+    - SUPERSEDE_CANDIDATE
+    - REJECT_CANDIDATE
+    - HISTORICAL_EVIDENCE
+  adoption_requires: independent review and a resolved Clean Foundation decision
+  default_reuse_status: UNREVIEWED
+
+disposition_updates:
+  - stable_id: CAP-GOVERNANCE-AGENT
+    source_records:
+      - LKI-GOVERNANCE-001
+      - LKI-GOVERNANCE-002
+    candidate_disposition: REVALIDATE
+    rationale: >-
+      The legacy authority hierarchy, one-backlog rule, agent contract, and
+      admission mechanisms are useful historical evidence, but their authority
+      and compatibility with the Clean Foundation must be independently
+      revalidated. The literal Task Passport term was not found.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-CI-QUALITY
+    source_records:
+      - LKI-CI-001
+    candidate_disposition: REVALIDATE
+    rationale: >-
+      Legacy CI and acceptance gates provide evidence about validation and
+      evidence strength; they do not authorize adoption of CI architecture or
+      quality policy in the Clean Foundation.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-TOOLCHAIN-SERVICES
+    source_records:
+      - LKI-INFRA-001
+    candidate_disposition: HISTORICAL_EVIDENCE
+    rationale: >-
+      Legacy runtime and service/tooling references are preserved as provenance
+      leads only. No framework, dependency, service, or tool is selected here.
+    reuse_status: UNREVIEWED
+
+gaps_and_follow_up:
+  - The historical mechanisms do not define the Clean AHF Task Passport.
+  - Legacy owner decisions and Spec Kit adoption boundaries cannot resolve
+    Clean Foundation owner gates.
+  - Current remote/publication claims from the legacy audit remain subject to
+    the existing audit-limitations verification artifact.
+  - Later review may split or supersede capability records as evidence warrants;
+    this artifact does not rewrite prior LKI or completeness history.

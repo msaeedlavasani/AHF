@@ -90,7 +90,7 @@ artifacts:
     path: bin/validate-legacy-foundation-coverage
   - id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
     title: Governance and Agent Contract review evidence
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/governance-agent-contract-review.yaml
   - id: PRODUCT_DOMAIN_REVALIDATION@v0
     title: Product and Domain revalidation evidence
