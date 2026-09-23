@@ -106,7 +106,7 @@ artifacts:
     path: docs/foundation/decisions/identity-and-persistence-boundaries-v0.md
   - id: EXECUTION_OUTCOME_RECOVERY_CONTRACTS_DOC@v0
     title: Resolved Execution, Outcome, and Recovery Contracts document
-    state: MISSING
+    state: AVAILABLE
     path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
   - id: PRIVACY_SENSING_ACCOUNT_LIFECYCLE_DOC@v0
     title: Resolved Privacy, Sensing, and Account Lifecycle document

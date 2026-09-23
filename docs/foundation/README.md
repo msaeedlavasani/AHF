@@ -34,6 +34,7 @@ The resolved v0 Foundation consists of:
 3. [Domain Model](03-domain-model.md)
 4. [Task/DAG Contract](04-task-dag-contract.md)
 5. [Clean-Start Foundation Completeness](05-clean-start-foundation-completeness.md)
+6. [Execution, Outcome, and Recovery Contracts](decisions/execution-outcome-recovery-contracts-v0.md)
 
 The [unresolved register](unresolved.md) records matters that remain open. The [candidate-tool register](candidate-tools.md) records evaluation status without selecting a stack. The [`decisions/`](decisions/) directory is reserved for later Foundation decision records.
 

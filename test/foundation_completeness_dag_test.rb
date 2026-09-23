@@ -58,18 +58,18 @@ class FoundationCompletenessDagTest < Minitest::Test
     assert_includes identity_inputs, "IDENTITY_MODEL_CANDIDATE@v0"
   end
 
-  def test_owner_gates_are_unresolved_and_future_decisions_are_draft
-    owner_gates = @decisions.values.select { |decision| decision.fetch("id").start_with?("OWNER_GATE_") }
+  def test_owner_gates_and_future_decisions_were_unresolved_when_seeded
+    owner_gates = seed_decisions.values.select { |decision| decision.fetch("id").start_with?("OWNER_GATE_") }
     assert_equal 5, owner_gates.length
     assert owner_gates.all? { |decision| decision.fetch("state") == "UNRESOLVED" }
 
     RESOLUTION_TASKS.each do |task_id|
       decision_outputs = task(task_id).fetch("produces").select { |node| node.fetch("type") == "DECISION" }
       assert_equal 1, decision_outputs.length
-      assert_equal "DRAFT", @decisions.fetch(decision_outputs.first.fetch("id")).fetch("state")
+      assert_equal "DRAFT", seed_decisions.fetch(decision_outputs.first.fetch("id")).fetch("state")
     end
 
-    assert_equal "DRAFT", @decisions.fetch("CLEAN_START_FOUNDATION_BASELINE@v0").fetch("state")
+    assert_equal "DRAFT", seed_decisions.fetch("CLEAN_START_FOUNDATION_BASELINE@v0").fetch("state")
   end
 
   def test_baseline_waits_for_every_resolution_and_no_implementation_task_is_seeded
@@ -133,22 +133,28 @@ class FoundationCompletenessDagTest < Minitest::Test
   end
 
   def seed_tasks
-    @seed_tasks ||= begin
-      content, error, status = Open3.capture3(
-        "git",
-        "show",
-        "#{SEED_COMMIT}:.dag/tasks.yaml",
-        chdir: ROOT
-      )
-      raise "cannot read seed manifest: #{error}" unless status.success?
+    @seed_tasks ||= seed_manifest("tasks.yaml", "tasks")
+  end
 
-      document = YAML.safe_load(
-        content,
-        permitted_classes: [],
-        permitted_symbols: [],
-        aliases: false
-      )
-      document.fetch("tasks").to_h { |task| [task.fetch("id"), task] }
-    end
+  def seed_decisions
+    @seed_decisions ||= seed_manifest("decisions.yaml", "decisions")
+  end
+
+  def seed_manifest(filename, key)
+    content, error, status = Open3.capture3(
+      "git",
+      "show",
+      "#{SEED_COMMIT}:.dag/#{filename}",
+      chdir: ROOT
+    )
+    raise "cannot read seed manifest: #{error}" unless status.success?
+
+    document = YAML.safe_load(
+      content,
+      permitted_classes: [],
+      permitted_symbols: [],
+      aliases: false
+    )
+    document.fetch(key).to_h { |node| [node.fetch("id"), node] }
   end
 end

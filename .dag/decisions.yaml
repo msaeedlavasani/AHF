@@ -20,7 +20,7 @@ decisions:
     state: UNRESOLVED
   - id: OWNER_GATE_EXECUTION_OUTCOME_RECOVERY@v0
     title: Owner gate for Execution, Outcome, and Recovery contract resolution
-    state: UNRESOLVED
+    state: RESOLVED
   - id: OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0
     title: Owner gate for Privacy, Sensing, and Account Lifecycle resolution
     state: UNRESOLVED
@@ -35,7 +35,7 @@ decisions:
     state: DRAFT
   - id: EXECUTION_OUTCOME_AND_RECOVERY_CONTRACTS@v0
     title: Execution, Outcome, and Recovery Contracts v0
-    state: DRAFT
+    state: RESOLVED
   - id: PRIVACY_SENSING_AND_ACCOUNT_LIFECYCLE@v0
     title: Privacy, Sensing, and Account Lifecycle v0
     state: DRAFT

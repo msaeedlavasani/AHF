@@ -1381,13 +1381,31 @@ tasks:
     required_evidence:
       - id: resolved_contract_document
         path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
+        sha256: 81d0fdf5544df4d50b2bf2d239b21d524ebd740eea4a19309a1d910444691677
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-RESOLVE-EXECUTION-OUTCOME-AND-RECOVERY-CONTRACTS.yaml
+        sha256: d2ed397afbae949b4038bb590d95d631b9bf83545d7005ad015553b5a23573bd
     validations:
       - id: resolved_status_is_recorded
         check:
           type: file_contains
           path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
           text: "Status: RESOLVED"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-RESOLVE-EXECUTION-OUTCOME-AND-RECOVERY-CONTRACTS/attempt-1
+        outcome: PASSED
+        evidence:
+          - resolved_contract_document
+          - publication_marker
+        validations:
+          - resolved_status_is_recorded
+        produced:
+          - type: DECISION
+            id: EXECUTION_OUTCOME_AND_RECOVERY_CONTRACTS@v0
+            state: RESOLVED
+          - type: ARTIFACT
+            id: EXECUTION_OUTCOME_RECOVERY_CONTRACTS_DOC@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin
