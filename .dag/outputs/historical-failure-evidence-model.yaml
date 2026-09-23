@@ -1,0 +1,243 @@
+schema_version: 0
+artifact_id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+generated_by_task: FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL
+review_state: REVIEWED_NON_BINDING
+
+authority_boundary:
+  source_role: historical evidence and review input only
+  candidate_dispositions_are_authority: false
+  unavailable_evidence_is_acceptance: false
+  legacy_material_adopted: []
+  clean_foundation_decisions_resolved: []
+  implementation_authorized: false
+
+provenance:
+  source_repository:
+    name: Apex-Home-Fitness
+    url: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    branch: feat/workout-v2-first-slice
+    worktree_state: CLEAN_AS_OBSERVED
+  indexed_evidence:
+    - artifact: LEGACY_KNOWLEDGE_INDEX@v0
+      path: .dag/outputs/legacy-knowledge-index.yaml
+      records:
+        - LKI-RECOVERY-001
+        - LKI-RECOVERY-002
+        - LKI-CI-001
+        - LKI-INFRA-001
+        - LKI-FAILURES-001
+    - artifact: CAPABILITY_DISPOSITION_LEDGER@v0
+      path: .dag/outputs/capability-disposition-ledger.yaml
+      capability_ids:
+        - CAP-RECOVERY-CHECKPOINT
+        - CAP-CI-QUALITY
+        - CAP-INFRA-DEPLOYMENT
+        - CAP-HISTORICAL-FAILURES
+        - CAP-TESTS-EVIDENCE
+        - CAP-PERFORMANCE-ACCESSIBILITY
+    - artifact: FOUNDATION_AUDIT_REVIEW@v0
+      path: .dag/outputs/foundation-audit-review.yaml
+      source_sha256: 5d0cfbe9c87e6a9250e1e95c711e9a6f90fdc16e546bfdf0801344ffdc80303b
+    - artifact: AUDIT_LIMITATIONS_VERIFICATION@v0
+      path: .dag/outputs/audit-limitations-verification.yaml
+
+evidence_classes:
+  - id: durable_tracked_policy
+    meaning: versioned policy or contract text in the pinned repository
+    examples:
+      - LKI-CI-001
+      - LKI-RECOVERY-002
+    acceptance_use: historical policy evidence only until independently reviewed
+  - id: durable_tracked_acceptance
+    meaning: versioned report, checkpoint, close-out, or test result retained in the repository
+    examples:
+      - LKI-FAILURES-001
+      - LKI-RECOVERY-002
+    acceptance_use: may support a claim only when scope, revision, verifier, and integrity are recorded
+  - id: tracked_source_or_implementation
+    meaning: source, configuration, migration, or test path present at the pinned revision
+    acceptance_use: proves historical presence, not current correctness or adoption
+  - id: git_history
+    meaning: commit, correction, supersession, or failed-attempt provenance
+    acceptance_use: preserves sequence and meaning; does not erase or rewrite earlier attempts
+  - id: ephemeral_generated_output
+    meaning: generated report or browser artifact whose durable bytes or integrity are not retained
+    acceptance_use: cannot independently establish acceptance without durable evidence
+  - id: browser_or_device_evidence
+    meaning: browser, physical-device, or visual/runtime observation
+    acceptance_use: unavailable or unverified evidence remains an explicit gap
+  - id: deployed_environment_evidence
+    meaning: evidence from a deployed environment or release target
+    acceptance_use: requires exact source/build identity, context, verifier, and deployment authority
+
+ephemeral_and_durable_evidence:
+  ephemeral_generated_output:
+    examples:
+      - generated browser screenshots or reports not retained at a verifiable path
+      - temporary local device captures
+      - generated output whose source revision or integrity is unknown
+    treatment: discovery lead or gap; never an acceptance claim by itself
+  durable_tracked_acceptance:
+    required_fields:
+      - exact source or revision
+      - evidence path
+      - evidence class
+      - scope and acceptance claim
+      - verifier or verification command where applicable
+      - integrity/hash when available
+    treatment: retain as historical evidence; revalidate before any Clean Foundation use
+  distinction_rule: >-
+    A tracked report can be durable evidence even when the generated browser or
+    device output it describes is ephemeral. The durable report does not upgrade
+    an unavailable underlying observation into independently verified acceptance.
+
+historical_relationship_model:
+  relationships:
+    - id: CORRECTS
+      meaning: later work addresses a known defect or failed assumption
+      preservation: retain both predecessor failure and corrective evidence
+    - id: SUPERSEDES
+      meaning: later contract or result replaces the applicable meaning for future work
+      preservation: preserve the superseded record and its provenance
+    - id: ATTEMPT_OF
+      meaning: retry or execution attempt belongs to one Task without erasing prior attempts
+      preservation: append attempts; do not rewrite failure history
+    - id: VALIDATES
+      meaning: evidence or command validates a declared scope at an exact revision
+      preservation: record command, revision, scope, and result
+    - id: PUBLISHED_BY
+      meaning: evidence was included in a commit and verified on the canonical remote
+      preservation: require exact commit publication evidence
+    - id: CHECKPOINT_FOR
+      meaning: integration or deployment evidence covers a named boundary
+      preservation: distinguish checkpoint scope from general product acceptance
+  correction_leads:
+    - prescribed-entry identity corrections
+    - workout outcome and completion semantics corrections
+    - offline snapshot and checkpoint versioning
+    - readiness and session-boundary corrections
+    - evidence and deployment checkpoint corrections
+  interpretation: >-
+    These are provenance leads from the pinned legacy history, not Clean AHF
+    decisions and not proof that the historical implementation remains valid.
+
+reviewed_evidence:
+  - stable_id: CAP-HISTORICAL-FAILURES
+    source_records:
+      - LKI-FAILURES-001
+    evidence_classes:
+      - durable_tracked_policy
+      - durable_tracked_acceptance
+      - git_history
+    summary: >-
+      Immutable-build, browser-acceptance, configuration-drift, migration,
+      rollback, and production-safety lessons are preserved as historical
+      incident and pitfall evidence.
+    confidence_and_gaps: >-
+      Durable paths are present at the pinned revision; current applicability,
+      deployed state, and any unavailable runtime observations require separate
+      verification.
+  - stable_id: CAP-TESTS-EVIDENCE
+    source_records:
+      - LKI-CI-001
+    evidence_classes:
+      - durable_tracked_policy
+      - tracked_source_or_implementation
+      - ephemeral_generated_output
+    summary: >-
+      Layered static, unit, contract, targeted-E2E, and full-E2E mechanisms are
+      historical validation evidence; generated outputs must retain integrity
+      and scope before they can support a claim.
+    confidence_and_gaps: >-
+      The policy and test paths are pinned; no Clean AHF CI or quality gate is
+      adopted by this review.
+  - stable_id: CAP-RECOVERY-CHECKPOINT
+    source_records:
+      - LKI-RECOVERY-001
+      - LKI-RECOVERY-002
+    evidence_classes:
+      - durable_tracked_policy
+      - durable_tracked_acceptance
+      - git_history
+    summary: >-
+      Offline snapshots, pause/resume, completed-Set checkpoints, exact source
+      identity, rollback, and downstream revalidation are indexed as historical
+      recovery and checkpoint evidence.
+    confidence_and_gaps: >-
+      Historical scope and revisions are recorded; current product recovery
+      semantics remain unresolved Clean Foundation work.
+  - stable_id: CAP-INFRA-DEPLOYMENT
+    source_records:
+      - LKI-INFRA-001
+    evidence_classes:
+      - tracked_source_or_implementation
+      - durable_tracked_policy
+      - deployed_environment_evidence
+    summary: >-
+      Deployment gateway, exact-SHA, environment isolation, backup, and
+      rollback mechanisms are historical infrastructure evidence.
+    confidence_and_gaps: >-
+      The pinned paths establish historical presence only; deployed claims need
+      exact source/build identity and independent verification.
+  - stable_id: CAP-PERFORMANCE-ACCESSIBILITY
+    source_records:
+      - LKI-CI-001
+    evidence_classes:
+      - browser_or_device_evidence
+      - durable_tracked_acceptance
+    summary: >-
+      Device, accessibility, performance, and visual acceptance references are
+      retained with a strict distinction between durable records and unavailable
+      runtime observations.
+    confidence_and_gaps: >-
+      Physical-device and browser claims were not independently verified by the
+      audit; no such claim is created here.
+
+audit_limitations:
+  remote_refs_not_refreshed: true
+  generated_browser_evidence_independently_verified: false
+  physical_device_evidence_independently_verified: false
+  deployed_environment_evidence_independently_verified: false
+  required_follow_ups:
+    - VERIFY-REMOTE-REFS
+    - VERIFY-GENERATED-BROWSER-EVIDENCE
+    - VERIFY-PHYSICAL-DEVICE-EVIDENCE
+    - VERIFY-DEPLOYED-ENVIRONMENT-EVIDENCE
+  acceptance_claims_created_from_unavailable_evidence: []
+
+disposition_policy:
+  allowed_values:
+    - UNREVIEWED
+    - REVALIDATE
+    - ADOPT_CANDIDATE
+    - MODIFY_CANDIDATE
+    - SUPERSEDE_CANDIDATE
+    - REJECT_CANDIDATE
+    - HISTORICAL_EVIDENCE
+disposition_updates:
+  - stable_id: CAP-HISTORICAL-FAILURES
+    candidate_disposition: HISTORICAL_EVIDENCE
+    rationale: Preserve incidents, corrections, and lessons as provenance; do not treat them as Clean AHF policy.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-TESTS-EVIDENCE
+    candidate_disposition: REVALIDATE
+    rationale: Revalidate evidence strength and durable/ephemeral boundaries before any future acceptance contract.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-RECOVERY-CHECKPOINT
+    candidate_disposition: REVALIDATE
+    rationale: Historical recovery and checkpoint semantics require independent Clean Foundation review.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-INFRA-DEPLOYMENT
+    candidate_disposition: HISTORICAL_EVIDENCE
+    rationale: Deployment mechanisms remain historical evidence; no deployment architecture or tool is adopted.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-PERFORMANCE-ACCESSIBILITY
+    candidate_disposition: REVALIDATE
+    rationale: Runtime and device claims require reproducible evidence or explicit Owner acceptance.
+    reuse_status: UNREVIEWED
+
+non_adoption_statement: >-
+  This review records evidence classes, historical relationships, gaps, and
+  candidate dispositions only. It does not resolve Owner decisions, adopt
+  legacy architecture, promote unavailable evidence, or authorize implementation.

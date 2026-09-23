@@ -1236,6 +1236,10 @@ tasks:
     required_evidence:
       - id: historical_evidence_review
         path: .dag/outputs/historical-failure-evidence-model.yaml
+        sha256: 95ff5922cd7fa7bb9ab096a05ede7b6d9c05e2b622274c30b131d0759a96cebd
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL.yaml
+        sha256: 690fd0b1e872fef80988928e2edea62211e9f0bebfef8f3a135a2e88daafcd7b
     validations:
       - id: historical_evidence_review_yaml_parses
         check:
@@ -1244,7 +1248,18 @@ tasks:
             - ruby
             - -e
             - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/historical-failure-evidence-model.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-HISTORICAL-FAILURE-AND-EVIDENCE-MODEL/attempt-1
+        outcome: PASSED
+        evidence:
+          - historical_evidence_review
+          - publication_marker
+        validations:
+          - historical_evidence_review_yaml_parses
+        produced:
+          - type: ARTIFACT
+            id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

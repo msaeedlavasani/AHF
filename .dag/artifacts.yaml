@@ -98,7 +98,7 @@ artifacts:
     path: .dag/outputs/product-domain-revalidation.yaml
   - id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
     title: Historical Failure and Evidence Model review
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/historical-failure-evidence-model.yaml
   - id: IDENTITY_PERSISTENCE_BOUNDARIES_DOC@v0
     title: Resolved Identity and Persistence Boundaries document
