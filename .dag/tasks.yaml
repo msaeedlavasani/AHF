@@ -1173,6 +1173,10 @@ tasks:
     required_evidence:
       - id: product_domain_review
         path: .dag/outputs/product-domain-revalidation.yaml
+        sha256: 11fd5fda9cbef0e55de455c6f5f67fefd72f56028c327ad2e3e15199975d44e5
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION.yaml
+        sha256: 04c91e27719850e2c541812dce9576fa56cd17b63319a00534e5f2b8191c635b
     validations:
       - id: product_domain_review_yaml_parses
         check:
@@ -1181,7 +1185,18 @@ tasks:
             - ruby
             - -e
             - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/product-domain-revalidation.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION/attempt-1
+        outcome: PASSED
+        evidence:
+          - product_domain_review
+          - publication_marker
+        validations:
+          - product_domain_review_yaml_parses
+        produced:
+          - type: ARTIFACT
+            id: PRODUCT_DOMAIN_REVALIDATION@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

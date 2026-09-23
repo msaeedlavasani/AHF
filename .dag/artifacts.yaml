@@ -94,7 +94,7 @@ artifacts:
     path: .dag/outputs/governance-agent-contract-review.yaml
   - id: PRODUCT_DOMAIN_REVALIDATION@v0
     title: Product and Domain revalidation evidence
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/product-domain-revalidation.yaml
   - id: HISTORICAL_FAILURE_EVIDENCE_MODEL@v0
     title: Historical Failure and Evidence Model review

@@ -1,0 +1,276 @@
+schema_version: 0
+artifact_id: PRODUCT_DOMAIN_REVALIDATION@v0
+generated_by_task: FOUNDATION-PRODUCT-AND-DOMAIN-REVALIDATION
+review_state: REVIEWED_NON_BINDING
+
+authority_boundary:
+  canonical_authority:
+    - decision: PRODUCT_CONSTITUTION@v0
+      path: docs/foundation/01-product-constitution.md
+      sha256: 05971d19356e7d90007505322ed0b0f820c65349f715642a1a7f085b702ee65f
+    - decision: DOMAIN_GLOSSARY@v0
+      path: docs/foundation/02-domain-glossary.md
+      sha256: cd268311c9186eab30259e0c56f3f75f6b4f0052391b916e0a2db7d9ca6b714d
+    - decision: DOMAIN_MODEL@v0
+      path: docs/foundation/03-domain-model.md
+      sha256: daaaae23ff419a40b69dd6efd5be3bfcd9a6a173de54d15fd732b5352ca1e608
+  legacy_role: historical evidence and review input only
+  candidate_dispositions_are_authority: false
+  legacy_material_adopted: []
+  clean_foundation_decisions_resolved: []
+  implementation_authorized: false
+
+provenance:
+  source_repository:
+    name: Apex-Home-Fitness
+    url: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    branch: feat/workout-v2-first-slice
+    worktree_state: CLEAN_AS_OBSERVED
+  indexed_evidence:
+    - artifact: LEGACY_KNOWLEDGE_INDEX@v0
+      path: .dag/outputs/legacy-knowledge-index.yaml
+      sha256: ed51874b9c77559cd616600f87490aa7c87dd6b3aeb4f994122049791189ff8c
+      records:
+        - LKI-PRODUCT-001
+        - LKI-DOMAIN-002
+        - LKI-DOMAIN-003
+        - LKI-WORKOUT-001
+        - LKI-WORKOUT-002
+        - LKI-IDENTITY-001
+        - LKI-RECOVERY-001
+        - LKI-CAMERA-001
+        - LKI-CAMERA-002
+        - LKI-MENTOR-001
+    - artifact: LKI_RECONCILIATION@v0
+      path: .dag/outputs/lki-reconciliation.yaml
+      sha256: ae946e5060ff94aecb677b89537252898ca8e28662968ad9c945436cbf0dfd28
+    - artifact: CAPABILITY_DISPOSITION_LEDGER@v0
+      path: .dag/outputs/capability-disposition-ledger.yaml
+      sha256: 203e7530c14a183003a5008bca51641af5560c8c89c6254e284b22bf3fa66835
+
+comparison_rules:
+  - Resolved Clean Foundation decisions control current product/domain meaning.
+  - Historical consistency can support revalidation but cannot create adoption.
+  - Historical implementation proves only what existed at the pinned revision.
+  - Any detail beyond the resolved v0 concepts remains unresolved unless a later Owner decision resolves it.
+  - Past prescriptions and executions retain their historical meaning; future adaptation cannot rewrite them.
+
+foundation_alignment:
+  product_definition:
+    resolved_meaning: personalized home-training coach that prescribes and accompanies real execution
+    supporting_legacy_records:
+      - LKI-PRODUCT-001
+      - LKI-WORKOUT-001
+    finding: >-
+      Legacy personalization and guided-workout evidence is consistent with the
+      resolved definition. Legacy platform, channel, localization, offline,
+      generator, and safety implementation choices are not part of that resolved
+      definition and are not adopted.
+  product_loop:
+    resolved_meaning:
+      - Assess
+      - Prescribe
+      - Perform
+      - Observe
+      - Adapt
+    supporting_legacy_records:
+      - LKI-PRODUCT-001
+      - LKI-DOMAIN-003
+    finding: >-
+      The legacy Plan/Execute/Progress framing is historical evidence only. The
+      five-stage Clean Foundation loop is canonical; no legacy stage name or
+      implementation silently replaces it.
+  prescription_and_execution:
+    resolved_meaning: prescription, execution, observation, and adaptation are distinct responsibilities
+    supporting_legacy_records:
+      - LKI-WORKOUT-001
+      - LKI-WORKOUT-002
+      - LKI-DOMAIN-003
+    finding: >-
+      The legacy separation of Program/prescription, session orchestration,
+      outcomes, and later adaptation is useful evidence. Its state machine,
+      orchestration design, completion vocabulary, and persistence remain
+      unselected.
+  exercise_and_entry_identity:
+    resolved_meaning: Exercise and Exercise Entry have independent identity; repeated entries may reference one Exercise
+    supporting_legacy_records:
+      - LKI-DOMAIN-002
+      - LKI-IDENTITY-001
+    finding: >-
+      Durable Exercise identity and repeated prescribed-entry corrections are
+      consistent historical evidence. Movement Graph, database identifiers,
+      migration strategy, and exact persistence shape are not Foundation v0
+      decisions.
+  set_result_and_workout_outcome:
+    resolved_meaning: observed Set Result and Workout Outcome are distinct from prescriptions and terminal state
+    supporting_legacy_records:
+      - LKI-DOMAIN-003
+      - LKI-WORKOUT-002
+    finding: >-
+      The legacy outcome contract and terminal/completion distinction support
+      later review. Exact Set Result fields, Workout Outcome schema, completion
+      classifications, adherence rules, and credit semantics remain unresolved.
+  intelligent_capabilities:
+    resolved_meaning: camera, sensing, pose, and AI may enhance execution but cannot be prerequisites for an executable workout
+    supporting_legacy_records:
+      - LKI-CAMERA-001
+      - LKI-CAMERA-002
+      - LKI-MENTOR-001
+    finding: >-
+      Legacy sensing, Mentor, asset, and fallback records are evidence for later
+      review. No camera, pose, model, asset, or fallback implementation is
+      adopted, and physical-device acceptance remains an evidence gap.
+  adaptation:
+    resolved_meaning: previous prescriptions, session outcomes, and user state may inform future prescriptions without rewriting history
+    supporting_legacy_records:
+      - LKI-DOMAIN-003
+    finding: >-
+      Legacy outcome, profile, input-pipeline, and adaptive-decision records are
+      candidates for revalidation. No Adaptation entity, algorithm, policy,
+      persistence, or model architecture is created.
+
+reviewed_capabilities:
+  - stable_id: CAP-PRODUCT-DOMAIN
+    source_records:
+      - LKI-PRODUCT-001
+      - LKI-DOMAIN-002
+      - LKI-DOMAIN-003
+    review_finding: >-
+      High-level personalization, guided execution, durable Exercise identity,
+      separate outcomes, and future adaptation inputs overlap the resolved Clean
+      Foundation. Legacy terminology and all additional product behavior require
+      independent review.
+    confidence_and_gaps: >-
+      Provenance is exact at the pinned revision; product segments, safety
+      promises, localization commitments, and adaptation behavior extend beyond
+      the resolved v0 product/domain scope.
+  - stable_id: CAP-WORKOUT-EXECUTION
+    source_records:
+      - LKI-WORKOUT-001
+      - LKI-WORKOUT-002
+    review_finding: >-
+      The evidence demonstrates historical guided execution and a distinction
+      between terminality and outcome credit. Exact execution lifecycle,
+      completion, deferral, skip, exit, and orchestration semantics remain open.
+    confidence_and_gaps: >-
+      Historical contracts and implementation paths are indexed; Clean AHF has
+      not selected a workout state machine or completion semantics.
+  - stable_id: CAP-IDENTITY-PERSISTENCE
+    source_records:
+      - LKI-IDENTITY-001
+    review_finding: >-
+      Repeated prescribed entries referencing one Exercise are consistent with
+      the resolved glossary. The legacy schema and migrations are evidence only.
+    confidence_and_gaps: >-
+      Identity boundaries, database technology, exact schema, migration policy,
+      user identity, and account lifecycle require later resolution.
+  - stable_id: CAP-RECOVERY-CHECKPOINT
+    source_records:
+      - LKI-RECOVERY-001
+    review_finding: >-
+      Historical recovery snapshots and checkpoint semantics are relevant to
+      execution continuity, but no exact recovery promise is resolved here.
+    confidence_and_gaps: >-
+      Snapshot versions and conflict handling are implementation evidence;
+      exact checkpoint and recovery semantics remain unresolved.
+  - stable_id: CAP-CAMERA-SENSING
+    source_records:
+      - LKI-CAMERA-001
+      - LKI-CAMERA-002
+    review_finding: >-
+      Historical camera, consent, sensing, and pose feasibility work is bounded
+      evidence for an optional enhancement path only.
+    confidence_and_gaps: >-
+      Camera/pose implementation and physical-device acceptance are unresolved;
+      workout executability cannot depend on them.
+  - stable_id: CAP-MENTOR-ASSETS
+    source_records:
+      - LKI-MENTOR-001
+    review_finding: >-
+      Mentor guidance and presentation evidence may inform how AHF accompanies
+      execution, but assets and presentation contracts do not transfer.
+    confidence_and_gaps: >-
+      Asset provenance and reuse rights require independent review; no asset or
+      UX contract is adopted.
+  - stable_id: CAP-AI-GENERATION
+    source_records:
+      - LKI-PRODUCT-001
+      - LKI-DOMAIN-003
+    review_finding: >-
+      Historical AI generation and adaptive-decision paths are implementation
+      leads, not prerequisites or canonical Clean AHF architecture.
+    confidence_and_gaps: >-
+      AI/model architecture, program-generation policy, source ingestion, and
+      adaptation algorithm remain unresolved.
+
+disposition_policy:
+  authority: NON_BINDING
+  allowed_values:
+    - UNREVIEWED
+    - REVALIDATE
+    - ADOPT_CANDIDATE
+    - MODIFY_CANDIDATE
+    - SUPERSEDE_CANDIDATE
+    - REJECT_CANDIDATE
+    - HISTORICAL_EVIDENCE
+  adoption_requires: independent review and a resolved Clean Foundation decision
+
+disposition_updates:
+  - stable_id: CAP-PRODUCT-DOMAIN
+    candidate_disposition: REVALIDATE
+    rationale: High-level concepts overlap Foundation v0, while legacy terminology and behavior extend beyond it.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-WORKOUT-EXECUTION
+    candidate_disposition: REVALIDATE
+    rationale: Guided execution is foundational, but exact lifecycle and completion semantics remain unresolved.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-IDENTITY-PERSISTENCE
+    candidate_disposition: REVALIDATE
+    rationale: Entry/Exercise distinction is relevant; schema and persistence choices remain historical evidence.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-RECOVERY-CHECKPOINT
+    candidate_disposition: REVALIDATE
+    rationale: Recovery is relevant to execution, but its exact contract requires later Owner-gated resolution.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-CAMERA-SENSING
+    candidate_disposition: REVALIDATE
+    rationale: Sensing may enhance execution only if a complete non-sensing workout path remains executable.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-MENTOR-ASSETS
+    candidate_disposition: REVALIDATE
+    rationale: Guidance evidence may inform accompaniment; no asset or presentation contract transfers automatically.
+    reuse_status: UNREVIEWED
+  - stable_id: CAP-AI-GENERATION
+    candidate_disposition: REVALIDATE
+    rationale: AI and adaptation evidence requires independent product, safety, and architecture review.
+    reuse_status: UNREVIEWED
+
+routed_unresolved_topics:
+  identity_and_persistence:
+    - database technology
+    - exact persistence schema
+    - identity and account boundaries
+  execution_outcome_and_recovery:
+    - workout state machine
+    - orchestration implementation
+    - exact completion semantics
+    - exact Set Result schema
+    - exact Workout Outcome schema
+    - exact checkpoint and recovery semantics
+  privacy_sensing_and_account_lifecycle:
+    - camera implementation
+    - pose implementation
+    - sensing consent and retention
+    - account lifecycle
+  architecture_operations_and_tooling:
+    - application and backend architecture
+    - API design
+    - AI/model architecture
+    - adaptation algorithm or policy
+
+non_adoption_statement: >-
+  This review preserves provenance, compares historical evidence to the resolved
+  Clean Foundation, records candidate dispositions, and routes remaining gaps.
+  It does not resolve Owner decisions, adopt legacy behavior, schema,
+  architecture, implementation, tools, or assets, or authorize implementation.
