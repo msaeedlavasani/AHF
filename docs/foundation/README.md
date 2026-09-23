@@ -45,6 +45,11 @@ preserves the append-only history of approved interim decisions. The
 is the resolved canonical decision; the checkpoint remains historical evidence
 and does not compete with or replace that contract.
 
+The [Privacy, Sensing, and Account Lifecycle Owner Decision Checkpoint](decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md)
+preserves approved interim decisions for its Owner gate, which remains
+**UNRESOLVED**. The checkpoint is evidence for later resolution, not gate
+resolution.
+
 ## Canonical work selection
 
 The repository-native Task/DAG is the canonical mechanism for determining executable project work after its bootstrap by `AHF-CLEAN-FOUNDATION-002`.

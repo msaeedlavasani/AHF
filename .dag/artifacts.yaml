@@ -56,6 +56,10 @@ artifacts:
     title: Owner-approved interim checkpoint for the unresolved Identity and Persistence gate
     state: AVAILABLE
     path: docs/foundation/decisions/identity-persistence-owner-checkpoint-v0.md
+  - id: OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE_CHECKPOINT@v0
+    title: Owner-approved interim checkpoint for the unresolved Privacy, Sensing, and Account Lifecycle gate
+    state: AVAILABLE
+    path: docs/foundation/decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md
   - id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
     title: Clean-Start Foundation Completeness canonical document
     state: AVAILABLE

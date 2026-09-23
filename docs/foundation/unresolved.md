@@ -30,9 +30,17 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - exact Workout Outcome schema
 - adaptation algorithm/policy
 - legal retention duration and backup purge mechanics
-- de-identification implementation, data eligibility, consent/notice, and legal basis
+- de-identification implementation
 - training/improvement data privacy implementation
 - Account Sharing Identity Confidence solution
+- legal basis for each processing purpose and jurisdiction-specific consent requirements
+- legality/consent granularity of bundled sensing activation, including jurisdictions requiring purpose separation
+- sensing/data classification taxonomy and raw video/frame retention policy
+- upload policy and model-training dataset eligibility
+- encryption/security implementation and camera/sensing architecture
+- local/cloud/hybrid inference and hardware requirements
+- biometric/identity interpretation and minors/age policy
+- Terms/Privacy notice implementation
 - Streak Credit Policy, Freeze economics, eligibility formula, and anti-abuse policy
 - physical transaction mechanism for `START`
 - Draft persistence and execution-package serialization
@@ -55,7 +63,10 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 
 The following Owner gates remain explicitly **UNRESOLVED**:
 
-- Privacy, Sensing, and Account Lifecycle resolution
+- Privacy, Sensing, and Account Lifecycle resolution — approved interim
+  decisions are preserved in
+  [`decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md`](decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md),
+  but the Owner gate remains **UNRESOLVED**.
 - UX, Design, Localization, Accessibility, and Performance resolution
 - Architecture, Operations, and Tooling boundary resolution
 
