@@ -592,7 +592,14 @@ This checkpoint does not infer decisions for:
 - exact execution-adjustment schema;
 - complete substitution/Skip/Defer policy;
 - adjustment provenance taxonomy; and
-- validation rules for allowed substitutions.
+- validation rules for allowed substitutions;
+- Restart Current Set capability and detailed attempt schema;
+- detailed Skip policy and skip-reason taxonomy;
+- Streak/Freeze economics and Streak eligibility formula;
+- anti-abuse mechanisms and medical/safety policy;
+- dynamic AI re-planning capability;
+- storage, schema, runtime, and architecture choices; and
+- persistence-failure UX.
 
 ## Cross-gate unresolved requirement: account sharing identity confidence
 
@@ -605,6 +612,112 @@ This checkpoint does not choose a solution and does not assume single-device-
 only accounts, mandatory biometric identity checks, camera-based identity
 surveillance, or another specific mechanism. Detailed resolution is routed to
 `OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0`.
+
+## Fourth interim checkpoint
+
+The following Owner-approved and derived decisions extend this same
+checkpoint. They do not resolve the Owner gate or authorize its downstream
+resolution task.
+
+## 36. Identity is independent of mutable business attributes
+
+Semantic identity must not depend on mutable values such as Exercise order,
+display or name fields, Workout date, email, device, or similar mutable
+business attributes. Exact ID representation remains deferred.
+
+## 37. Reordering does not change Exercise Entry identity
+
+While a Workout remains a Draft, reordering an Exercise Entry does not
+inherently create a different Entry identity.
+
+After `START`, prescribed order is part of the immutable issued Passport. Any
+permitted divergence during execution is recorded as execution behavior or
+adjustment rather than mutation of the issued Prescription.
+
+## 38. Set Prescription identity is independent of position
+
+A Set Prescription must not derive its semantic identity merely from being
+Set 1, Set 2, or another position. Order and position are attributes, not
+identity.
+
+## 39. Execution attempt is distinct from Set Execution and Prescription
+
+If a future Restart Current Set capability is adopted, a new attempt must not
+erase previous attempt evidence or create ambiguity about the underlying
+prescribed Set.
+
+The existence of Restart Current Set remains unresolved. This checkpoint does
+not freeze a detailed attempt schema.
+
+## 40. Minimal non-personal lineage markers may survive compaction
+
+Where retention permits deletion or compaction of historical payload but
+remaining records still require referential lineage, a minimal non-personal
+marker or tombstone may be retained where necessary.
+
+This does not permit retaining attributable personal data contrary to deletion
+or privacy policy.
+
+## 41. Persistence failure must not fabricate success
+
+If user-meaningful execution progress cannot be durably and reliably recorded,
+the system must not silently represent that progress as safely persisted or
+completed. Exact failure UX and persistence implementation remain deferred.
+
+## 42. Skip or inability does not determine Streak
+
+A legitimately closed or skipped execution obligation may still permit the
+Workout workflow to reach `COMPLETED` according to the existing execution
+contract, without representing skipped work as performed. Workout completion,
+adherence, and Streak eligibility remain distinct.
+
+Foundation does not set an X-of-Y Exercise threshold, fixed completion
+percentage, or similar numerical Streak threshold. Exact Streak Credit Policy
+remains unresolved.
+
+## 43. Skip reason is user-reported context, not verified medical truth
+
+When a user supplies a reason or context for Skip or inability, the Outcome
+may preserve that report. For example, “user reported pain/discomfort” must
+not silently become “medically verified injury.” Reason taxonomy and privacy
+treatment remain deferred.
+
+## 44. Dynamic AI re-planning is not required during an active Workout
+
+The baseline active-Workout exception path is:
+
+Skip or close the applicable obligation → capture reason or context → continue
+the remaining valid Workout flow → preserve factual Outcome → allow later
+Assessment or Adaptation to influence a future Prescription.
+
+Dynamic AI re-planning is not required in the active Workout critical path.
+AI or network availability must not be required to safely continue or
+conclude the active Workout. This does not prohibit a future separately
+reviewed capability.
+
+## 45. Streak state is separate from Workout Outcome
+
+Workout Outcome provides factual execution evidence. A separate future
+Streak/Engagement policy may consume that evidence. Changing Streak rules in
+the future must not rewrite historical Workout Outcome truth.
+
+## Cross-gate unresolved requirement: Streak Credit Policy
+
+`STREAK_CREDIT_POLICY` is an unresolved product and engagement concern. A
+future Streak policy must address the trade-off between avoiding unfair loss
+of Streak when a user meaningfully participates but legitimately cannot
+continue and preventing trivial abuse such as Start → arbitrary Skip →
+automatic Streak credit.
+
+The future policy may consider context, meaningful participation, and
+legitimate inability or Skip. It must not currently assume fixed X-of-Y
+Exercise thresholds, fixed percentage thresholds, mandatory medical proof,
+mandatory sensing or camera proof, or surveillance-oriented identity or
+behavior verification.
+
+Training Truth remains independent from Streak Truth. Route this concern to
+the appropriate future product/engagement contract; this checkpoint does not
+invent a solution or resolve another Owner gate.
 
 These remain inputs to the unfinished Owner-gate discussion and their
 appropriate later contracts.
