@@ -1,0 +1,244 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "digest"
+require "open3"
+require "yaml"
+
+ALLOWED_DISPOSITIONS = %w[
+  UNREVIEWED REVALIDATE ADOPT_CANDIDATE MODIFY_CANDIDATE
+  SUPERSEDE_CANDIDATE REJECT_CANDIDATE HISTORICAL_EVIDENCE
+].freeze
+PINNED_REVISION = "fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e"
+LEGACY_URL = "https://github.com/msaeedlavasani/Apex-Home-Fitness.git"
+
+def load_yaml(path)
+  YAML.safe_load(File.read(path), permitted_classes: [], permitted_symbols: [], aliases: false)
+rescue Errno::ENOENT => e
+  abort "missing YAML #{path}: #{e.message}"
+rescue Psych::Exception => e
+  abort "invalid YAML #{path}: #{e.message.lines.first.strip}"
+end
+
+def fail_with(message)
+  abort "FAIL: #{message}"
+end
+
+def validate(coverage_path, ledger_path, reconciliation_path, verification_path, lki_path)
+  coverage = load_yaml(coverage_path)
+  ledger = load_yaml(ledger_path)
+  reconciliation = load_yaml(reconciliation_path)
+  verification = load_yaml(verification_path)
+  lki = load_yaml(lki_path)
+
+  fail_with "coverage schema_version" unless coverage["schema_version"] == 0
+  fail_with "coverage has no tracked_path_count" unless coverage["tracked_path_count"].is_a?(Integer)
+  paths = coverage.fetch("paths")
+  fail_with "coverage path count mismatch" unless paths.length == coverage.fetch("tracked_path_count")
+  path_names = paths.map { |entry| entry.fetch("path") }
+  fail_with "duplicate tracked path" unless path_names.uniq.length == path_names.length
+  paths.each do |entry|
+    fail_with "path is not a mapping" unless entry["coverage_type"] == "MAPPED" || entry["coverage_type"] == "EXCLUDED"
+    if entry["coverage_type"] == "MAPPED"
+      fail_with "mapped path has no capability" unless entry["capability_ids"].is_a?(Array) && !entry["capability_ids"].empty?
+      fail_with "mapped path has exclusion rationale" unless entry["exclusion_rationale"].nil?
+    else
+      fail_with "excluded path has no rationale" unless entry["exclusion_rationale"].is_a?(String) && !entry["exclusion_rationale"].empty?
+    end
+    provenance = entry.fetch("provenance")
+    fail_with "incomplete path provenance" unless provenance["repository"] && provenance["revision"] == PINNED_REVISION && provenance["source_path"] == entry["path"]
+  end
+
+  fail_with "ledger schema_version" unless ledger["schema_version"] == 0
+  capabilities = ledger.fetch("capabilities")
+  capability_ids = capabilities.map { |entry| entry.fetch("stable_id") }
+  fail_with "duplicate capability ID" unless capability_ids.uniq.length == capability_ids.length
+  fail_with "ledger has no allowed dispositions" unless ledger["allowed_dispositions"] == ALLOWED_DISPOSITIONS
+  capabilities.each do |capability|
+    %w[stable_id exact_provenance evidence_class relationships dependencies confidence_and_gaps review_state disposition_state historical_relationships].each do |key|
+      fail_with "capability #{capability["stable_id"]} lacks #{key}" unless capability.key?(key)
+    end
+    fail_with "invalid capability disposition" unless ALLOWED_DISPOSITIONS.include?(capability["disposition_state"])
+  end
+  paths.each do |entry|
+    entry.fetch("capability_ids").each do |id|
+      fail_with "unknown capability #{id}" unless capability_ids.include?(id)
+    end
+  end
+
+  fail_with "reconciliation schema_version" unless reconciliation["schema_version"] == 0
+  lki_entries = lki.fetch("entries")
+  reconciliation_entries = reconciliation.fetch("entries")
+  fail_with "seed record count is not 18" unless reconciliation["seed_record_count"] == 18 && lki_entries.length == 18
+  fail_with "LKI reconciliation count mismatch" unless reconciliation_entries.length == lki_entries.length
+  fail_with "LKI reconciliation IDs mismatch" unless reconciliation_entries.map { |e| e.fetch("stable_id") }.sort == lki_entries.map { |e| e.fetch("stable_id") }.sort
+  fail_with "overloaded_records missing" unless reconciliation["overloaded_records"].is_a?(Array)
+  fail_with "capability_splits missing" unless reconciliation["capability_splits"].is_a?(Array)
+
+  fail_with "verification limitations missing" unless verification["remote_refs_not_refreshed"] == true
+  fail_with "unverified evidence classes missing" unless verification["unverified_evidence_classes"].is_a?(Array) && !verification["unverified_evidence_classes"].empty?
+  fail_with "verification requirements missing" unless verification["verification_requirements"].is_a?(Array) && !verification["verification_requirements"].empty?
+  puts "PASS: #{path_names.length} tracked paths, #{capabilities.length} capabilities, #{reconciliation_entries.length} LKI records"
+end
+
+def classify(path)
+  ids = []
+  ids << "CAP-GOVERNANCE-AGENT" if path.match?(%r{\A(?:\.specify|AGENTS\.md|docs/(?:governance|TASKS|DEVELOPMENT-ADMISSION)|scripts/governance|docs/adr/README)})
+  ids << "CAP-PRODUCT-DOMAIN" if path.match?(%r{\A(?:docs/(?:product|architecture|adr)|src/lib/(?:outcomes|programSchedule))})
+  ids << "CAP-IDENTITY-PERSISTENCE" if path.match?(%r{(?:prisma|migrations|account|auth|identity|prescriptionContract|resolvedPrescription|Program|User)})
+  ids << "CAP-WORKOUT-EXECUTION" if path.match?(%r{(?:workout|completionSemantics|session|set|prescription)})
+  ids << "CAP-RECOVERY-CHECKPOINT" if path.match?(%r{(?:offline|checkpoint|conflict|snapshot|recovery|resume)})
+  ids << "CAP-CAMERA-SENSING" if path.match?(%r{(?:camera|pose|sensing|consent)})
+  ids << "CAP-MENTOR-ASSETS" if path.match?(%r{(?:mentor|exercise/passport|assets|\.glb|\.gltf|MoveNet)})
+  ids << "CAP-UX-DESIGN" if path.match?(%r{(?:DESIGN|UI-|components|styles|i18n|locale|localization|accessibility|a11y|responsive|motion)})
+  ids << "CAP-AI-GENERATION" if path.match?(%r{(?:AI|ai/|prompt|ingest|generation)})
+  ids << "CAP-PRIVACY-SECURITY" if path.match?(%r{(?:privacy|security|ADMIN_AUTH|deletion|retention|consent|gateway|secret)})
+  ids << "CAP-OBSERVABILITY" if path.match?(%r{(?:analytics|observability|monitor|logger|diagnostic|telemetry|event)})
+  ids << "CAP-ERROR-DEGRADATION" if path.match?(%r{(?:error|readiness|guardrail|degrad|failure)})
+  ids << "CAP-TESTS-EVIDENCE" if path.match?(%r{\A(?:tests?|reports?)/|(?:test|spec|e2e|fixture|closeout|evidence)})
+  ids << "CAP-CI-QUALITY" if path.match?(%r{(?:\.github/workflows|CI|quality|lint|coverage|branching|release)})
+  ids << "CAP-INFRA-DEPLOYMENT" if path.match?(%r{(?:Docker|docker|infra|ops|deploy|environment|backup|rollback)})
+  ids << "CAP-HISTORICAL-FAILURES" if path.match?(%r{(?:incident|PITFALL|history|regression|test-debt|correction)})
+  ids << "CAP-PERFORMANCE-ACCESSIBILITY" if path.match?(%r{(?:performance|device|mobile|a11y|accessibility|FPS)})
+  ids << "CAP-LOCALIZATION-MEDIA" if path.match?(%r{(?:i18n|locale|localization|media|message)})
+  ids << "CAP-TOOLCHAIN-SERVICES" if path.match?(%r{(?:package|\.nvmrc|lock|dependency|supabase|service)})
+  ids.empty? ? ["CAP-UNCLASSIFIED-PATH"] : ids.uniq
+end
+
+def evidence_class(path)
+  return "EPHEMERAL_GENERATED_OUTPUT_CANDIDATE" if path.match?(%r{(?:browser|playwright|screenshot|trace|video|coverage)})
+  return "DURABLE_TRACKED_ACCEPTANCE_EVIDENCE" if path.start_with?("reports/") || path.match?(%r{(?:closeout|evidence|checkpoint|admission)})
+  "TRACKED_SOURCE_OR_DOCUMENT"
+end
+
+def category_capability_ids(category)
+  return ["CAP-PRODUCT-DOMAIN"] if category.match?(/Product|Domain/)
+  return ["CAP-GOVERNANCE-AGENT"] if category.match?(/Governance/)
+  return ["CAP-UX-DESIGN"] if category.match?(/Design|UX/)
+  return ["CAP-WORKOUT-EXECUTION"] if category.match?(/Workout|Execution/)
+  return ["CAP-IDENTITY-PERSISTENCE"] if category.match?(/Identity|Persistence/)
+  return ["CAP-RECOVERY-CHECKPOINT"] if category.match?(/Recovery|Checkpoint/)
+  return ["CAP-CAMERA-SENSING"] if category.match?(/Camera|Sensing/)
+  return ["CAP-MENTOR-ASSETS"] if category.match?(/Mentor|Assets/)
+  return ["CAP-TESTS-EVIDENCE"] if category.match?(/Tests|Evidence/)
+  return ["CAP-INFRA-DEPLOYMENT"] if category.match?(/Infrastructure|Deployment/)
+  return ["CAP-CI-QUALITY"] if category.match?(/CI|Quality/)
+  return ["CAP-HISTORICAL-FAILURES"] if category.match?(/Failures|Lessons/)
+  ["CAP-UNCLASSIFIED-PATH"]
+end
+
+def git_tree(repo, revision)
+  stdout, stderr, status = Open3.capture3("git", "-C", repo, "ls-tree", "-r", "-z", revision)
+  abort stderr unless status.success?
+  stdout.split("\0").reject(&:empty?).map do |entry|
+    metadata, path = entry.split("\t", 2)
+    mode, type, object_id = metadata.split(" ", 3)
+    { "path" => path, "mode" => mode, "type" => type, "object_id" => object_id }
+  end
+end
+
+def generate(repo, revision, coverage_path, ledger_path, reconciliation_path, verification_path, lki_path)
+  tree = git_tree(repo, revision)
+  lki = load_yaml(lki_path)
+  capability_ids = %w[
+    CAP-GOVERNANCE-AGENT CAP-PRODUCT-DOMAIN CAP-IDENTITY-PERSISTENCE
+    CAP-WORKOUT-EXECUTION CAP-RECOVERY-CHECKPOINT CAP-CAMERA-SENSING
+    CAP-MENTOR-ASSETS CAP-UX-DESIGN CAP-AI-GENERATION CAP-PRIVACY-SECURITY
+    CAP-OBSERVABILITY CAP-ERROR-DEGRADATION CAP-TESTS-EVIDENCE CAP-CI-QUALITY
+    CAP-INFRA-DEPLOYMENT CAP-HISTORICAL-FAILURES CAP-PERFORMANCE-ACCESSIBILITY
+    CAP-LOCALIZATION-MEDIA CAP-TOOLCHAIN-SERVICES CAP-UNCLASSIFIED-PATH
+  ]
+  paths = tree.map do |entry|
+    ids = classify(entry["path"])
+    {
+      "path" => entry["path"],
+      "coverage_type" => "MAPPED",
+      "capability_ids" => ids,
+      "exclusion_rationale" => nil,
+      "evidence_class" => evidence_class(entry["path"]),
+      "provenance" => {
+        "repository" => LEGACY_URL,
+        "revision" => revision,
+        "source_path" => entry["path"],
+        "object_id" => entry["object_id"],
+        "mode" => entry["mode"]
+      },
+      "confidence_and_gaps" => "PATH_CLASSIFICATION_REQUIRES_CAPABILITY_REVIEW"
+    }
+  end
+  coverage = {
+    "schema_version" => 0,
+    "artifact_id" => "LEGACY_REPOSITORY_COVERAGE@v0",
+    "generated_by_task" => "FOUNDATION-LKI-COMPLETENESS",
+    "coverage_status" => "TRACKED_PATHS_ACCOUNTED_AT_PINNED_REVISION",
+    "source_repository" => { "url" => LEGACY_URL, "revision" => revision, "branch" => "feat/workout-v2-first-slice", "worktree_state" => "CLEAN" },
+    "tracked_path_count" => paths.length,
+    "exclusion_policy" => "No tracked path is excluded; secret values, vendor trees, build output, and unavailable external artifacts require explicit future records when encountered.",
+    "paths" => paths
+  }
+
+  grouped = Hash.new { |h, k| h[k] = [] }
+  paths.each { |entry| entry["capability_ids"].each { |id| grouped[id] << entry["path"] } }
+  capabilities = capability_ids.map do |id|
+    {
+      "stable_id" => id,
+      "title" => id.sub("CAP-", "").tr("-", " ").downcase,
+      "exact_provenance" => { "repository" => LEGACY_URL, "revision" => revision, "source_paths" => grouped[id] },
+      "evidence_class" => "PATH_DERIVED_DISCOVERY_LEAD",
+      "relationships" => ["LEGACY_KNOWLEDGE_INDEX@v0", "FOUNDATION_AUDIT_REVIEW@v0"],
+      "dependencies" => ["mechanical path review", "owner review"],
+      "confidence_and_gaps" => "Path mapping is deterministic discovery evidence; semantic capability boundaries require review.",
+      "review_state" => "UNREVIEWED",
+      "disposition_state" => "UNREVIEWED",
+      "historical_relationships" => ["Audit correction and supersession history requires downstream review"]
+    }
+  end
+  ledger = {
+    "schema_version" => 0,
+    "artifact_id" => "CAPABILITY_DISPOSITION_LEDGER@v0",
+    "generated_by_task" => "FOUNDATION-LKI-COMPLETENESS",
+    "ledger_status" => "INITIAL_DISCOVERY",
+    "authority" => "NON_BINDING",
+    "allowed_dispositions" => ALLOWED_DISPOSITIONS,
+    "capabilities" => capabilities
+  }
+
+  lki_reconciliation = {
+    "schema_version" => 0,
+    "artifact_id" => "LKI_RECONCILIATION@v0",
+    "generated_by_task" => "FOUNDATION-LKI-COMPLETENESS",
+    "seed_record_count" => lki.fetch("entries").length,
+    "entries" => lki.fetch("entries").map do |entry|
+      { "stable_id" => entry.fetch("stable_id"), "source" => entry.fetch("source"), "provenance" => entry.fetch("provenance"), "capability_ids" => category_capability_ids(entry.fetch("category")), "historical_status" => entry.fetch("historical_status"), "reuse_status" => entry.fetch("reuse_status"), "review_state" => "UNREVIEWED", "disposition_state" => "UNREVIEWED" }
+    end,
+    "overloaded_records" => %w[LKI-PRODUCT-001 LKI-GOVERNANCE-001 LKI-GOVERNANCE-002 LKI-INFRA-001 LKI-CI-001],
+    "capability_splits" => ["security/privacy", "account lifecycle", "localization/media", "AI provenance", "observability", "error/degradation", "performance/accessibility", "toolchain", "migration governance", "test debt"],
+    "history_preservation" => "Correction, supersession, failure, and deferred-acceptance links remain review requirements; no historical record is rewritten."
+  }
+  verification = {
+    "schema_version" => 0,
+    "artifact_id" => "AUDIT_LIMITATIONS_VERIFICATION@v0",
+    "generated_by_task" => "FOUNDATION-LKI-COMPLETENESS",
+    "remote_refs_not_refreshed" => true,
+    "unverified_evidence_classes" => ["generated browser reports", "physical-device evidence", "deployed-environment evidence"],
+    "verification_requirements" => [
+      { "id" => "VERIFY-REMOTE-REFS", "status" => "REQUIRED", "requirement" => "Refresh relevant remote refs and record exact heads without rewriting pinned observations." },
+      { "id" => "VERIFY-GENERATED-BROWSER-EVIDENCE", "status" => "REQUIRED_WHERE_CLAIMED", "requirement" => "Record availability, revision, integrity, and durable-versus-ephemeral classification." },
+      { "id" => "VERIFY-PHYSICAL-DEVICE-EVIDENCE", "status" => "REQUIRED_WHERE_CLAIMED", "requirement" => "Require reproducible or Owner-accepted current evidence before fresh device claims." },
+      { "id" => "VERIFY-DEPLOYED-ENVIRONMENT-EVIDENCE", "status" => "REQUIRED_WHERE_CLAIMED", "requirement" => "Distinguish documentation from verified deployed state and record context and verifier." }
+    ],
+    "acceptance_claims_created_from_unavailable_evidence" => []
+  }
+  [[coverage_path, coverage], [ledger_path, ledger], [reconciliation_path, lki_reconciliation], [verification_path, verification]].each do |path, document|
+    File.write(path, YAML.dump(document))
+  end
+  puts "GENERATED: #{paths.length} tracked paths, #{capabilities.length} capabilities"
+end
+
+if ARGV.first == "--generate"
+  _, repo, revision, coverage_path, ledger_path, reconciliation_path, verification_path, lki_path = ARGV
+  generate(repo, revision, coverage_path, ledger_path, reconciliation_path, verification_path, lki_path)
+else
+  fail_with "usage: #{File.basename($PROGRAM_NAME)} coverage ledger reconciliation verification lki" unless ARGV.length == 5
+  validate(*ARGV)
+end

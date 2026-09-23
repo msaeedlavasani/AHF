@@ -1,0 +1,27 @@
+---
+schema_version: 0
+artifact_id: AUDIT_LIMITATIONS_VERIFICATION@v0
+generated_by_task: FOUNDATION-LKI-COMPLETENESS
+remote_refs_not_refreshed: true
+unverified_evidence_classes:
+- generated browser reports
+- physical-device evidence
+- deployed-environment evidence
+verification_requirements:
+- id: VERIFY-REMOTE-REFS
+  status: REQUIRED
+  requirement: Refresh relevant remote refs and record exact heads without rewriting
+    pinned observations.
+- id: VERIFY-GENERATED-BROWSER-EVIDENCE
+  status: REQUIRED_WHERE_CLAIMED
+  requirement: Record availability, revision, integrity, and durable-versus-ephemeral
+    classification.
+- id: VERIFY-PHYSICAL-DEVICE-EVIDENCE
+  status: REQUIRED_WHERE_CLAIMED
+  requirement: Require reproducible or Owner-accepted current evidence before fresh
+    device claims.
+- id: VERIFY-DEPLOYED-ENVIRONMENT-EVIDENCE
+  status: REQUIRED_WHERE_CLAIMED
+  requirement: Distinguish documentation from verified deployed state and record context
+    and verifier.
+acceptance_claims_created_from_unavailable_evidence: []

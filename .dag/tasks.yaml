@@ -997,14 +997,22 @@ tasks:
     required_evidence:
       - id: tracked_path_coverage
         path: .dag/outputs/legacy-repository-coverage.yaml
+        sha256: 612c84096f00b7c811c73d09c490dbe42d1445c0b205e7688976b9e62b380c99
       - id: capability_ledger
         path: .dag/outputs/capability-disposition-ledger.yaml
+        sha256: 203e7530c14a183003a5008bca51641af5560c8c89c6254e284b22bf3fa66835
       - id: lki_reconciliation
         path: .dag/outputs/lki-reconciliation.yaml
+        sha256: ae946e5060ff94aecb677b89537252898ca8e28662968ad9c945436cbf0dfd28
       - id: audit_limitations_verification
         path: .dag/outputs/audit-limitations-verification.yaml
+        sha256: e2ac4ad98a5168a7a95b04e8c002f5d84f0e6c9783a99d50db079bfa0bd1ca63
       - id: completeness_validator
         path: bin/validate-legacy-foundation-coverage
+        sha256: 25f4b5167156dff26572cb70461d32ec90739b7cf1c9719d51fe0c391339cb99
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-LKI-COMPLETENESS.yaml
+        sha256: 022f271dbba82e4adf9bef24ef4dd6763bf9c31ff42aa31a0f3a5623fbcb468d
     validations:
       - id: all_tracked_paths_and_capabilities_validate
         check:
@@ -1017,7 +1025,34 @@ tasks:
             - .dag/outputs/lki-reconciliation.yaml
             - .dag/outputs/audit-limitations-verification.yaml
             - .dag/outputs/legacy-knowledge-index.yaml
-    attempts: []
+    attempts:
+      - id: FOUNDATION-LKI-COMPLETENESS/attempt-1
+        outcome: PASSED
+        evidence:
+          - tracked_path_coverage
+          - capability_ledger
+          - lki_reconciliation
+          - audit_limitations_verification
+          - completeness_validator
+          - publication_marker
+        validations:
+          - all_tracked_paths_and_capabilities_validate
+        produced:
+          - type: ARTIFACT
+            id: LEGACY_REPOSITORY_COVERAGE@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: CAPABILITY_DISPOSITION_LEDGER@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: LKI_RECONCILIATION@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: AUDIT_LIMITATIONS_VERIFICATION@v0
+            state: AVAILABLE
+          - type: ARTIFACT
+            id: FOUNDATION_COMPLETENESS_VALIDATOR@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

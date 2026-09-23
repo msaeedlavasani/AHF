@@ -1,0 +1,1391 @@
+---
+schema_version: 0
+artifact_id: CAPABILITY_DISPOSITION_LEDGER@v0
+generated_by_task: FOUNDATION-LKI-COMPLETENESS
+ledger_status: INITIAL_DISCOVERY
+authority: NON_BINDING
+allowed_dispositions:
+- UNREVIEWED
+- REVALIDATE
+- ADOPT_CANDIDATE
+- MODIFY_CANDIDATE
+- SUPERSEDE_CANDIDATE
+- REJECT_CANDIDATE
+- HISTORICAL_EVIDENCE
+capabilities:
+- stable_id: CAP-GOVERNANCE-AGENT
+  title: governance agent
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - ".specify/constitution.md"
+    - ".specify/templates/plan-template.md"
+    - ".specify/templates/spec-template.md"
+    - ".specify/templates/tasks-template.md"
+    - AGENTS.md
+    - docs/TASKS.md
+    - docs/adr/README.md
+    - docs/governance/AHF-SPECKIT-BROWNFIELD-ADOPTION-DESIGN.md
+    - docs/governance/DEVELOPMENT-ADMISSION.md
+    - docs/governance/DOCUMENTATION-CONFLICT-MATRIX.md
+    - docs/governance/DOCUMENTATION-GOVERNANCE-PROPOSAL.md
+    - docs/governance/DOCUMENTATION-GOVERNANCE.md
+    - docs/governance/DOCUMENTATION-SOURCE-OF-TRUTH-PROPOSAL.md
+    - docs/governance/INTEGRATION-CHECKPOINT-POLICY.md
+    - docs/governance/OWNER_DECISION_GATE.md
+    - docs/governance/REPORT-DELIVERY-CONTRACT.md
+    - docs/governance/REPOSITORY-DOCUMENTATION-AUDIT.md
+    - docs/governance/SPECKIT-CONSTITUTION-CONTRADICTION-REVIEW.md
+    - docs/governance/UI-CONFORMANCE-GATE.md
+    - docs/governance/WORKOUT-V2-EVIDENCE-PROVENANCE.md
+    - scripts/governance-runtime.mjs
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-PRODUCT-DOMAIN
+  title: product domain
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/adr/0001-canonical-exercise-identity.md
+    - docs/adr/0002-pure-workout-session-core.md
+    - docs/adr/0003-quiz-onboarding-migration.md
+    - docs/adr/0004-dedicated-admin-authentication.md
+    - docs/adr/0005-mobile-readiness-guardrails.md
+    - docs/adr/0006-movement-graph-domain-contract.md
+    - docs/adr/0007-movement-taxonomy-vocabulary.md
+    - docs/adr/0008-source-provenance-contract.md
+    - docs/adr/0009-governed-ingestion-pipeline.md
+    - docs/adr/0010-localization-media-architecture.md
+    - docs/adr/0011-persisted-movement-graph.md
+    - docs/adr/0012-workout-outcome-model.md
+    - docs/adr/0013-personal-movement-profile.md
+    - docs/adr/0014-privacy-safety-architecture.md
+    - docs/adr/0015-knowledge-journal-architecture.md
+    - docs/adr/0016-adaptation-input-pipeline.md
+    - docs/adr/0017-adaptive-training-graph-decision-layer.md
+    - docs/adr/0018-companion-architecture.md
+    - docs/adr/0019-observation-signal-model.md
+    - docs/adr/0020-account-deletion.md
+    - docs/adr/0021-companion-camera-architecture.md
+    - docs/adr/ADR-TEMPLATE.md
+    - docs/adr/README.md
+    - docs/architecture/ADMIN-DESIGN-SYSTEM-AUDIT-01.md
+    - docs/architecture/ADMIN-THEME-SWITCH-01.md
+    - docs/architecture/AHF-ARCHITECTURE-SCALE-READINESS-AUDIT.md
+    - docs/architecture/AHF-ARCHITECTURE-SPECKIT-DECISION-BRIEF.md
+    - docs/architecture/AHF-BETA-DEPLOYMENT-CAPABILITY-01.md
+    - docs/architecture/AHF-DESIGN-BRAIN-VNEXT-P0.md
+    - docs/architecture/AL-01-WORKOUT-OUTCOME-MODEL.md
+    - docs/architecture/AL-02-PERSONAL-MOVEMENT-PROFILE.md
+    - docs/architecture/AL-03-ADAPTATION-INPUT-PIPELINE.md
+    - docs/architecture/AL-04-ADAPTIVE-TRAINING-GRAPH.md
+    - docs/architecture/AL-04-DECISION-GATE.md
+    - docs/architecture/ARCHITECTURE-PRINCIPLES-PROPOSAL.md
+    - docs/architecture/ARCHITECTURE-PRINCIPLES.md
+    - docs/architecture/ARCHITECTURE-STABILIZATION-PLAN.md
+    - docs/architecture/CAPABILITY-INVENTORY-PROPOSAL.md
+    - docs/architecture/COUPLING-RISK-REGISTER.md
+    - docs/architecture/CP-01-COMPANION-ARCHITECTURE.md
+    - docs/architecture/CP-02-OBSERVATION-SIGNAL-MODEL.md
+    - docs/architecture/CP-03-HARNESS-REPAIR.md
+    - docs/architecture/CP-03-MODEL-FETCH-CPU-FALLBACK.md
+    - docs/architecture/CP-03-MOVEMENT-OBSERVATION-OUTCOME.md
+    - docs/architecture/CP-03-POSE-FEASIBILITY.md
+    - docs/architecture/CP-03-REP-HEURISTIC-REPAIR.md
+    - docs/architecture/CP-03-TRACKING-REPAIR.md
+    - docs/architecture/CP-04-COMPANION-CAMERA-ARCHITECTURE.md
+    - docs/architecture/CP-05-WORKOUT-OBSERVATION-INTEGRATION.md
+    - docs/architecture/CP-06-UI-CONFORMANCE-EVIDENCE.md
+    - docs/architecture/CP-07-MOVEMENT-OBSERVATION-RUNTIME.md
+    - docs/architecture/DB-MIGRATION-TRIGGERS.md
+    - docs/architecture/GOVERNED-DB-MUTATION-01.md
+    - docs/architecture/MG-01-MOVEMENT-GRAPH-CONTRACT.md
+    - docs/architecture/MG-02-MOVEMENT-TAXONOMY.md
+    - docs/architecture/MG-03-SOURCE-PROVENANCE.md
+    - docs/architecture/MG-04-DECISION-GATE-SOURCE-SELECTION.md
+    - docs/architecture/MG-04-INGESTION-PIPELINE.md
+    - docs/architecture/MG-05-IDENTITY-RESOLUTION.md
+    - docs/architecture/MG-06-RELATIONSHIP-MODEL.md
+    - docs/architecture/MG-07-LOCALIZATION-MEDIA.md
+    - docs/architecture/MG-08-RECONCILIATION.md
+    - docs/architecture/MG-09-PERSISTED-STORAGE.md
+    - docs/architecture/MOBILE-READINESS-01-REPORT.md
+    - docs/architecture/MOBILE-READINESS-01.md
+    - docs/architecture/MODULARITY-AUDIT.md
+    - docs/architecture/POST-S04-PRIORITY-01.md
+    - docs/architecture/PROTOTYPE-AHF-INTERACTIVE-WORKOUT-MUSIC-20260908.md
+    - docs/architecture/S02-EXERCISE-IDENTITY-GATE-A.md
+    - docs/architecture/S02A-SOURCE-VOCABULARY.md
+    - docs/architecture/S02D1-EXERCISE-IDENTITY-PROPAGATION.md
+    - docs/architecture/S02D2-CLIENT-IDENTITY-ADOPTION.md
+    - docs/architecture/S02E-BACKFILL-PREFLIGHT.md
+    - docs/architecture/S03-SESSION-CORE-CLOSURE.md
+    - docs/architecture/S03-SESSION-CORE-GATE-B.md
+    - docs/architecture/S03A-SESSION-PARITY-BASELINE.md
+    - docs/architecture/S03B-PURE-SESSION-CORE.md
+    - docs/architecture/S03C-REACT-ADAPTER-DELEGATION.md
+    - docs/architecture/S03D-TIMER-ACCUMULATOR-BOUNDARY.md
+    - docs/architecture/S03E-EFFECT-BOUNDARY.md
+    - docs/architecture/S06-CATALOG-ROLE.md
+    - docs/architecture/TS-01-PRIVACY-SAFETY-ARCHITECTURE.md
+    - docs/architecture/TS-03-ACCOUNT-DELETION.md
+    - docs/architecture/TS-04-KNOWLEDGE-JOURNAL-ARCHITECTURE.md
+    - docs/product/MOVEMENT-INTELLIGENCE-STRATEGY.md
+    - docs/product/PRODUCT-STRATEGY.md
+    - docs/product/PRODUCT-VISION.md
+    - docs/product/WORKOUT-EXPERIENCE-V2-OPEN-QUESTIONS.md
+    - docs/product/WORKOUT-EXPERIENCE-V2.md
+    - src/lib/outcomes/index.ts
+    - src/lib/outcomes/types.ts
+    - src/lib/programSchedule.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-IDENTITY-PERSISTENCE
+  title: identity persistence
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/adr/0001-canonical-exercise-identity.md
+    - docs/adr/0004-dedicated-admin-authentication.md
+    - docs/adr/0020-account-deletion.md
+    - prisma/migrations/20260815115414_add_analytics_composite_indexes/migration.sql
+    - prisma/migrations/20260815115900_add_gamification/migration.sql
+    - prisma/migrations/20260815150054_add_program_generation_idempotency/migration.sql
+    - prisma/migrations/20260815161000_add_program_rest_days/migration.sql
+    - prisma/migrations/20260816120000_add_phone_otp/migration.sql
+    - prisma/migrations/20260816130000_add_quiz_response_client_request_id/migration.sql
+    - prisma/migrations/20260825120000_add_program_schedule/migration.sql
+    - prisma/migrations/20260826120000_add_user_phone/migration.sql
+    - prisma/migrations/20260826140000_add_weight_entries/migration.sql
+    - prisma/migrations/20260826141000_add_profile_email/migration.sql
+    - prisma/migrations/20260827000000_add_user_avatar/migration.sql
+    - prisma/migrations/20260827011500_add_exercise_canonical_identity_fields/migration.sql
+    - prisma/migrations/20260831120000_add_admin_auth/migration.sql
+    - prisma/migrations/20260901120000_add_movement_graph_tables/migration.sql
+    - prisma/migrations/20260920120000_add_workout_terminal_outcome/migration.sql
+    - prisma/migrations/20260921100000_allow_repeated_prescribed_entries/migration.sql
+    - prisma/migrations/20260921153000_preserve_repeated_session_entries/migration.sql
+    - prisma/migrations/migration_lock.toml
+    - prisma/schema.prisma
+    - prisma/seed.ts
+    - scripts/gateway-db-ops/s02e-exercise-identity-backfill.mjs
+    - src/app/[locale]/auth/login/page.tsx
+    - src/app/[locale]/auth/verify/page.tsx
+    - src/app/api/account/delete/route.ts
+    - src/app/api/auth/logout/route.ts
+    - src/app/api/auth/request-code/route.ts
+    - src/app/api/auth/verify/route.ts
+    - src/components/auth/AuthShell.tsx
+    - src/components/auth/LoginForm.tsx
+    - src/components/auth/VerifyForm.tsx
+    - src/lib/admin/auth.ts
+    - src/lib/admin/identity.ts
+    - src/lib/ai/ruleBasedProgram.ts
+    - src/lib/auth/errorKeys.ts
+    - src/lib/auth/mockOtpService.ts
+    - src/lib/auth/mode.ts
+    - src/lib/auth/otp.ts
+    - src/lib/auth/otpRateLimit.ts
+    - src/lib/auth/otpService.ts
+    - src/lib/auth/pendingOtp.ts
+    - src/lib/auth/phone.ts
+    - src/lib/auth/protect.ts
+    - src/lib/auth/smsIrProvider.ts
+    - src/lib/auth/types.ts
+    - src/lib/movement/identity.ts
+    - src/lib/prisma.ts
+    - src/lib/program/qaProgram.ts
+    - src/lib/workout/prescriptionContract.ts
+    - src/lib/workout/resolvedPrescription.ts
+    - src/services/accountDeletionService.ts
+    - supabase/migrations/0001_workout_exercise_logs.sql
+    - tests/account-deletion.test.ts
+    - tests/admin-auth.test.ts
+    - tests/auth-flow.spec.ts
+    - tests/auth-mode-flag.test.ts
+    - tests/auth-otp.test.ts
+    - tests/identity-propagation.test.ts
+    - tests/movement-identity.test.ts
+    - tests/workout-plan-identity.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-WORKOUT-EXECUTION
+  title: workout execution
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/adr/0002-pure-workout-session-core.md
+    - docs/adr/0012-workout-outcome-model.md
+    - docs/specs/0001-workout-experience/dependencies.md
+    - docs/specs/0001-workout-experience/execution-strategy-ui-conformance.md
+    - docs/specs/0001-workout-experience/pilot-assessment.md
+    - docs/specs/0001-workout-experience/plan.md
+    - docs/specs/0001-workout-experience/spec.md
+    - docs/specs/0001-workout-experience/tasks.md
+    - prisma/migrations/20260920120000_add_workout_terminal_outcome/migration.sql
+    - prisma/migrations/20260921153000_preserve_repeated_session_entries/migration.sql
+    - public/.well-known/assetlinks.json
+    - public/audio/workout/music.mp3
+    - public/backstage/workout/backstage-dark-desktop.webp
+    - public/backstage/workout/backstage-dark-mobile.webp
+    - public/backstage/workout/backstage-light-desktop.webp
+    - public/backstage/workout/backstage-light-mobile.webp
+    - public/workout-assets/AHF_Mentor_Squat.glb
+    - reports/workout-v2-canonical/WORKOUT-V2-CANONICAL-ENTRY-PASSPORT-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-CAPABILITY-READINESS-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-EVIDENCE-AND-DEPLOYED-JOURNEY-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-PERSISTED-ENTRY-IDENTITY-CORRECTION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-QA-FIXTURE-DERIVED-ORACLE-RECONCILIATION-closeout.json
+    - reports/workout-v2-impl-01/GATE-01-completeness.json
+    - reports/workout-v2-impl-01/RUN-4-PROGRAM-COMPOSITION-closeout.json
+    - reports/workout-v2-impl-01/WP-08-closeout.json
+    - reports/workout-v2-impl-01/WP-09-closeout.json
+    - reports/workout-v2-impl-01/WP-10-closeout.json
+    - reports/workout-v2-impl-01/WP-12-closeout.json
+    - reports/workout-v2-impl-01/WP-13-closeout.json
+    - reports/workout-v2-impl-01/WP-14-closeout.json
+    - reports/workout-v2-impl-01/WP-15-closeout.json
+    - reports/workout-v2-impl-01/WP-15-ui-conformance-evidence.md
+    - reports/workout-v2-impl-01/WP-16-closeout.json
+    - reports/workout-v2-impl-01/WP-17-closeout.json
+    - reports/workout-v2-impl-01/WP-17-ui-conformance-evidence.md
+    - reports/workout-v2-impl-01/WP-18-closeout.json
+    - reports/workout-v2-impl-01/WP-18-ui-conformance-evidence.md
+    - reports/workout-v2-impl-01/WP-19-closeout.json
+    - reports/workout-v2-impl-01/WP-20-closeout.json
+    - reports/workout-v2-impl-01/ui-conformance-evidence.md
+    - scripts/audit-assets.mjs
+    - scripts/interactive-workout-prototype/README.md
+    - scripts/interactive-workout-prototype/index.html
+    - src/app/[locale]/workout/page.tsx
+    - src/app/[locale]/workout/v2/page.tsx
+    - src/app/admin/(protected)/sessions/page.tsx
+    - src/app/api/workout/session/route.ts
+    - src/components/workout/AnimationPlayer.tsx
+    - src/components/workout/CameraConsentBanner.tsx
+    - src/components/workout/CameraTrackingIndicator.tsx
+    - src/components/workout/CircularProgressRing.tsx
+    - src/components/workout/CountdownTimer.tsx
+    - src/components/workout/RepSetCounter.tsx
+    - src/components/workout/WorkoutPlayer.tsx
+    - src/components/workout/experience/BackstageBackdrop.tsx
+    - src/components/workout/experience/ExerciseDetailsSheet.tsx
+    - src/components/workout/experience/ExitConfirmation.tsx
+    - src/components/workout/experience/ExperienceShell.tsx
+    - src/components/workout/experience/IntroStage.tsx
+    - src/components/workout/experience/PreparingStage.tsx
+    - src/components/workout/experience/RestStage.tsx
+    - src/components/workout/experience/SessionControlSurface.tsx
+    - src/components/workout/experience/SessionOutcomeSummary.tsx
+    - src/components/workout/experience/ShellControls.tsx
+    - src/components/workout/experience/StartStage.tsx
+    - src/components/workout/experience/WorkSetStage.tsx
+    - src/components/workout/experience/WorkoutResultStage.tsx
+    - src/components/workout/experience/backstage.ts
+    - src/components/workout/experience/mentor/MentorStage.tsx
+    - src/components/workout/experience/mentor/contract.ts
+    - src/components/workout/experience/mentor/mentorBones.ts
+    - src/components/workout/experience/mentor/mentorFraming.ts
+    - src/components/workout/experience/mentor/mentorPreparation.ts
+    - src/components/workout/experience/readiness.ts
+    - src/components/workout/index.ts
+    - src/components/workout/useWorkoutCapabilityGate.tsx
+    - src/components/workout/useWorkoutEngine.ts
+    - src/components/workout/useWorkoutSession.ts
+    - src/components/workout/workoutTokens.ts
+    - src/lib/offline/workoutPersistence.ts
+    - src/lib/workout/capabilityGate.ts
+    - src/lib/workout/completionSemantics.ts
+    - src/lib/workout/consentEntity.ts
+    - src/lib/workout/executionStrategy.ts
+    - src/lib/workout/experience/compositionContract.ts
+    - src/lib/workout/experience/exerciseDetails.ts
+    - src/lib/workout/experience/mentorBinding.ts
+    - src/lib/workout/experience/musicAsset.ts
+    - src/lib/workout/experience/sessionMusic.ts
+    - src/lib/workout/orchestration.ts
+    - src/lib/workout/plan.ts
+    - src/lib/workout/prescriptionContract.ts
+    - src/lib/workout/resolvedPrescription.ts
+    - src/lib/workout/restCapability.ts
+    - src/lib/workout/samplePlan.ts
+    - src/lib/workout/sessionContracts.ts
+    - src/lib/workout/sessionCore.ts
+    - src/lib/workout/sessionV2Contracts.ts
+    - src/lib/workout/setCapability.ts
+    - src/lib/workout/wallClock.ts
+    - supabase/migrations/0001_workout_exercise_logs.sql
+    - tests/asset-audit.test.ts
+    - tests/phone-session-service.test.ts
+    - tests/session-contract-consumers.test.ts
+    - tests/session-contracts.test.ts
+    - tests/session-core.test.ts
+    - tests/session-golden-trace.test.tsx
+    - tests/workout-engine.test.tsx
+    - tests/workout-persistence.test.ts
+    - tests/workout-plan-identity.test.ts
+    - tests/workout-route.spec.ts
+    - tests/workout-timer.test.ts
+    - tests/workout-v2-capability-readiness.test.ts
+    - tests/workout-v2-completion-regression.test.ts
+    - tests/workout-v2-completion-semantics.test.ts
+    - tests/workout-v2-correction-contract.test.ts
+    - tests/workout-v2-evidence-provenance.test.ts
+    - tests/workout-v2-execution-strategy.test.ts
+    - tests/workout-v2-experience.test.ts
+    - tests/workout-v2-first-slice.test.tsx
+    - tests/workout-v2-orchestration.test.ts
+    - tests/workout-v2-prescription-contract.test.ts
+    - tests/workout-v2-product-entry.spec.ts
+    - tests/workout-v2-product-integration.test.ts
+    - tests/workout-v2-program-composition.test.ts
+    - tests/workout-v2-qa-program.test.ts
+    - tests/workout-v2-run1-ui.test.tsx
+    - tests/workout-v2-run1.test.ts
+    - tests/workout-v2-start-reliability.spec.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-RECOVERY-CHECKPOINT
+  title: recovery checkpoint
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/checkpoints/WORKOUT-V2-BETA-DEPLOYMENT-01.json
+    - docs/checkpoints/WORKOUT-V2-CANONICAL-BETA-DEPLOYMENT-01.json
+    - docs/checkpoints/WORKOUT-V2-CANONICAL-INTEGRATION-01.json
+    - docs/checkpoints/WORKOUT-V2-COMPLETE-FLOW-INTEGRATION-01.json
+    - docs/checkpoints/WORKOUT-V2-CORRECTION-BETA-DEPLOYMENT-01.json
+    - docs/checkpoints/WORKOUT-V2-CORRECTION-BETA-DEPLOYMENT-CE1DA7B-HISTORICAL.json
+    - docs/checkpoints/WORKOUT-V2-CORRECTION-INTEGRATION-01.json
+    - docs/checkpoints/WORKOUT-V2-REAL-PRODUCT-INTEGRATION-01.json
+    - public/offline.html
+    - src/lib/offline/conflictPolicy.ts
+    - src/lib/offline/db.ts
+    - src/lib/offline/snapshotVersion.ts
+    - src/lib/offline/workoutPersistence.ts
+    - tests/offline-conflict.test.ts
+    - tests/offline-pwa.spec.ts
+    - tests/snapshot-versioning.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-CAMERA-SENSING
+  title: camera sensing
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docker-compose.yml
+    - docs/adr/0021-companion-camera-architecture.md
+    - ops/deploy-gateway/beta-compose.yml
+    - public/models/movenet/singlepose-lightning/4/group1-shard1of2.bin
+    - public/models/movenet/singlepose-lightning/4/group1-shard2of2.bin
+    - public/models/movenet/singlepose-lightning/4/model.json
+    - scripts/pose-measurement/README.md
+    - scripts/pose-measurement/index.html
+    - scripts/pose-measurement/models/movenet/LICENSE-APACHE-2.0.txt
+    - scripts/pose-measurement/models/movenet/PROVENANCE.md
+    - scripts/pose-measurement/models/movenet/singlepose-lightning/4/group1-shard1of2.bin
+    - scripts/pose-measurement/models/movenet/singlepose-lightning/4/group1-shard2of2.bin
+    - scripts/pose-measurement/models/movenet/singlepose-lightning/4/model.json
+    - scripts/pose-measurement/models/movenet/singlepose-thunder/4/group1-shard1of3.bin
+    - scripts/pose-measurement/models/movenet/singlepose-thunder/4/group1-shard2of3.bin
+    - scripts/pose-measurement/models/movenet/singlepose-thunder/4/group1-shard3of3.bin
+    - scripts/pose-measurement/models/movenet/singlepose-thunder/4/model.json
+    - scripts/pose-measurement/results/iphone-squat-diagonal200-2026-09-04.json
+    - scripts/pose-measurement/results/iphone-squat-diagonal90-crios-2026-09-05.json
+    - scripts/pose-measurement/smoke.mjs
+    - scripts/pose-measurement/testdata/README.md
+    - scripts/pose-measurement/testdata/human.jpg
+    - src/lib/observation/cameraGate.ts
+    - src/lib/workout/consentEntity.ts
+    - src/services/cameraConsentService.ts
+    - src/services/cameraRuntime.ts
+    - src/services/cameraService.ts
+    - tests/camera-gate.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-MENTOR-ASSETS
+  title: mentor assets
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - public/workout-assets/AHF_Mentor_Squat.glb
+    - scripts/audit-assets.mjs
+    - src/components/workout/experience/mentor/MentorStage.tsx
+    - src/components/workout/experience/mentor/contract.ts
+    - src/components/workout/experience/mentor/mentorBones.ts
+    - src/components/workout/experience/mentor/mentorFraming.ts
+    - src/components/workout/experience/mentor/mentorPreparation.ts
+    - src/lib/exercise/passport.ts
+    - src/lib/workout/experience/mentorBinding.ts
+    - tests/mentor-binding.test.ts
+    - tests/mentor-preparation.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-UX-DESIGN
+  title: ux design
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/DESIGN_SYSTEM.md
+    - docs/adr/0010-localization-media-architecture.md
+    - docs/architecture/ADMIN-DESIGN-SYSTEM-AUDIT-01.md
+    - docs/architecture/AHF-DESIGN-BRAIN-VNEXT-P0.md
+    - docs/architecture/CP-06-UI-CONFORMANCE-EVIDENCE.md
+    - docs/governance/AHF-SPECKIT-BROWNFIELD-ADOPTION-DESIGN.md
+    - docs/governance/UI-CONFORMANCE-GATE.md
+    - src/app/[locale]/analytics/page.tsx
+    - src/app/[locale]/auth/login/page.tsx
+    - src/app/[locale]/auth/verify/page.tsx
+    - src/app/[locale]/challenges/page.tsx
+    - src/app/[locale]/dashboard/page.tsx
+    - src/app/[locale]/faq/page.tsx
+    - src/app/[locale]/history/page.tsx
+    - src/app/[locale]/layout.tsx
+    - src/app/[locale]/library/ExerciseLibraryPage.tsx
+    - src/app/[locale]/library/page.tsx
+    - src/app/[locale]/page.tsx
+    - src/app/[locale]/preferences/page.tsx
+    - src/app/[locale]/profile/ProfileView.tsx
+    - src/app/[locale]/profile/page.tsx
+    - src/app/[locale]/quiz/page.tsx
+    - src/app/[locale]/workout/page.tsx
+    - src/app/[locale]/workout/v2/page.tsx
+    - src/components/PWALoader.tsx
+    - src/components/admin/AdminLocaleSwitcher.tsx
+    - src/components/admin/AdminLogoutButton.tsx
+    - src/components/admin/AdminNav.tsx
+    - src/components/admin/AdminPrimitives.tsx
+    - src/components/admin/AdminThemeSwitcher.tsx
+    - src/components/analytics/AnalyticsCharts.tsx
+    - src/components/analytics/AnalyticsEmpty.tsx
+    - src/components/analytics/AnalyticsSkeleton.tsx
+    - src/components/analytics/AnalyticsSummary.tsx
+    - src/components/auth/AuthShell.tsx
+    - src/components/auth/LoginForm.tsx
+    - src/components/auth/VerifyForm.tsx
+    - src/components/dashboard/PreferencesEditor.tsx
+    - src/components/history/HistoryCalendar.tsx
+    - src/components/history/HistoryEmpty.tsx
+    - src/components/history/HistorySkeleton.tsx
+    - src/components/history/HistorySummary.tsx
+    - src/components/layout/AndroidLayout.tsx
+    - src/components/layout/AppShell.tsx
+    - src/components/layout/BrandIcon.tsx
+    - src/components/layout/IOSLayout.tsx
+    - src/components/layout/LanguageSwitcher.tsx
+    - src/components/layout/ThemeToggle.tsx
+    - src/components/layout/WebLayout.tsx
+    - src/components/layout/language.ts
+    - src/components/layout/nav.tsx
+    - src/components/providers/MonitoringProvider.tsx
+    - src/components/providers/MuiProvider.tsx
+    - src/components/providers/ThemeProvider.tsx
+    - src/components/quiz/OnboardingQuiz.jsx
+    - src/components/quiz/components/NavigationButtons.jsx
+    - src/components/quiz/components/OptionCard.jsx
+    - src/components/quiz/components/ProgressBar.jsx
+    - src/components/quiz/example.jsx
+    - src/components/quiz/exerciseStyles.js
+    - src/components/quiz/goals.js
+    - src/components/quiz/i18n.js
+    - src/components/quiz/index.js
+    - src/components/quiz/quiz.css
+    - src/components/quiz/restDays.js
+    - src/components/quiz/steps/CurrentLevelStep.jsx
+    - src/components/quiz/steps/EquipmentStep.jsx
+    - src/components/quiz/steps/ExerciseStylesStep.jsx
+    - src/components/quiz/steps/GoalStep.jsx
+    - src/components/quiz/steps/LimitationsStep.jsx
+    - src/components/quiz/steps/RestDaysStep.jsx
+    - src/components/quiz/steps/ThemeStep.jsx
+    - src/components/quiz/steps/TrainingDaysStep.jsx
+    - src/components/quiz/theme.js
+    - src/components/social/ChallengesFeed.tsx
+    - src/components/social/SocialShare.tsx
+    - src/components/social/index.ts
+    - src/components/ui/platform/Button/Button.tsx
+    - src/components/ui/platform/Button/index.ts
+    - src/components/ui/platform/Card/Card.tsx
+    - src/components/ui/platform/Card/index.ts
+    - src/components/ui/platform/Checkbox/Checkbox.tsx
+    - src/components/ui/platform/Checkbox/index.ts
+    - src/components/ui/platform/README.md
+    - src/components/ui/platform/SegmentedControl/SegmentedControl.tsx
+    - src/components/ui/platform/SegmentedControl/index.ts
+    - src/components/ui/platform/Slider/Slider.tsx
+    - src/components/ui/platform/Slider/index.ts
+    - src/components/ui/platform/Switch/Switch.tsx
+    - src/components/ui/platform/Switch/index.ts
+    - src/components/ui/platform/TextField/TextField.tsx
+    - src/components/ui/platform/TextField/index.ts
+    - src/components/ui/platform/context/PlatformProvider.tsx
+    - src/components/ui/platform/index.ts
+    - src/components/ui/platform/lib/platform.ts
+    - src/components/video/VideoPlayer.tsx
+    - src/components/workout/AnimationPlayer.tsx
+    - src/components/workout/CameraConsentBanner.tsx
+    - src/components/workout/CameraTrackingIndicator.tsx
+    - src/components/workout/CircularProgressRing.tsx
+    - src/components/workout/CountdownTimer.tsx
+    - src/components/workout/RepSetCounter.tsx
+    - src/components/workout/WorkoutPlayer.tsx
+    - src/components/workout/experience/BackstageBackdrop.tsx
+    - src/components/workout/experience/ExerciseDetailsSheet.tsx
+    - src/components/workout/experience/ExitConfirmation.tsx
+    - src/components/workout/experience/ExperienceShell.tsx
+    - src/components/workout/experience/IntroStage.tsx
+    - src/components/workout/experience/PreparingStage.tsx
+    - src/components/workout/experience/RestStage.tsx
+    - src/components/workout/experience/SessionControlSurface.tsx
+    - src/components/workout/experience/SessionOutcomeSummary.tsx
+    - src/components/workout/experience/ShellControls.tsx
+    - src/components/workout/experience/StartStage.tsx
+    - src/components/workout/experience/WorkSetStage.tsx
+    - src/components/workout/experience/WorkoutResultStage.tsx
+    - src/components/workout/experience/backstage.ts
+    - src/components/workout/experience/mentor/MentorStage.tsx
+    - src/components/workout/experience/mentor/contract.ts
+    - src/components/workout/experience/mentor/mentorBones.ts
+    - src/components/workout/experience/mentor/mentorFraming.ts
+    - src/components/workout/experience/mentor/mentorPreparation.ts
+    - src/components/workout/experience/readiness.ts
+    - src/components/workout/index.ts
+    - src/components/workout/useWorkoutCapabilityGate.tsx
+    - src/components/workout/useWorkoutEngine.ts
+    - src/components/workout/useWorkoutSession.ts
+    - src/components/workout/workoutTokens.ts
+    - src/i18n.ts
+    - src/i18n/navigation.ts
+    - src/i18n/routing.ts
+    - src/lib/admin/locale.ts
+    - src/lib/movement/localization.ts
+    - tests/accessibility-aria.spec.ts
+    - tests/admin-i18n.spec.ts
+    - tests/admin-locale.test.ts
+    - tests/movement-localization.test.ts
+    - tests/responsive-layout.spec.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-AI-GENERATION
+  title: ai generation
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/AI_API.md
+    - docs/AI_CHANGE_TEMPLATE.md
+    - docs/AI_DEVELOPMENT_SYSTEM.md
+    - docs/PITFALLS/NEXTJS-BUILDTIME-PUBLIC-URL-RSC-FAILURE.md
+    - docs/PITFALL_GUARDRAILS.md
+    - docs/adr/0009-governed-ingestion-pipeline.md
+    - docs/architecture/AHF-DESIGN-BRAIN-VNEXT-P0.md
+    - docs/architecture/AL-04-ADAPTIVE-TRAINING-GRAPH.md
+    - docs/architecture/CP-03-HARNESS-REPAIR.md
+    - docs/architecture/CP-03-REP-HEURISTIC-REPAIR.md
+    - docs/architecture/CP-03-TRACKING-REPAIR.md
+    - infra/ai/prompts/01-general-program-generation-prompt.md
+    - infra/ai/prompts/02-injury-focused-program-prompt.md
+    - infra/ai/prompts/03-equipment-limited-program-prompt.md
+    - prisma/migrations/20260815150054_add_program_generation_idempotency/migration.sql
+    - scripts/mg04-ingest-dry-run.ts
+    - src/lib/ai/contracts.ts
+    - src/lib/ai/idempotency.ts
+    - src/lib/ai/prompts.ts
+    - src/lib/ai/provider.ts
+    - src/lib/ai/rateLimitStore.ts
+    - src/lib/ai/requestSecurity.ts
+    - src/lib/ai/restDays.ts
+    - src/lib/ai/ruleBasedProgram.ts
+    - src/lib/movement/ingest-fixtures/free-exercise-db-sample.json
+    - src/lib/movement/ingest.ts
+    - src/services/generationIdempotency.ts
+    - tests/movement-ingest.test.ts
+    - tests/program-inplace-regeneration.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-PRIVACY-SECURITY
+  title: privacy security
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/ADMIN_AUTH.md
+    - docs/adr/0014-privacy-safety-architecture.md
+    - docs/adr/0020-account-deletion.md
+    - ops/deploy-gateway/apex-deploy
+    - ops/deploy-gateway/apex_deploy_gateway.py
+    - ops/deploy-gateway/beta-compose.yml
+    - ops/deploy-gateway/harden-after-proof.sh
+    - ops/deploy-gateway/install-beta-path.sh
+    - ops/deploy-gateway/install-bootstrap.sh
+    - ops/deploy-gateway/install-gateway.sh
+    - ops/deploy-gateway/release-request.example.json
+    - ops/deploy-gateway/storage-policy.example.json
+    - scripts/gateway-db-ops/beta-qa-program-assign.mjs
+    - scripts/gateway-db-ops/lib/classify.mjs
+    - scripts/gateway-db-ops/lib/mg09-adopt.mjs
+    - scripts/gateway-db-ops/mg09-movement-graph-adopt.mjs
+    - scripts/gateway-db-ops/s02e-exercise-identity-backfill.mjs
+    - src/lib/workout/consentEntity.ts
+    - tests/account-deletion.test.ts
+    - tests/deploy-gateway.test.ts
+    - tests/gateway-db-op.test.mjs
+    - tests/request-security.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-OBSERVABILITY
+  title: observability
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - prisma/migrations/20260815115414_add_analytics_composite_indexes/migration.sql
+    - src/app/[locale]/analytics/page.tsx
+    - src/app/api/analytics/events/route.ts
+    - src/app/api/monitor/sms-delivery/route.ts
+    - src/components/analytics/AnalyticsCharts.tsx
+    - src/components/analytics/AnalyticsEmpty.tsx
+    - src/components/analytics/AnalyticsSkeleton.tsx
+    - src/components/analytics/AnalyticsSummary.tsx
+    - src/lib/logger.ts
+    - src/services/analyticsEvents.ts
+    - src/services/analyticsService.ts
+    - tests/analytics-service.test.ts
+    - tests/history-analytics-cards.test.tsx
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-ERROR-DEGRADATION
+  title: error degradation
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/adr/0005-mobile-readiness-guardrails.md
+    - scripts/guardrail-check.mjs
+    - src/app/admin/(protected)/error.tsx
+    - src/components/workout/experience/readiness.ts
+    - src/lib/auth/errorKeys.ts
+    - src/lib/errorTracking.ts
+    - tests/guardrail-check.test.mjs
+    - tests/otp-launch-readiness.test.ts
+    - tests/workout-v2-capability-readiness.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-TESTS-EVIDENCE
+  title: tests evidence
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - ".github/workflows/ci-full-e2e.yml"
+    - ".specify/constitution.md"
+    - ".specify/templates/plan-template.md"
+    - ".specify/templates/spec-template.md"
+    - ".specify/templates/tasks-template.md"
+    - docs/specs/0001-workout-experience/dependencies.md
+    - docs/specs/0001-workout-experience/execution-strategy-ui-conformance.md
+    - docs/specs/0001-workout-experience/pilot-assessment.md
+    - docs/specs/0001-workout-experience/plan.md
+    - docs/specs/0001-workout-experience/spec.md
+    - docs/specs/0001-workout-experience/tasks.md
+    - docs/specs/0002-governed-storage-hygiene/dependencies.md
+    - docs/specs/0002-governed-storage-hygiene/plan.md
+    - docs/specs/0002-governed-storage-hygiene/spec.md
+    - docs/specs/0002-governed-storage-hygiene/tasks.md
+    - docs/specs/README.md
+    - reports/workout-v2-canonical/WORKOUT-V2-CANONICAL-ENTRY-PASSPORT-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-CAPABILITY-READINESS-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-EVIDENCE-AND-DEPLOYED-JOURNEY-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-PERSISTED-ENTRY-IDENTITY-CORRECTION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-QA-FIXTURE-DERIVED-ORACLE-RECONCILIATION-closeout.json
+    - reports/workout-v2-impl-01/GATE-01-completeness.json
+    - reports/workout-v2-impl-01/RUN-4-PROGRAM-COMPOSITION-closeout.json
+    - reports/workout-v2-impl-01/WP-08-closeout.json
+    - reports/workout-v2-impl-01/WP-09-closeout.json
+    - reports/workout-v2-impl-01/WP-10-closeout.json
+    - reports/workout-v2-impl-01/WP-12-closeout.json
+    - reports/workout-v2-impl-01/WP-13-closeout.json
+    - reports/workout-v2-impl-01/WP-14-closeout.json
+    - reports/workout-v2-impl-01/WP-15-closeout.json
+    - reports/workout-v2-impl-01/WP-15-ui-conformance-evidence.md
+    - reports/workout-v2-impl-01/WP-16-closeout.json
+    - reports/workout-v2-impl-01/WP-17-closeout.json
+    - reports/workout-v2-impl-01/WP-17-ui-conformance-evidence.md
+    - reports/workout-v2-impl-01/WP-18-closeout.json
+    - reports/workout-v2-impl-01/WP-18-ui-conformance-evidence.md
+    - reports/workout-v2-impl-01/WP-19-closeout.json
+    - reports/workout-v2-impl-01/WP-20-closeout.json
+    - reports/workout-v2-impl-01/ui-conformance-evidence.md
+    - scripts/pose-measurement/testdata/README.md
+    - scripts/pose-measurement/testdata/human.jpg
+    - src/lib/movement/ingest-fixtures/free-exercise-db-sample.json
+    - tests/accessibility-aria.spec.ts
+    - tests/account-deletion.test.ts
+    - tests/adaptation-input.test.ts
+    - tests/adaptive-decisions.test.ts
+    - tests/admin-auth.test.ts
+    - tests/admin-console.spec.ts
+    - tests/admin-console.test.ts
+    - tests/admin-i18n.spec.ts
+    - tests/admin-locale.test.ts
+    - tests/admin-primitives.test.tsx
+    - tests/admin-theme.spec.ts
+    - tests/admission-runtime.test.mjs
+    - tests/analytics-service.test.ts
+    - tests/asset-audit.test.ts
+    - tests/auth-flow.spec.ts
+    - tests/auth-mode-flag.test.ts
+    - tests/auth-otp.test.ts
+    - tests/avatar-storage.test.ts
+    - tests/camera-gate.test.ts
+    - tests/deploy-gateway.test.ts
+    - tests/design-brain-vnext.test.ts
+    - tests/design-system-audit.test.ts
+    - tests/effect-boundary.test.tsx
+    - tests/exercise-domain.test.ts
+    - tests/exercise-persistence.test.ts
+    - tests/faq-messages.test.ts
+    - tests/faq.spec.ts
+    - tests/font-audit.test.ts
+    - tests/gamification.test.ts
+    - tests/gateway-db-op.test.mjs
+    - tests/governance-runtime.test.mjs
+    - tests/guardrail-check.test.mjs
+    - tests/helpers/dashboardData.ts
+    - tests/helpers/goldenTrace.tsx
+    - tests/history-analytics-cards.test.tsx
+    - tests/idempotency.test.ts
+    - tests/identity-propagation.test.ts
+    - tests/keyboard-focus.spec.ts
+    - tests/language-switcher.test.ts
+    - tests/main-flows.spec.ts
+    - tests/mentor-binding.test.ts
+    - tests/mentor-preparation.test.ts
+    - tests/mg09-adopt.test.mjs
+    - tests/movement-domain.test.ts
+    - tests/movement-graph-store.test.ts
+    - tests/movement-identity.test.ts
+    - tests/movement-ingest.test.ts
+    - tests/movement-localization.test.ts
+    - tests/movement-media.test.ts
+    - tests/movement-provenance.test.ts
+    - tests/movement-reconcile.test.ts
+    - tests/movement-relationships.test.ts
+    - tests/movement-taxonomy.test.ts
+    - tests/observation-runtime.test.ts
+    - tests/observation-signal.test.ts
+    - tests/offline-conflict.test.ts
+    - tests/offline-pwa.spec.ts
+    - tests/otp-launch-readiness.test.ts
+    - tests/otp-mock-production.test.ts
+    - tests/otp-policy.test.ts
+    - tests/otp-service.test.ts
+    - tests/outcome-contract.test.ts
+    - tests/phone-session-service.test.ts
+    - tests/preflight-db.test.ts
+    - tests/profile-contract.test.ts
+    - tests/profile-features.spec.ts
+    - tests/profile-shell.spec.ts
+    - tests/program-entry-migration.test.ts
+    - tests/program-inplace-regeneration.test.ts
+    - tests/program-schedule.test.ts
+    - tests/provider.test.ts
+    - tests/quiz-api.test.ts
+    - tests/quiz-contrast.spec.ts
+    - tests/quiz-draft.test.ts
+    - tests/quiz-flow.test.ts
+    - tests/quiz-goals.test.ts
+    - tests/quiz-goals.test.tsx
+    - tests/quiz-save-response.test.ts
+    - tests/rate-limit-store.test.ts
+    - tests/request-security.test.ts
+    - tests/responsive-layout.spec.ts
+    - tests/rest-days-enforce.test.ts
+    - tests/rest-days-retry.test.ts
+    - tests/rest-days.spec.ts
+    - tests/rest-days.test.ts
+    - tests/rest-days.test.tsx
+    - tests/rtl-layout.spec.ts
+    - tests/rule-based-program.test.ts
+    - tests/session-contract-consumers.test.ts
+    - tests/session-contracts.test.ts
+    - tests/session-core.test.ts
+    - tests/session-golden-trace.test.tsx
+    - tests/site-url.test.ts
+    - tests/sms-ir-provider.test.ts
+    - tests/snapshot-versioning.test.ts
+    - tests/timeout.test.ts
+    - tests/timer-boundary.test.tsx
+    - tests/training-days.test.tsx
+    - tests/week-calendar-order.spec.ts
+    - tests/week-calendar.test.ts
+    - tests/workout-engine.test.tsx
+    - tests/workout-persistence.test.ts
+    - tests/workout-plan-identity.test.ts
+    - tests/workout-route.spec.ts
+    - tests/workout-timer.test.ts
+    - tests/workout-v2-capability-readiness.test.ts
+    - tests/workout-v2-completion-regression.test.ts
+    - tests/workout-v2-completion-semantics.test.ts
+    - tests/workout-v2-correction-contract.test.ts
+    - tests/workout-v2-evidence-provenance.test.ts
+    - tests/workout-v2-execution-strategy.test.ts
+    - tests/workout-v2-experience.test.ts
+    - tests/workout-v2-first-slice.test.tsx
+    - tests/workout-v2-orchestration.test.ts
+    - tests/workout-v2-prescription-contract.test.ts
+    - tests/workout-v2-product-entry.spec.ts
+    - tests/workout-v2-product-integration.test.ts
+    - tests/workout-v2-program-composition.test.ts
+    - tests/workout-v2-qa-program.test.ts
+    - tests/workout-v2-run1-ui.test.tsx
+    - tests/workout-v2-run1.test.ts
+    - tests/workout-v2-start-reliability.spec.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-CI-QUALITY
+  title: ci quality
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - ".eslintrc.json"
+    - ".github/workflows/ci-full-e2e.yml"
+    - ".github/workflows/ci.yml"
+    - docs/CI.md
+    - docs/PRODUCTION_INCIDENT_LEDGER.md
+    - docs/admissions/WORKOUT-V2-CANONICAL-ENTRY-PASSPORT-RECONCILIATION.admission.json
+    - docs/admissions/WORKOUT-V2-CAPABILITY-READINESS-RECONCILIATION.admission.json
+    - docs/admissions/WORKOUT-V2-EVIDENCE-AND-DEPLOYED-JOURNEY-RECONCILIATION.admission.json
+    - docs/admissions/WORKOUT-V2-QA-FIXTURE-DERIVED-ORACLE-RECONCILIATION.admission.json
+    - docs/architecture/AHF-ARCHITECTURE-SPECKIT-DECISION-BRIEF.md
+    - docs/architecture/AL-04-DECISION-GATE.md
+    - docs/architecture/ARCHITECTURE-PRINCIPLES-PROPOSAL.md
+    - docs/architecture/ARCHITECTURE-PRINCIPLES.md
+    - docs/architecture/MG-04-DECISION-GATE-SOURCE-SELECTION.md
+    - docs/architecture/MG-08-RECONCILIATION.md
+    - docs/architecture/S02-EXERCISE-IDENTITY-GATE-A.md
+    - docs/architecture/S02D1-EXERCISE-IDENTITY-PROPAGATION.md
+    - docs/governance/OWNER_DECISION_GATE.md
+    - ops/deploy-gateway/release-request.example.json
+    - reports/workout-v2-canonical/WORKOUT-V2-CANONICAL-ENTRY-PASSPORT-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-CAPABILITY-READINESS-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-EVIDENCE-AND-DEPLOYED-JOURNEY-RECONCILIATION-closeout.json
+    - reports/workout-v2-canonical/WORKOUT-V2-QA-FIXTURE-DERIVED-ORACLE-RECONCILIATION-closeout.json
+    - scripts/release-manifest.example.json
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-INFRA-DEPLOYMENT
+  title: infra deployment
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - ".dockerignore"
+    - Dockerfile
+    - docker-compose.yml
+    - infra/ai/prompts/01-general-program-generation-prompt.md
+    - infra/ai/prompts/02-injury-focused-program-prompt.md
+    - infra/ai/prompts/03-equipment-limited-program-prompt.md
+    - infra/config/playwright.config.ts
+    - infra/config/postcss.config.js
+    - infra/config/tailwind.config.js
+    - ops/deploy-gateway/apex-deploy
+    - ops/deploy-gateway/apex_deploy_gateway.py
+    - ops/deploy-gateway/beta-compose.yml
+    - ops/deploy-gateway/harden-after-proof.sh
+    - ops/deploy-gateway/install-beta-path.sh
+    - ops/deploy-gateway/install-bootstrap.sh
+    - ops/deploy-gateway/install-gateway.sh
+    - ops/deploy-gateway/release-request.example.json
+    - ops/deploy-gateway/storage-policy.example.json
+    - scripts/gateway-db-ops/beta-qa-program-assign.mjs
+    - scripts/gateway-db-ops/lib/classify.mjs
+    - scripts/gateway-db-ops/lib/mg09-adopt.mjs
+    - scripts/gateway-db-ops/mg09-movement-graph-adopt.mjs
+    - scripts/gateway-db-ops/s02e-exercise-identity-backfill.mjs
+    - tests/deploy-gateway.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-HISTORICAL-FAILURES
+  title: historical failures
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/PITFALLS/CLEAN-IMMUTABLE-BUILDS.md
+    - docs/PITFALLS/HTTP-200-IS-NOT-BROWSER-ACCEPTANCE.md
+    - docs/PITFALLS/NEXTJS-BUILDTIME-PUBLIC-CONFIG-DRIFT.md
+    - docs/PITFALLS/NEXTJS-BUILDTIME-PUBLIC-URL-RSC-FAILURE.md
+    - docs/PITFALLS/NEXTJS-STANDALONE-PROXY-SAME-ORIGIN.md
+    - docs/PITFALLS/PRISMA-NPX-PRODUCTION-MIGRATION.md
+    - docs/PITFALLS/PRODUCTION-OPERATIONS-SAFETY.md
+    - docs/PITFALL_GUARDRAILS.md
+    - src/app/[locale]/history/page.tsx
+    - src/components/history/HistoryCalendar.tsx
+    - src/components/history/HistoryEmpty.tsx
+    - src/components/history/HistorySkeleton.tsx
+    - src/components/history/HistorySummary.tsx
+    - tests/history-analytics-cards.test.tsx
+    - tests/workout-v2-completion-regression.test.ts
+    - tests/workout-v2-correction-contract.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-PERFORMANCE-ACCESSIBILITY
+  title: performance accessibility
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/adr/0005-mobile-readiness-guardrails.md
+    - public/backstage/workout/backstage-dark-mobile.webp
+    - public/backstage/workout/backstage-light-mobile.webp
+    - tests/accessibility-aria.spec.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-LOCALIZATION-MEDIA
+  title: localization media
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - docs/adr/0010-localization-media-architecture.md
+    - src/app/[locale]/analytics/page.tsx
+    - src/app/[locale]/auth/login/page.tsx
+    - src/app/[locale]/auth/verify/page.tsx
+    - src/app/[locale]/challenges/page.tsx
+    - src/app/[locale]/dashboard/page.tsx
+    - src/app/[locale]/faq/page.tsx
+    - src/app/[locale]/history/page.tsx
+    - src/app/[locale]/layout.tsx
+    - src/app/[locale]/library/ExerciseLibraryPage.tsx
+    - src/app/[locale]/library/page.tsx
+    - src/app/[locale]/page.tsx
+    - src/app/[locale]/preferences/page.tsx
+    - src/app/[locale]/profile/ProfileView.tsx
+    - src/app/[locale]/profile/page.tsx
+    - src/app/[locale]/quiz/page.tsx
+    - src/app/[locale]/workout/page.tsx
+    - src/app/[locale]/workout/v2/page.tsx
+    - src/components/quiz/i18n.js
+    - src/i18n.ts
+    - src/i18n/navigation.ts
+    - src/i18n/routing.ts
+    - src/lib/admin/locale.ts
+    - src/lib/movement/localization.ts
+    - src/lib/movement/media.ts
+    - src/messages/en.json
+    - src/messages/fa.json
+    - tests/admin-i18n.spec.ts
+    - tests/admin-locale.test.ts
+    - tests/faq-messages.test.ts
+    - tests/movement-localization.test.ts
+    - tests/movement-media.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-TOOLCHAIN-SERVICES
+  title: toolchain services
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - ".nvmrc"
+    - package-lock.json
+    - package.json
+    - prisma/migrations/migration_lock.toml
+    - public/service-worker.js
+    - src/lib/supabase-server.ts
+    - src/lib/supabase.ts
+    - src/lib/workout/wallClock.ts
+    - src/services/accountDeletionService.ts
+    - src/services/analyticsEvents.ts
+    - src/services/analyticsService.ts
+    - src/services/audioService.ts
+    - src/services/avatarStorage.ts
+    - src/services/cameraConsentService.ts
+    - src/services/cameraRuntime.ts
+    - src/services/cameraService.ts
+    - src/services/gamificationService.ts
+    - src/services/generationIdempotency.ts
+    - src/services/movementGraphStore.ts
+    - src/services/otpService.ts
+    - src/services/phoneSessionService.ts
+    - src/services/programService.ts
+    - src/services/syncService.ts
+    - src/services/userService.ts
+    - supabase/migrations/0001_workout_exercise_logs.sql
+    - tests/analytics-service.test.ts
+    - tests/otp-service.test.ts
+    - tests/phone-session-service.test.ts
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review
+- stable_id: CAP-UNCLASSIFIED-PATH
+  title: unclassified path
+  exact_provenance:
+    repository: https://github.com/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    source_paths:
+    - ".env.example"
+    - ".gitignore"
+    - README.md
+    - docs/ADMIN_IMPERSONATION_01.md
+    - docs/ASSETS.md
+    - docs/BATCH_DELIVERY_V1.md
+    - docs/BATCH_DELIVERY_V2.md
+    - docs/BRANCHING_POLICY.md
+    - docs/CURRENT_STATE.md
+    - docs/CURRENT_SYSTEM_BASELINE.md
+    - docs/ENVIRONMENT_CONTRACT.md
+    - docs/EXECUTION_ROADMAP.md
+    - docs/FEATURE_TO_PRODUCTION.md
+    - docs/GOVERNANCE_RUNTIME.md
+    - docs/HANDOFF.md
+    - docs/INDEX.md
+    - docs/OTP_LAUNCH_READINESS.md
+    - docs/PRODUCTION_CHECKPOINTS.md
+    - docs/PRODUCTION_DEPLOYMENT_GATEWAY.md
+    - docs/RELEASE_POLICY.md
+    - docs/RELEASING.md
+    - docs/TEST-DEBT.md
+    - docs/TRANSFORMATION_ROADMAP.md
+    - docs/admissions/BETA-DEPLOYMENT-CAPABILITY.admission.json
+    - docs/admissions/GOVERNED-SERVER-STORAGE-HYGIENE-01.admission.json
+    - docs/admissions/RUN-4-PROGRAM-COMPOSITION.admission.json
+    - docs/admissions/WORKOUT-V2-EXECUTION-STRATEGY-COMPLETENESS-RECOVERY.admission.json
+    - docs/admissions/WORKOUT-V2-IMPL-01.admission.json
+    - docs/admissions/WORKOUT-V2-PERSISTED-ENTRY-IDENTITY-CORRECTION.admission.json
+    - docs/admissions/WP-06.admission.json
+    - docs/admissions/WP-07.admission.json
+    - docs/admissions/WP-08.admission.json
+    - docs/admissions/WP-09.admission.json
+    - docs/admissions/WP-10.admission.json
+    - docs/admissions/WP-12.admission.json
+    - docs/admissions/WP-13.admission.json
+    - docs/admissions/WP-14.admission.json
+    - docs/admissions/WP-15.admission.json
+    - docs/admissions/WP-16.admission.json
+    - docs/admissions/WP-17.admission.json
+    - docs/admissions/WP-18.admission.json
+    - docs/admissions/WP-19.admission.json
+    - docs/admissions/WP-20.admission.json
+    - docs/orchestration/FREEBUFF-ORCHESTRATION-INVESTIGATION-01.md
+    - next.config.mjs
+    - postcss.config.js
+    - public/icons/apple-touch-icon.png
+    - public/icons/apple-touch-icon.svg
+    - public/icons/icon-192x192-maskable.png
+    - public/icons/icon-192x192.png
+    - public/icons/icon-384x384.png
+    - public/icons/icon-512x512-maskable.png
+    - public/icons/icon-512x512.png
+    - public/icons/icon.svg
+    - public/manifest.json
+    - public/models/movenet/LICENSE-APACHE-2.0.txt
+    - public/models/movenet/PROVENANCE.md
+    - public/robots.txt
+    - scripts/admission.example.json
+    - scripts/audit-design-system.mjs
+    - scripts/audit-lottie-fps.mjs
+    - scripts/backfill-dry-run.mjs
+    - scripts/context-receipt.example.json
+    - scripts/preflight-db.mjs
+    - scripts/provision-admin.ts
+    - scripts/task-profile.example.json
+    - src/app/admin/(protected)/dashboard/page.tsx
+    - src/app/admin/(protected)/exercises/page.tsx
+    - src/app/admin/(protected)/layout.tsx
+    - src/app/admin/(protected)/loading.tsx
+    - src/app/admin/(protected)/operations/page.tsx
+    - src/app/admin/(protected)/programs/page.tsx
+    - src/app/admin/(protected)/users/page.tsx
+    - src/app/admin/layout.tsx
+    - src/app/admin/login/page.tsx
+    - src/app/admin/not-found.tsx
+    - src/app/api/admin/login/route.ts
+    - src/app/api/admin/logout/route.ts
+    - src/app/api/generate-program/route.ts
+    - src/app/api/profile/route.ts
+    - src/app/api/program/current/route.ts
+    - src/app/api/quiz/save/route.ts
+    - src/app/fonts/Inter-Variable.woff2
+    - src/app/fonts/OFL.txt
+    - src/app/fonts/Roboto-400.woff2
+    - src/app/fonts/Roboto-500.woff2
+    - src/app/fonts/Roboto-700.woff2
+    - src/app/fonts/Vazirmatn-Variable.woff2
+    - src/app/globals.css
+    - src/app/sitemap.ts
+    - src/hooks/useHaptic.ts
+    - src/hooks/useReducedMotion.ts
+    - src/instrumentation.ts
+    - src/lib/adaptive/decisions.ts
+    - src/lib/adaptive/index.ts
+    - src/lib/adaptive/pipeline.ts
+    - src/lib/adaptive/types.ts
+    - src/lib/admin/console.ts
+    - src/lib/admin/format.ts
+    - src/lib/admin/password.ts
+    - src/lib/admin/provision.ts
+    - src/lib/admin/requestLocale.ts
+    - src/lib/admin/requestTheme.ts
+    - src/lib/admin/theme.ts
+    - src/lib/animationFps.ts
+    - src/lib/cn.ts
+    - src/lib/exercise/catalog.ts
+    - src/lib/exercise/contracts.ts
+    - src/lib/exercise/index.ts
+    - src/lib/exercise/resolver.ts
+    - src/lib/exerciseStyles.ts
+    - src/lib/movement/expressibility.ts
+    - src/lib/movement/index.ts
+    - src/lib/movement/provenance.ts
+    - src/lib/movement/reconcile.ts
+    - src/lib/movement/relationships.ts
+    - src/lib/movement/taxonomy.ts
+    - src/lib/movement/types.ts
+    - src/lib/observation/index.ts
+    - src/lib/observation/runtime.ts
+    - src/lib/observation/types.ts
+    - src/lib/profile/index.ts
+    - src/lib/profile/types.ts
+    - src/lib/quiz/contracts.ts
+    - src/lib/quiz/quizApi.ts
+    - src/lib/quiz/quizAuth.ts
+    - src/lib/quiz/quizDraft.ts
+    - src/lib/quiz/quizFlow.ts
+    - src/lib/siteUrl.ts
+    - src/lib/timeout.ts
+    - src/lib/ui/muiTheme.ts
+    - src/lib/weekCalendar.ts
+    - src/middleware.ts
+    - tsconfig.json
+  evidence_class: PATH_DERIVED_DISCOVERY_LEAD
+  relationships:
+  - LEGACY_KNOWLEDGE_INDEX@v0
+  - FOUNDATION_AUDIT_REVIEW@v0
+  dependencies:
+  - mechanical path review
+  - owner review
+  confidence_and_gaps: Path mapping is deterministic discovery evidence; semantic
+    capability boundaries require review.
+  review_state: UNREVIEWED
+  disposition_state: UNREVIEWED
+  historical_relationships:
+  - Audit correction and supersession history requires downstream review

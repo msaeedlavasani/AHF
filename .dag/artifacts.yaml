@@ -70,23 +70,23 @@ artifacts:
     path: .dag/outputs/foundation-audit-review.yaml
   - id: LEGACY_REPOSITORY_COVERAGE@v0
     title: Mechanical tracked-path coverage of the pinned legacy repository
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/legacy-repository-coverage.yaml
   - id: CAPABILITY_DISPOSITION_LEDGER@v0
     title: Capability and candidate disposition ledger
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/capability-disposition-ledger.yaml
   - id: LKI_RECONCILIATION@v0
     title: Reconciliation of Legacy Knowledge Index seed records to capabilities
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/lki-reconciliation.yaml
   - id: AUDIT_LIMITATIONS_VERIFICATION@v0
     title: Follow-up verification requirements for audit limitations
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/audit-limitations-verification.yaml
   - id: FOUNDATION_COMPLETENESS_VALIDATOR@v0
     title: Deterministic legacy Foundation coverage validator
-    state: MISSING
+    state: AVAILABLE
     path: bin/validate-legacy-foundation-coverage
   - id: GOVERNANCE_AGENT_CONTRACT_REVIEW@v0
     title: Governance and Agent Contract review evidence
