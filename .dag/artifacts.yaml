@@ -42,7 +42,7 @@ artifacts:
     path: test/ahf_dag_test.rb
   - id: LEGACY_KNOWLEDGE_INDEX@v0
     title: Structured legacy AHF knowledge index
-    state: MISSING
+    state: AVAILABLE
     path: .dag/outputs/legacy-knowledge-index.yaml
   - id: IDENTITY_MODEL_CANDIDATE@v0
     title: Identity Model candidate for Foundation review

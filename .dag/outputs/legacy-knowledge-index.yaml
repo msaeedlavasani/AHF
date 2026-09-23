@@ -1,0 +1,564 @@
+schema_version: 0
+artifact_id: LEGACY_KNOWLEDGE_INDEX@v0
+generated_by_task: FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX
+index_status: COMPLETE
+reuse_policy: >-
+  This artifact is a discovery index, not an adoption record. Every entry is
+  UNREVIEWED. Legacy decisions, code, schemas, architecture, tools, assets,
+  and terminology require independent Clean Foundation review before reuse.
+source_repositories:
+  - id: legacy-apex-home-fitness
+    repository: ssh://git@ssh.github.com:443/msaeedlavasani/Apex-Home-Fitness.git
+    revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+    branch_observed: feat/workout-v2-first-slice
+    worktree_state: CLEAN
+    observation_date: "2026-09-23"
+discovery_boundaries:
+  included: >-
+    Tracked documentation, governance, source contracts, schema/migrations,
+    tests, workflows, operations files, reports, checkpoints, and asset paths
+    needed to locate historical knowledge in the required categories.
+  excluded: >-
+    Secret values, .env contents, dependency/vendor trees, build output, and
+    generated browser reports. No legacy implementation or asset was copied.
+categories:
+  - Product / Domain Decisions
+  - Governance / Spec Kit
+  - Design System / UX Contracts
+  - Workout Execution Semantics
+  - Identity / Persistence
+  - Recovery / Checkpoint
+  - Camera / Sensing
+  - Mentor / Assets
+  - Tests / Acceptance Evidence
+  - Infrastructure / Deployment
+  - CI / Quality Gates
+  - Historical Failures / Lessons
+entries:
+  - stable_id: LKI-PRODUCT-001
+    category: Product / Domain Decisions
+    source:
+      - docs/product/PRODUCT-VISION.md
+      - docs/architecture/ARCHITECTURE-PRINCIPLES.md
+      - docs/INDEX.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: authoritative legacy documentation
+    summary: >-
+      Locates the legacy product definition, Plan/Execute/Progress loop,
+      personalization and guided-execution principles, offline/bilingual
+      posture, and architecture rules such as reuse-first, durable identity,
+      source independence, and side-effect isolation.
+    historical_status: CURRENT in the legacy repository at the pinned revision
+    related_concepts:
+      - personalized program
+      - guided workout execution
+      - progress and adaptation
+      - architecture principles
+    dependencies:
+      - legacy documentation authority hierarchy
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-DOMAIN-002
+    category: Product / Domain Decisions
+    source:
+      - docs/adr/0001-canonical-exercise-identity.md
+      - docs/architecture/MG-01-MOVEMENT-GRAPH-CONTRACT.md
+      - docs/architecture/MG-09-PERSISTED-STORAGE.md
+      - docs/adr/0011-persisted-movement-graph.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: accepted legacy ADRs and delivered architecture records
+    summary: >-
+      Locates the legacy durable Exercise identity decision and the later
+      Movement Graph knowledge model, reconciliation, additive persistence,
+      and fail-safe adoption path. Ambiguous identities were surfaced rather
+      than guessed.
+    historical_status: ACCEPTED / DELIVERED in the legacy repository
+    related_concepts:
+      - Exercise identity
+      - Movement Graph
+      - source provenance
+      - additive migration
+    dependencies:
+      - legacy Exercise records
+      - governed database mutation gate
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-DOMAIN-003
+    category: Product / Domain Decisions
+    source:
+      - docs/architecture/AL-01-WORKOUT-OUTCOME-MODEL.md
+      - docs/adr/0012-workout-outcome-model.md
+      - docs/architecture/AL-02-PERSONAL-MOVEMENT-PROFILE.md
+      - docs/architecture/AL-03-ADAPTATION-INPUT-PIPELINE.md
+      - docs/architecture/AL-04-ADAPTIVE-TRAINING-GRAPH.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: delivered legacy domain contracts and ADR
+    summary: >-
+      Locates the legacy outcome, personal movement profile, adaptation input,
+      and adaptive-decision contracts. The outcome record was modeled as an
+      additive learning signal distinct from the session and did not itself
+      authorize persistence or runtime wiring.
+    historical_status: DELIVERED / CLOSED in the legacy repository
+    related_concepts:
+      - Workout Outcome
+      - personal movement profile
+      - adaptation inputs
+      - adaptive decision layer
+    dependencies:
+      - canonical Exercise identity
+      - session summary contract
+      - Movement Graph vocabulary
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-GOVERNANCE-001
+    category: Governance / Spec Kit
+    source:
+      - AGENTS.md
+      - docs/governance/DOCUMENTATION-GOVERNANCE.md
+      - docs/governance/AHF-SPECKIT-BROWNFIELD-ADOPTION-DESIGN.md
+      - docs/governance/OWNER_DECISION_GATE.md
+      - .specify/constitution.md
+      - docs/specs/README.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy governance and Spec Kit records
+    summary: >-
+      Locates the legacy authority hierarchy, one-backlog rule, decision
+      persistence, documentation status rules, and the thin brownfield Spec
+      Kit adoption that referenced existing authorities instead of creating a
+      parallel process.
+    historical_status: CURRENT / ADOPTED with stage limits in the legacy repository
+    related_concepts:
+      - decision persistence
+      - documentation authority
+      - one executable backlog
+      - Spec Kit brownfield adoption
+    dependencies:
+      - owner decision gates
+      - legacy governance runtime
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-GOVERNANCE-002
+    category: Governance / Spec Kit
+    source:
+      - docs/TASKS.md
+      - docs/governance/DEVELOPMENT-ADMISSION.md
+      - docs/specs/0001-workout-experience/tasks.md
+      - docs/specs/0001-workout-experience/dependencies.md
+      - docs/admissions/WP-18.admission.json
+      - scripts/governance-runtime.mjs
+      - scripts/task-profile.example.json
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: tracked task-contract and admission mechanisms
+      literal_term_search: Task Passport NOT_FOUND in tracked source at this revision
+    summary: >-
+      Task Passport discovery result: no tracked artifact literally named
+      Task Passport was found. The closest explicit historical approach is a
+      composite task contract made of machine-readable TASKS entries,
+      dependency/capability edges, task profiles, fail-closed admission JSON,
+      scope and authorization fields, required evidence, and close-out paths.
+      These are candidate evidence for a later ADOPT / MODIFY / REJECT review;
+      this index does not equate them with a canonical Clean AHF Task Passport.
+    historical_status: CURRENT mechanisms; Task Passport terminology UNKNOWN
+    related_concepts:
+      - Task Passport
+      - task contract
+      - development admission
+      - task profile
+      - DAG-derived readiness
+      - evidence path
+    dependencies:
+      - legacy one-backlog governance
+      - governance runtime validation
+      - owner authorization records
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-DESIGN-001
+    category: Design System / UX Contracts
+    source:
+      - docs/DESIGN_SYSTEM.md
+      - docs/governance/UI-CONFORMANCE-GATE.md
+      - docs/architecture/AHF-DESIGN-BRAIN-VNEXT-P0.md
+      - src/components/ui/platform/README.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy UI source of truth and conformance gate
+    summary: >-
+      Locates semantic design tokens, platform-native component rules,
+      exercise-safe UX, RTL/LTR typography, accessibility, reduced motion,
+      KIT-FIRST reuse, composition mapping, and machine/review UI acceptance.
+    historical_status: CURRENT / ADOPTED in the legacy repository
+    related_concepts:
+      - semantic tokens
+      - platform kit
+      - RTL and localization
+      - UI conformance evidence
+    dependencies:
+      - legacy platform primitives
+      - governance report contract
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-WORKOUT-001
+    category: Workout Execution Semantics
+    source:
+      - docs/specs/0001-workout-experience/spec.md
+      - docs/specs/0001-workout-experience/plan.md
+      - docs/adr/0002-pure-workout-session-core.md
+      - src/lib/workout/sessionCore.ts
+      - src/lib/workout/sessionContracts.ts
+      - src/lib/workout/orchestration.ts
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: canonical legacy feature spec, ADR, and implementation contracts
+    summary: >-
+      Locates the legacy guided-workout contract and pure session/orchestration
+      boundaries: lifecycle, active prescribed entry, Set and Rest progression,
+      pause/resume, exit, deferral/skip handling, effects, and separation of
+      presentation from domain sequencing.
+    historical_status: CURRENT contract with delivered and recovery slices
+    related_concepts:
+      - Workout Session
+      - prescribed entry
+      - Set execution
+      - orchestration
+      - pure session core
+    dependencies:
+      - Program and prescription contract
+      - canonical Exercise identity
+      - capability readiness
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-WORKOUT-002
+    category: Workout Execution Semantics
+    source:
+      - src/lib/workout/completionSemantics.ts
+      - src/lib/workout/sessionV2Contracts.ts
+      - docs/specs/0001-workout-experience/spec.md
+      - prisma/migrations/20260920120000_add_workout_terminal_outcome/migration.sql
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy completion contract, feature specification, and migration evidence
+    summary: >-
+      Locates the historical distinction between session terminal state,
+      successful completion/adherence credit, exit, partial outcome, and
+      skip-all non-credit semantics. It also identifies where later terminal
+      outcome persistence was introduced.
+    historical_status: DELIVERED / CLOSED for the recorded legacy scope
+    related_concepts:
+      - completion eligibility
+      - terminal outcome
+      - exit semantics
+      - adherence credit
+    dependencies:
+      - session orchestration
+      - owner completion-semantics decision
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-IDENTITY-001
+    category: Identity / Persistence
+    source:
+      - prisma/schema.prisma
+      - prisma/migrations/20260921100000_allow_repeated_prescribed_entries/migration.sql
+      - prisma/migrations/20260921153000_preserve_repeated_session_entries/migration.sql
+      - src/lib/workout/prescriptionContract.ts
+      - src/lib/workout/resolvedPrescription.ts
+      - reports/workout-v2-canonical/WORKOUT-V2-PERSISTED-ENTRY-IDENTITY-CORRECTION-closeout.json
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy schema, migrations, contracts, and close-out evidence
+    summary: >-
+      Locates the legacy User/Program/Exercise/WorkoutSession persistence and
+      the correction that preserved independent identity for repeated
+      prescribed entries referencing the same Exercise. This is schema
+      evidence only and is not a schema proposal for Clean AHF.
+    historical_status: CURRENT implementation evidence at the pinned revision
+    related_concepts:
+      - User identity
+      - ProgramExercise
+      - WorkoutSessionExercise
+      - repeated prescribed entry
+      - Exercise identity
+    dependencies:
+      - Prisma schema history
+      - canonical entry/passport reconciliation
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-RECOVERY-001
+    category: Recovery / Checkpoint
+    source:
+      - docs/specs/0001-workout-experience/spec.md
+      - src/lib/offline/db.ts
+      - src/lib/offline/snapshotVersion.ts
+      - src/lib/offline/conflictPolicy.ts
+      - src/lib/offline/workoutPersistence.ts
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy feature contract and offline implementation evidence
+    summary: >-
+      Locates same-day workout recovery, successful-end-of-Set checkpoints,
+      pause/resume state, current-Set restart behavior, versioned additive
+      snapshots, conflict handling, and fail-closed treatment of unknown newer
+      snapshot formats.
+    historical_status: CONFIRMED contract with CURRENT legacy implementation evidence
+    related_concepts:
+      - completed-Set checkpoint
+      - offline snapshot
+      - resume
+      - conflict policy
+    dependencies:
+      - workout session state
+      - local date and user identity
+      - snapshot version contract
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-RECOVERY-002
+    category: Recovery / Checkpoint
+    source:
+      - docs/governance/INTEGRATION-CHECKPOINT-POLICY.md
+      - docs/PRODUCTION_CHECKPOINTS.md
+      - docs/checkpoints/WORKOUT-V2-CANONICAL-INTEGRATION-01.json
+      - docs/checkpoints/WORKOUT-V2-CANONICAL-BETA-DEPLOYMENT-01.json
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy governance policy and checkpoint receipts
+    summary: >-
+      Locates the legacy known-good integration/deployment checkpoint model,
+      exact source/build identity, rollback evidence, immutable historical
+      receipts, and downstream revalidation rather than rewriting old PASS
+      evidence.
+    historical_status: CURRENT policy with historical PASS receipts
+    related_concepts:
+      - integration checkpoint
+      - deployment checkpoint
+      - known-good SHA
+      - rollback proof
+    dependencies:
+      - authoritative CI evidence
+      - deployment gateway
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-CAMERA-001
+    category: Camera / Sensing
+    source:
+      - docs/architecture/CP-02-OBSERVATION-SIGNAL-MODEL.md
+      - docs/architecture/CP-04-COMPANION-CAMERA-ARCHITECTURE.md
+      - docs/adr/0021-companion-camera-architecture.md
+      - docs/architecture/CP-05-WORKOUT-OBSERVATION-INTEGRATION.md
+      - src/services/cameraRuntime.ts
+      - src/lib/observation/cameraGate.ts
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy sensing contracts, ADR, and bounded runtime evidence
+    summary: >-
+      Locates consent-gated, on-device camera/observation boundaries, typed
+      observation signals, raw-frame non-persistence, explicit uncertainty,
+      revocation behavior, and the bounded squat-only device-measured runtime
+      with manual fallback.
+    historical_status: Architecture ACCEPTED; bounded source implementation CLOSED; physical acceptance OPEN
+    related_concepts:
+      - consent
+      - observation signals
+      - on-device inference
+      - manual fallback
+      - privacy
+    dependencies:
+      - active workout execution
+      - explicit camera consent
+      - observation runtime
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-CAMERA-002
+    category: Camera / Sensing
+    source:
+      - docs/architecture/CP-03-POSE-FEASIBILITY.md
+      - docs/architecture/CP-03-MODEL-FETCH-CPU-FALLBACK.md
+      - docs/architecture/CP-03-REP-HEURISTIC-REPAIR.md
+      - scripts/pose-measurement/README.md
+      - public/models/movenet/PROVENANCE.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy feasibility, incident, measurement, and model provenance records
+    summary: >-
+      Locates MoveNet feasibility measurements, same-origin model-delivery
+      repair, CPU/fallback considerations, rep-heuristic evidence, explicit
+      NOT_MEASURED cells, and model license/provenance. The evidence does not
+      establish general pose quality or Clean AHF adoption.
+    historical_status: DECIDED feasibility record with bounded measured evidence
+    related_concepts:
+      - MoveNet
+      - pose measurement
+      - rep heuristic
+      - same-origin model assets
+    dependencies:
+      - representative-device evidence
+      - camera authorization architecture
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-MENTOR-001
+    category: Mentor / Assets
+    source:
+      - src/lib/exercise/passport.ts
+      - src/lib/workout/experience/mentorBinding.ts
+      - src/components/workout/experience/mentor/contract.ts
+      - src/components/workout/experience/mentor/mentorPreparation.ts
+      - public/workout-assets/AHF_Mentor_Squat.glb
+      - docs/ASSETS.md
+      - reports/workout-v2-impl-01/WP-18-ui-conformance-evidence.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy read-model, presentation contract, asset path, and conformance evidence
+    summary: >-
+      Locates the versioned Exercise Passport projection, canonical
+      bodyweight-squat Mentor capability, protected Mentor composition and
+      self-hosted GLB asset path. Passport deliberately excludes prescription
+      dosage, and unavailable Mentor presentation degrades without blocking
+      workout execution.
+    historical_status: DELIVERED / CLOSED for the legacy Workout V2 slice
+    related_concepts:
+      - Exercise Passport
+      - Mentor capability
+      - self-hosted GLB
+      - graceful degradation
+    dependencies:
+      - canonical Exercise or Movement authority
+      - resolved prescribed entry
+      - asset preparation boundary
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-TESTS-001
+    category: Tests / Acceptance Evidence
+    source:
+      - docs/governance/WORKOUT-V2-EVIDENCE-PROVENANCE.md
+      - docs/governance/REPORT-DELIVERY-CONTRACT.md
+      - reports/workout-v2-impl-01/GATE-01-completeness.json
+      - reports/workout-v2-canonical/WORKOUT-V2-EVIDENCE-AND-DEPLOYED-JOURNEY-RECONCILIATION-closeout.json
+      - tests/workout-v2-correction-contract.test.ts
+      - tests/workout-v2-qa-program.test.ts
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy evidence vocabulary, reports, and tests
+    summary: >-
+      Locates the legacy separation of STATIC, UNIT, INTEGRATION,
+      SIMULATED_SENSOR, REAL_CAMERA, REAL_DEVICE, and deployed-runtime claims,
+      plus persisted report delivery and Workout V2 contract evidence. Stronger
+      evidence classes could not be inferred from weaker ones.
+    historical_status: CURRENT evidence vocabulary with mixed historical receipts
+    related_concepts:
+      - evidence provenance
+      - contract tests
+      - deployed journey proof
+      - report delivery
+    dependencies:
+      - exact source and build identity
+      - declared acceptance scope
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-INFRA-001
+    category: Infrastructure / Deployment
+    source:
+      - docs/PRODUCTION_DEPLOYMENT_GATEWAY.md
+      - docs/RELEASING.md
+      - docs/architecture/AHF-BETA-DEPLOYMENT-CAPABILITY-01.md
+      - ops/deploy-gateway/apex_deploy_gateway.py
+      - ops/deploy-gateway/beta-compose.yml
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy deployment security contract, runbook, and operations implementation
+    summary: >-
+      Locates the constrained root-owned deployment gateway, exact-SHA release
+      checks, protected secret boundary, explicit Production/Beta isolation,
+      database preflight, health verification, backup, and rollback controls.
+    historical_status: CURRENT / CLOSED capability in the legacy repository
+    related_concepts:
+      - deployment gateway
+      - exact-SHA release
+      - Beta isolation
+      - rollback
+      - protected configuration
+    dependencies:
+      - authoritative GitHub CI
+      - repository-owned deployment topology
+      - operator allowlist
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-CI-001
+    category: CI / Quality Gates
+    source:
+      - docs/CI.md
+      - .github/workflows/ci.yml
+      - .github/workflows/ci-full-e2e.yml
+      - docs/PITFALL_GUARDRAILS.md
+      - scripts/guardrail-check.mjs
+      - scripts/governance-runtime.mjs
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: legacy CI policy, workflow, and executable quality gates
+    summary: >-
+      Locates the layered static/unit/contract/targeted-E2E/full-E2E policy,
+      task-branch and PR/main CI boundaries, fail-fast governance/admission
+      checks, failure classification, bounded retry, and release guardrails.
+    historical_status: CURRENT legacy policy and workflow
+    related_concepts:
+      - task-branch CI
+      - targeted E2E
+      - governance validation
+      - admission validation
+      - guardrails
+    dependencies:
+      - Node and package lock
+      - Prisma migration validation
+      - Playwright browser environment
+    reuse_status: UNREVIEWED
+
+  - stable_id: LKI-FAILURES-001
+    category: Historical Failures / Lessons
+    source:
+      - docs/PRODUCTION_INCIDENT_LEDGER.md
+      - docs/PITFALLS/CLEAN-IMMUTABLE-BUILDS.md
+      - docs/PITFALLS/HTTP-200-IS-NOT-BROWSER-ACCEPTANCE.md
+      - docs/PITFALLS/NEXTJS-BUILDTIME-PUBLIC-CONFIG-DRIFT.md
+      - docs/PITFALLS/NEXTJS-BUILDTIME-PUBLIC-URL-RSC-FAILURE.md
+      - docs/PITFALLS/NEXTJS-STANDALONE-PROXY-SAME-ORIGIN.md
+      - docs/PITFALLS/PRISMA-NPX-PRODUCTION-MIGRATION.md
+      - docs/PITFALLS/PRODUCTION-OPERATIONS-SAFETY.md
+    provenance:
+      source_repository: legacy-apex-home-fitness
+      revision: fbc3d1d2ef3ff7dc0d4a38c5f7d123e15c816c1e
+      evidence_kind: verified legacy incident ledger and durable pitfall records
+    summary: >-
+      Locates confirmed lessons about immutable builds, build-time public
+      configuration drift, browser acceptance beyond HTTP 200, SQLite volume
+      writability, pinned migration tooling, standalone-proxy same-origin
+      behavior, rollback, and safe Production operations.
+    historical_status: HISTORICAL confirmed incident outcomes; CURRENT supporting lessons
+    related_concepts:
+      - incident evidence
+      - immutable artifact identity
+      - real-browser acceptance
+      - database safety
+      - rollback readiness
+    dependencies:
+      - production checkpoint records
+      - release policy
+    reuse_status: UNREVIEWED

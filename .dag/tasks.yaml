@@ -275,6 +275,7 @@ tasks:
     required_evidence:
       - id: legacy_knowledge_index
         path: .dag/outputs/legacy-knowledge-index.yaml
+        sha256: ed51874b9c77559cd616600f87490aa7c87dd6b3aeb4f994122049791189ff8c
     validations:
       - id: knowledge_index_yaml_parses
         check:
@@ -283,7 +284,17 @@ tasks:
             - ruby
             - -e
             - "require 'yaml'; YAML.safe_load(File.read('.dag/outputs/legacy-knowledge-index.yaml'), permitted_classes: [], permitted_symbols: [], aliases: false)"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-003-LEGACY-KNOWLEDGE-INDEX/attempt-1
+        outcome: PASSED
+        evidence:
+          - legacy_knowledge_index
+        validations:
+          - knowledge_index_yaml_parses
+        produced:
+          - type: ARTIFACT
+            id: LEGACY_KNOWLEDGE_INDEX@v0
+            state: AVAILABLE
 
   - id: FOUNDATION-004-IDENTITY-MODEL
     title: Define the AHF Identity Model
