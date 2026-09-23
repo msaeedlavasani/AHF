@@ -454,13 +454,28 @@ tasks:
     required_evidence:
       - id: identity_candidate
         path: docs/foundation/decisions/identity-model-candidate-v0.md
+        sha256: acda51b1fcd664e5c36dccbb0b19d4c904fb71a13521b5c0db36b9668dd86801
+      - id: publication_marker
+        path: .dag/publications/FOUNDATION-004-IDENTITY-MODEL.yaml
+        sha256: 7fdb742d50ba0f39f0caaae9284a46c23819271cd65e8d82dc9a3f7d831020de
     validations:
       - id: candidate_remains_unresolved
         check:
           type: file_contains
           path: docs/foundation/decisions/identity-model-candidate-v0.md
           text: "Status: DRAFT"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-004-IDENTITY-MODEL/attempt-1
+        outcome: PASSED
+        evidence:
+          - identity_candidate
+          - publication_marker
+        validations:
+          - candidate_remains_unresolved
+        produced:
+          - type: ARTIFACT
+            id: IDENTITY_MODEL_CANDIDATE@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

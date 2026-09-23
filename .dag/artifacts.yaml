@@ -50,5 +50,5 @@ artifacts:
     path: .dag/outputs/legacy-knowledge-index.yaml
   - id: IDENTITY_MODEL_CANDIDATE@v0
     title: Identity Model candidate for Foundation review
-    state: MISSING
+    state: AVAILABLE
     path: docs/foundation/decisions/identity-model-candidate-v0.md
