@@ -41,6 +41,16 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - local/cloud/hybrid inference and hardware requirements
 - biometric/identity interpretation and minors/age policy
 - Terms/Privacy notice implementation
+- exact de-identification algorithms, re-identification thresholds, and
+  jurisdictional definition of anonymous data
+- Research consent wording and withdrawal/source-data deletion requirements
+- trained-model unlearning capability or obligations
+- raw research imagery retention, Research Dataset/Learning Lab retention,
+  and dataset/Research Program eligibility
+- Research Dataset security, access control, and physical store separation
+- research reward type/value, qualification milestones, revocation, and
+  fraud/abuse policy
+- minors participating in Research
 - Streak Credit Policy, Freeze economics, eligibility formula, and anti-abuse policy
 - physical transaction mechanism for `START`
 - Draft persistence and execution-package serialization
