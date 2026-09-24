@@ -608,3 +608,229 @@ remains distinct from voluntary Research and the Anonymous Learning Lab.
 
 This checkpoint does not resolve the Privacy/Sensing/Account Lifecycle Owner
 gate or any other Owner gate.
+
+## Fourth interim checkpoint
+
+This checkpoint records twelve already-agreed decisions, numbered 41–52. They
+extend the existing Owner-decision evidence and do not resolve the Owner gate
+or authorize its downstream resolution task.
+
+## 41 — Ordinary Camera/Sensing raw-data boundary
+
+During an ordinary Workout, the camera stream is an ephemeral input. AHF may
+derive pose/keypoints, repetition observations, form observations, or other
+domain-significant sensing evidence, but raw frames/images/video are not
+persistent data by default.
+
+Persistent storage or upload of raw imagery/video requires a separate explicit
+purpose and applicable contract. The voluntary Research Program is one
+possible future/approved route, not the only theoretically possible
+explicit-purpose contract.
+
+This decision does not choose on-device, cloud, or hybrid processing; a
+sensing runtime; AI/model/framework; or transport architecture. It defines
+the default persistence boundary only.
+
+## 42 — Processing is not retention
+
+Processing a camera frame does not itself authorize persistent retention.
+Temporary processing, inference, buffering, or transport remain conceptually
+distinct from durable storage.
+
+If future architecture temporarily transmits raw sensing input for processing,
+that fact alone does not convert the input into persistently retained data.
+Exact buffering, transport, and runtime mechanisms remain deferred.
+
+## 43 — Derived evidence must be purpose-minimized
+
+AHF must not retain every feature, keypoint, metric, inference output, or
+derived value merely because sensing can generate it. Persistent derived
+sensing data requires a legitimate defined purpose, such as applicable
+Training truth, user feedback, adaptation, or another explicitly approved
+purpose.
+
+Exact data fields and retention periods remain deferred.
+
+## 44 — Debugging and observability must not bypass the raw-data boundary
+
+Crash reporting, telemetry, logging, tracing, model debugging, and
+observability must not accidentally become an alternate raw-camera retention
+pipeline. Raw image/video payloads must not enter ordinary logs, traces, or
+analytics merely because they are useful for debugging.
+
+If raw sensing material is genuinely required for a future debugging/research
+purpose, that requires its own explicit reviewed contract and controls. No
+observability tool or architecture is selected here.
+
+## 45 — Failure must remain privacy-safe
+
+Inference, network, upload, application, or processing failures must not cause
+temporary raw sensing buffers to become ordinary persistent data. Temporary
+raw-data lifecycle must remain bounded.
+
+Exact buffer lifetime, cleanup mechanism, crash-recovery implementation, and
+storage technology remain deferred.
+
+## 46 — Raw, intermediate, and domain evidence are distinct
+
+Sensing outputs must not be treated as one undifferentiated data category.
+Conceptually distinguish:
+
+```text
+Raw sensing input
+→ Intermediate sensing representation
+→ Domain-significant evidence
+```
+
+Examples include:
+
+- **Raw:** camera frame, image, or video segment.
+- **Intermediate:** pose/keypoints, frame-level confidence, inference trace,
+  or movement representation.
+- **Domain-significant evidence:** performed rep count, valid rep count, or
+  factual observation relevant to Set/Workout truth.
+
+These categories may have different persistence, retention, privacy, and
+lifecycle treatment. No physical schema is defined here.
+
+## 47 — Domain-significant sensing evidence may be Training History
+
+When derived sensing evidence is necessary to preserve or explain factual
+Workout history, it may become durable Training History evidence. Examples
+may include performed reps, valid reps, completion-relevant observations, and
+factual form observations where the product later chooses to preserve them.
+
+The fact that evidence originated from sensing should remain representable
+through appropriate provenance. This does not imply that raw source imagery
+must be retained.
+
+## 48 — Intermediate sensing data is not historical truth by default
+
+Intermediate outputs such as complete keypoint streams, frame-by-frame pose
+sequences, confidence samples, and inference traces do not automatically
+become durable Training History merely because they were produced.
+
+Where the domain-significant result is sufficient for the approved purpose,
+intermediate representations may be discarded according to future lifecycle
+policy. Specific retention periods remain deferred.
+
+## 49 — Derived is not anonymous
+
+Removing raw imagery does not automatically make derived sensing data
+anonymous. Pose information, body measurements, movement patterns,
+behavioral/motion characteristics, and other derived representations may
+remain privacy-sensitive or linkable to a person.
+
+Derived sensing data must still cross the previously defined
+Privacy-Preserving Learning Boundary before qualifying as Anonymous Learning
+Data. “Not an image/video” is not equivalent to “anonymous.” Exact
+de-identification methodology remains deferred.
+
+## 50 — Provenance need not retain raw media
+
+AHF must be able to preserve meaningful provenance for domain-significant
+Workout evidence without requiring retention of the original raw camera
+footage. Relevant provenance may eventually include observation source,
+sensing/manual origin, observation state, and processing/model/version context
+where materially required.
+
+No provenance schema is defined here. Historical evidence provenance does
+not require persistent raw footage.
+
+## 51 — Unobserved/unknown is not observed invalid
+
+Failure to observe is a distinct factual state. Camera unavailability, sensing
+interruption, insufficient confidence, or an observation not being produced
+must not silently become “movement was observed and invalid.”
+
+The semantic distinction among observed valid, observed invalid, and
+unobserved/unknown must be preserved. Exact enums/schema remain deferred.
+
+This remains consistent with the resolved Execution contract: performed
+attempts and valid observations are distinct, and sensing absence must not
+fabricate evidence.
+
+## 52 — User correction must not silently erase sensing evidence
+
+If AHF later allows a User to correct or contest a sensing-derived factual
+result, the correction must not silently overwrite or erase the prior
+observation. Where historically/materially relevant, preserve the distinction
+between observed evidence, User-provided correction/contestation, and the
+resulting canonical interpretation, with appropriate provenance.
+
+This is consistent with the resolved Identity/Persistence principle that
+factual correction preserves provenance rather than silently rewriting
+history. No correction UI, conflict algorithm, trust weighting, evidence
+scoring, or schema is defined here.
+
+## Raw/intermediate/derived persistence position
+
+For ordinary sensing, raw camera imagery/video remains ephemeral by default.
+Processing alone does not authorize retention. Intermediate sensing
+representations are not historical truth by default, while
+domain-significant derived evidence may be durable Training History when
+needed for factual Workout truth. Derived evidence is not anonymous by
+default, and meaningful provenance does not require raw footage.
+
+This preserves the distinct boundaries:
+
+```text
+Normal Sensing
+!= Voluntary Research Program
+!= Anonymous Learning Lab
+```
+
+## Additional unresolved matters preserved
+
+This fourth interim checkpoint does not resolve:
+
+- exact derived-evidence retention policy;
+- exact retention durations;
+- raw/intermediate buffer lifetimes;
+- de-identification algorithms;
+- re-identification thresholds;
+- jurisdiction-specific anonymous-data definitions;
+- ordinary sensing bundle legality/legal basis;
+- Research legal/consent/withdrawal mechanics;
+- Research Dataset retention;
+- Anonymous Learning Lab retention;
+- sensing security controls;
+- encryption/access-control implementation;
+- local versus cloud versus hybrid sensing architecture;
+- sensing AI/model/runtime/framework;
+- exact sensing provenance schema;
+- exact observation enums/schema;
+- User-correction UX;
+- evidence/conflict weighting;
+- account-sharing detection mechanics;
+- `FAMILY_PLAN_AND_ENTITLEMENT_POLICY`;
+- `ACCOUNT_SHARING_IDENTITY_CONFIDENCE`;
+- `AGE_ELIGIBILITY_AND_VERIFICATION`; and
+- `FUTURE_MINOR_GUARDIAN_MODEL`.
+
+All other unresolved matters from the earlier checkpoints remain preserved.
+
+## Governance note
+
+This checkpoint contains twelve already-agreed decisions (#41–#52). The
+normal Foundation process limit is a maximum of ten decisions between
+canonical checkpoints. That limit was accidentally exceeded during
+discussion. This checkpoint records the twelve already-made decisions,
+publishes them, and resets the decision counter to zero. This exception does
+not reinterpret the ten-decision limit as permission for future batches of
+twelve.
+
+## Cross-contract consistency check
+
+These decisions were checked against the resolved Execution/Outcome/Recovery
+contract, resolved Identity/Persistence contract, and Privacy/Sensing
+checkpoint decisions 1–40. No contradiction is introduced with optional
+sensing, base Workout executability without sensing, distinct permission /
+consent / capability / evidence, non-fabricated observations, raw-camera data
+not being Training History by default, the distinct Research boundary, the
+irreversible privacy transformation required for Anonymous Learning Data,
+provenance-preserving correction, or the separation of Training truth from
+storage/sync state. No architecture/runtime choice is made.
+
+The Owner gate remains **UNRESOLVED**. Its downstream resolution task remains
+unexecuted and **BLOCKED**. No other Owner gate is modified.

@@ -40,6 +40,10 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - legal basis for each processing purpose and jurisdiction-specific consent requirements
 - legality/consent granularity of bundled sensing activation, including jurisdictions requiring purpose separation
 - sensing/data classification taxonomy and raw video/frame retention policy
+- exact derived-sensing evidence retention and raw/intermediate buffer lifetimes
+- sensing provenance and observation-state representation
+- raw-media failure cleanup and crash-recovery behavior
+- User correction/contestation UX and evidence/conflict weighting
 - upload policy and model-training dataset eligibility
 - encryption/security implementation and camera/sensing architecture
 - local/cloud/hybrid inference and hardware requirements
