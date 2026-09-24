@@ -947,3 +947,117 @@ invalid observation; legitimate historical Training Evidence is preserved;
 and valid Anonymous Learning Data requires an irreversible privacy boundary.
 Ordinary Sensing remains separate from the voluntary Research Program. No
 other Owner gate or unresolved implementation choice is changed.
+
+## Sixth interim checkpoint — Research Program Lifecycle
+
+The following nine Owner decisions (#62–#70) are **RESOLVED** within this
+checkpoint. Their resolution does not resolve
+`OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0`, authorize its downstream
+resolution task, or decide Research retention, deletion, or implementation.
+
+## 62 — Explicit Research enrollment
+
+**Decision status: RESOLVED.** Research Program participation requires a
+separate affirmative, informed enrollment. Ordinary Sensing activation,
+Account creation, Workout participation, or acceptance of general AHF terms
+must not implicitly enroll a User. Research remains separate and voluntary.
+
+## 63 — Research eligibility is not consent or enrollment
+
+**Decision status: RESOLVED.** Research consent or enrollment alone does not
+make every User, Workout, sensing sample, or contribution eligible for
+Research collection or use. A contribution may enter the Research Dataset
+only if it satisfies the applicable Research purpose and eligibility or
+qualification boundary. Exact qualification mechanics remain deferred.
+
+## 64 — Prospective Research withdrawal
+
+**Decision status: RESOLVED.** A User must be able to withdraw from the
+Research Program. Withdrawal stops future Research participation and future
+Research collection or contribution under that enrollment. This decision
+does not establish deletion semantics.
+
+## 65 — Withdrawal does not rewrite historical truth
+
+**Decision status: RESOLVED.** Withdrawal must not falsify, erase, or rewrite
+the historical fact that Research participation or qualified contributions
+occurred before withdrawal. Preserving historical truth does not itself
+authorize indefinite retention of attributable data.
+
+## 66 — Withdrawal is not historical-data disposition
+
+**Decision status: RESOLVED.** Withdrawal terminates future participation but
+does not itself determine deletion or retention of previously collected
+attributable Research data. Its disposition belongs to the applicable future
+Research Retention & Deletion contract. This checkpoint does not imply
+immediate deletion, indefinite retention, mandatory retention, or automatic
+anonymization.
+
+## 67 — No automatic Research-to-Anonymous transition
+
+**Decision status: RESOLVED.** Research data does not become Anonymous
+Learning Data merely because participation ends, the User withdraws,
+identifiers are removed, data becomes old, or a retention event occurs.
+Research Dataset and Anonymous Learning Lab remain distinct.
+
+## 68 — Valid privacy transformation required
+
+**Decision status: RESOLVED.** A Research artifact may enter the Anonymous
+Learning domain only after validly crossing the established irreversible
+privacy-transformation boundary. Removing a `user_id`, relabeling data as
+“anonymous,” or preserving a usable reverse mapping is insufficient. Once
+validly transformed, the resulting Anonymous Learning artifact follows the
+existing Anonymous Learning boundary, not attributable User Research history.
+Existing anonymity requirements are unchanged.
+
+## 69 — Versioned Research enrollment provenance
+
+**Decision status: RESOLVED.** AHF must be able to establish the materially
+relevant Research purpose, applicable data categories, and consent or policy
+basis under which a User enrolled and a Research contribution was collected.
+This does not select a schema or legal wording.
+
+## 70 — Re-enrollment after withdrawal
+
+**Decision status: RESOLVED.** Following Research withdrawal, later
+participation requires a new affirmative, informed enrollment under the
+then-applicable Research terms. The previous enrollment must not simply be
+revived. This is not a UI-flow specification.
+
+## Research Program Lifecycle Foundation status
+
+`RESEARCH_PROGRAM_LIFECYCLE = FOUNDATION-COMPLETE` for the current Privacy
+gate's Foundation-level lifecycle gap only. It does not mean Research
+implementation, legal compliance, economics, or data-retention policy is
+complete or ready. Exact Research consent wording, jurisdiction-specific
+requirements, Dataset retention, source-data handling after withdrawal,
+retention durations, deletion mechanics, qualification mechanics, reward
+economics, fraud prevention, security implementation, schema, API, and UI
+remain **UNRESOLVED**.
+
+In particular, the ultimate disposition of previously collected
+**attributable Research source data** after withdrawal remains **UNRESOLVED**
+for `RETENTION_AND_DELETION_SEMANTICS`. Withdrawal alone does not decide
+whether that data is deleted, retained, or transformed. No automatic
+Research-to-Anonymous transition is authorized.
+
+The Privacy Owner gate remains **UNRESOLVED**. The remaining Foundation
+gap-analysis categories include Retention & Deletion semantics and
+security/privacy trust-boundary invariants. The next conceptual Owner
+discussion is `RETENTION_AND_DELETION_SEMANTICS`; this does not resolve that
+topic or create implementation work.
+
+## Sixth-checkpoint governance and consistency note
+
+The pre-checkpoint decision count was nine (#62–#70), within the normal
+maximum of ten decisions between canonical checkpoints. Publication of this
+checkpoint resets the decision counter to **zero** in the existing
+checkpoint convention; no separate tracking mechanism is created.
+
+These decisions preserve the earlier Privacy checkpoints, including the
+Ordinary Sensing lifecycle, voluntary Research boundary, v1 exclusion of
+Minor Research, Research reward/withdrawal distinctions, and the strict
+Anonymous Learning boundary. They remain consistent with the resolved
+Identity/Persistence and Execution/Outcome/Recovery contracts: attributable
+historical truth is not falsified, but retention requires its own purpose and
+policy. No other Owner gate or unresolved implementation choice is changed.

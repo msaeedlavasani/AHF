@@ -58,6 +58,8 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - exact de-identification algorithms, re-identification thresholds, and
   jurisdictional definition of anonymous data
 - Research consent wording and withdrawal/source-data deletion requirements
+- disposition of previously collected attributable Research source data after
+  withdrawal under a future Research Retention & Deletion contract
 - trained-model unlearning capability or obligations
 - raw research imagery retention, Research Dataset/Learning Lab retention,
   and dataset/Research Program eligibility
