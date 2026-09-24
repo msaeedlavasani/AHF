@@ -41,6 +41,11 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - legality/consent granularity of bundled sensing activation, including jurisdictions requiring purpose separation
 - sensing/data classification taxonomy and raw video/frame retention policy
 - exact derived-sensing evidence retention and raw/intermediate buffer lifetimes
+- retention/deletion treatment of previously collected attributable sensing
+  data that is neither valid Anonymous Learning Data nor required as durable
+  factual Training History
+- exact Ordinary Sensing policy-change/re-acceptance requirements by applicable
+  jurisdiction, legal basis, and materiality
 - sensing provenance and observation-state representation
 - raw-media failure cleanup and crash-recovery behavior
 - User correction/contestation UX and evidence/conflict weighting

@@ -834,3 +834,116 @@ storage/sync state. No architecture/runtime choice is made.
 
 The Owner gate remains **UNRESOLVED**. Its downstream resolution task remains
 unexecuted and **BLOCKED**. No other Owner gate is modified.
+
+## Fifth interim checkpoint — Ordinary Sensing Lifecycle
+
+The following nine Owner decisions (#53–#61) are **RESOLVED** within this
+checkpoint. Their resolution does not resolve
+`OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0`, authorize its downstream
+resolution task, or select an implementation.
+
+## 53 — Ordinary Sensing activation
+
+**Decision status: RESOLVED.** Ordinary Sensing requires an affirmative,
+informed User action to activate the Ordinary Sensing bundle. Device/OS
+permission, technical capability, Workout start, or available sensing hardware
+alone must not activate it. Permission, consent, capability, and evidence
+remain distinct.
+
+## 54 — User-controlled disable
+
+**Decision status: RESOLVED.** A User who activated Ordinary Sensing must be
+able to disable it later.
+
+## 55 — Prospective effect of disabling
+
+**Decision status: RESOLVED.** Disabling Ordinary Sensing stops future sensing
+and observation and future sensing-derived contribution from that point
+forward. The base Workout must remain executable without sensing.
+
+## 56 — Historical truth preservation
+
+**Decision status: RESOLVED.** Disabling Ordinary Sensing must not rewrite,
+erase, reinterpret, or invalidate factual Training Evidence legitimately
+created before disabling. Previously observed evidence does not become
+Unobserved merely because sensing is later disabled.
+
+## 57 — Anonymous Learning boundary
+
+**Decision status: RESOLVED.** Disabling Ordinary Sensing does not
+retroactively reach data that had already validly crossed the irreversible
+privacy-transformation boundary into Anonymous Learning Data. This applies
+only where the existing canonical anonymity/de-identification requirements
+were actually satisfied. Anonymous Learning Data must remain independent of
+User identity and must not retain usable reverse linkage to the User.
+
+## 58 — Permission/capability loss is not User disable
+
+**Decision status: RESOLVED.** Loss of OS permission or required sensing
+capability makes sensing unavailable. It is not, by itself, a User disabling
+Ordinary Sensing, withdrawal from the Ordinary Sensing bundle, or a new
+privacy preference. Technical availability and User activation remain
+conceptually distinct.
+
+## 59 — No fabricated sensing continuity
+
+**Decision status: RESOLVED.** While required permission or capability is
+unavailable, AHF must not fabricate, infer, or represent sensing evidence as
+though sensing continued. Unobserved/Unknown is not Observed Invalid.
+
+## 60 — Explicit re-activation after User disable
+
+**Decision status: RESOLVED.** Once a User explicitly disables Ordinary
+Sensing, restored technical capability or OS permission alone must not
+reactivate it. Re-activation requires a new affirmative User action. This is
+not a UI-flow specification.
+
+## 61 — Versioned activation provenance
+
+**Decision status: RESOLVED.** AHF must be able to establish the materially
+relevant Ordinary Sensing terms or policy basis under which a User activated
+it. Later changes must not silently expand an existing activation beyond
+what its applicable privacy/legal basis validly permits. Foundation does not
+universally define which policy changes require renewed acceptance; that may
+depend on jurisdiction, legal basis, the nature/materiality of the change,
+and later legal/privacy policy. Exact re-acceptance requirements remain
+deferred.
+
+## Ordinary Sensing Lifecycle Foundation status
+
+`ORDINARY_SENSING_LIFECYCLE = FOUNDATION-COMPLETE` for the current Privacy
+gate's Foundation-level gap. This does not mean sensing implementation is
+complete or ready, and does not decide UI, OS permission flow, database,
+schema, API, legal wording, jurisdiction-specific analysis, local/cloud/hybrid
+architecture, model/runtime/framework, exact attributable-data retention or
+deletion policy, retention durations, or temporary buffer lifetimes.
+
+In particular, treatment of previously collected **attributable** sensing
+data that has neither validly crossed into Anonymous Learning Data nor become
+necessary durable factual Training History remains **UNRESOLVED** for the
+upcoming Retention & Deletion semantics analysis. This checkpoint implies
+neither immediate deletion, indefinite retention, automatic anonymization,
+nor mandatory retention.
+
+The Privacy Owner gate remains **UNRESOLVED**. Remaining gap-analysis
+categories include Research Program lifecycle, Retention & Deletion
+semantics, and security/privacy trust-boundary invariants. The next
+conceptual Owner discussion is `RESEARCH_PROGRAM_LIFECYCLE`; this does not
+resolve Research decisions or create implementation work.
+
+## Fifth-checkpoint governance and consistency note
+
+The pre-checkpoint decision count was nine (#53–#61), within the normal
+maximum of ten decisions between canonical checkpoints. Publication of this
+checkpoint resets the decision counter to **zero**. This records the count
+in the existing checkpoint convention; no separate tracking mechanism is
+created.
+
+These decisions preserve the earlier Privacy checkpoints and the resolved
+Execution/Outcome/Recovery and Identity/Persistence contracts: sensing is an
+optional enhancement; the base Workout remains executable; permission,
+consent, capability, and evidence are distinct; absent observation is not
+invalid observation; legitimate historical Training Evidence is preserved;
+and valid Anonymous Learning Data requires an irreversible privacy boundary.
+Ordinary Sensing remains separate from the voluntary Research Program. No
+other Owner gate or unresolved implementation choice is changed.
