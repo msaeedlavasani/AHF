@@ -1061,3 +1061,150 @@ Anonymous Learning boundary. They remain consistent with the resolved
 Identity/Persistence and Execution/Outcome/Recovery contracts: attributable
 historical truth is not falsified, but retention requires its own purpose and
 policy. No other Owner gate or unresolved implementation choice is changed.
+
+## Seventh interim checkpoint — Retention & Deletion Semantics Part 1
+
+The following ten Owner decisions (#71–#80) are **RESOLVED** within this
+checkpoint. They begin, but do not complete, Foundation-level Retention &
+Deletion semantics. They do not resolve the Privacy Owner gate or authorize
+its downstream resolution task.
+
+## 71 — Purpose-bound retention
+
+**Decision status: RESOLVED.** Attributable data must not be retained merely
+because it might someday be useful. Continued retention requires an
+applicable legitimate purpose and remains governed by the relevant
+retention/deletion contract. Exact legal basis and retention duration are
+not defined here.
+
+## 72 — Data-class-specific lifecycle
+
+**Decision status: RESOLVED.** Retention and deletion are not one universal
+lifecycle applied identically to every data class. Personal/Account Data,
+Training Data, Sensing Evidence, Research Data, Operational/Sync Data,
+Anonymous Learning Data, and other canonically distinct classes may require
+different retention/deletion semantics according to purpose and applicable
+boundaries. This does not freeze a final taxonomy or schema.
+
+## 73 — Processing is not retention
+
+**Decision status: RESOLVED.** Temporary processing, buffering, inference,
+or transport does not itself authorize durable retention. Processing
+necessity and durable-storage authority are distinct. The existing
+camera/sensing boundary remains: temporary technical handling must not
+silently become persistent storage.
+
+## 74 — Durable Training History has an independent retention basis
+
+**Decision status: RESOLVED.** Legitimately created, domain-significant
+factual Training Evidence that has become durable Training History does not
+lose its historical status merely because Ordinary Sensing is later
+disabled, sensing capability is later lost, or Research participation is
+later withdrawn. Historical truth and current sensing/Research participation
+state remain distinct. This does not authorize indefinite retention or
+override Account-deletion semantics.
+
+## 75 — Intermediate sensing data is not automatically Training History
+
+**Decision status: RESOLVED.** Raw or intermediate sensing artifacts do not
+acquire durable historical retention status merely because they contributed
+to domain-significant Training Evidence. Complete keypoint streams,
+frame-level confidence, inference traces, and temporary sensing
+representations are examples where applicable. Only purpose-minimized
+domain-significant evidence needed for factual Workout history may become
+durable Training History under the existing contract. No evidence schema is
+selected.
+
+## 76 — Research withdrawal does not determine prior-data disposition
+
+**Decision status: RESOLVED.** Research withdrawal stops future
+participation under the applicable enrollment but does not itself determine
+retention or deletion of previously collected attributable Research data.
+Prior Research data follows its applicable retention/deletion contract.
+Decision #66 remains authoritative; exact Research source-data disposition
+is not decided here.
+
+## 77 — Account deletion is a lifecycle, not instantaneous erasure
+
+**Decision status: RESOLVED.** The already-resolved Account lifecycle remains:
+
+```text
+ACTIVE → PENDING_DELETION → DELETED
+```
+
+A deletion request begins the already-approved 30-day grace period; it does
+not mean every associated datum is physically erased at the instant of the
+request. Recovery requires the User's explicit choice. Return or login alone
+does not cancel deletion or restart the original deadline. This checkpoint
+does not change those existing semantics.
+
+## 78 — Final deletion propagates across attributable domains
+
+**Decision status: RESOLVED.** Final Account deletion cannot be implemented
+merely by removing or marking an Account record while silently leaving
+attributable User data outside the deletion lifecycle. Data that remains
+attributable or linkable to the User requires explicit disposition under its
+applicable retention/deletion contract. This does not prescribe database
+cascades, physical schema, storage engine, deletion implementation, or exact
+timing.
+
+## 79 — Valid Anonymous Learning Data is outside User deletion reach
+
+**Decision status: RESOLVED.** Data that validly crossed the established
+irreversible privacy-transformation boundary into Anonymous Learning Data
+is no longer User Profile, Training Profile, or Training History; it cannot
+be looked up or mutated through the deleted User and may remain after Account
+deletion under the existing Anonymous Learning contract. If usable reverse
+mapping or meaningful User linkage remains, the intended anonymity boundary
+has not been crossed. Existing anonymity requirements are not weakened.
+
+## 80 — Independent continuing basis for attributable retention
+
+**Decision status: RESOLVED.** Attributable data no longer required for its
+original User-facing or domain purpose must not be retained merely for
+possible future learning value. Continued attributable retention requires
+an independent valid purpose and applicable privacy/legal basis. Without
+such a basis, the data follows its applicable deletion lifecycle or, where
+valid and permitted, crosses the established privacy-transformation
+boundary. Learning utility alone is not universal retention authorization.
+This does not mandate anonymization or select a de-identification method,
+exact deletion timing, or jurisdiction-specific legal basis.
+
+## Retention & Deletion Foundation status
+
+`RETENTION_AND_DELETION_SEMANTICS = IN_PROGRESS`. Decisions #71–#80 are
+resolved, but this Part 1 batch does **not** make this Foundation category
+`FOUNDATION-COMPLETE`. Further Foundation-level gap analysis is required to
+determine whether additional invariants are needed before the category can
+close.
+
+Exact derived-evidence retention policy, retention durations, temporary
+buffer lifetimes, Research source-data disposition after withdrawal,
+Research Dataset and Anonymous Learning Lab retention, de-identification
+algorithms, re-identification thresholds, jurisdiction-specific anonymous
+data definitions and legal retention requirements, backup deletion,
+physical deletion, schema/API/storage, and security/encryption implementation
+remain **UNRESOLVED**. Nothing here chooses immediate deletion, indefinite
+retention, mandatory retention, or automatic anonymization for previously
+collected attributable Research or Sensing data.
+
+The Privacy Owner gate remains **UNRESOLVED** and its downstream resolution
+task remains unexecuted and **BLOCKED**. Remaining gap-analysis categories
+include Retention & Deletion semantics (continuing) and Security/Privacy
+trust-boundary invariants. The next conceptual Owner discussion is
+`RETENTION_AND_DELETION_SEMANTICS_CONTINUED`; it is not resolved here and no
+implementation-ready work is created.
+
+## Seventh-checkpoint governance and consistency note
+
+The pre-checkpoint decision count was ten (#71–#80), at the normal maximum
+between canonical checkpoints. Publication of this checkpoint resets the
+decision counter to **zero** in the existing checkpoint convention; no
+parallel tracking mechanism is created.
+
+These decisions preserve the resolved Identity/Persistence Account deletion,
+purpose-aware minimization, historical lineage, and anonymous-data boundaries;
+the resolved Execution/Outcome/Recovery factual-history distinction; and
+earlier Privacy decisions on optional sensing, raw/intermediate evidence,
+voluntary Research withdrawal, and valid privacy transformation. No other
+Owner gate or unresolved implementation choice is changed.
