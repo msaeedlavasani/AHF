@@ -1208,3 +1208,127 @@ the resolved Execution/Outcome/Recovery factual-history distinction; and
 earlier Privacy decisions on optional sensing, raw/intermediate evidence,
 voluntary Research withdrawal, and valid privacy transformation. No other
 Owner gate or unresolved implementation choice is changed.
+
+## Eighth interim checkpoint — Retention & Deletion Semantics Part 2
+
+The following ten Owner decisions (#81–#90) are **RESOLVED** within this
+checkpoint. They continue, but do not complete, Foundation-level Retention &
+Deletion semantics. They do not resolve the Privacy Owner gate or authorize
+its downstream resolution task.
+
+## 81 — Explicit deletion disposition
+
+**Decision status: RESOLVED.** Every attributable data class reaching an
+applicable deletion boundary requires an explicit disposition governed by
+its contract, such as deletion, retention under an independently valid
+basis, or valid privacy transformation where independently permitted.
+Silent or default persistence is not a valid disposition.
+
+## 82 — Internal copies do not escape deletion contracts
+
+**Decision status: RESOLVED.** Caches, replicas, derived stores, exports,
+operational copies, and other internal representations must not become
+loopholes that preserve attributable data outside its applicable
+retention/deletion contract. This does not prescribe physical architecture.
+
+## 83 — Backup lifecycle may differ from active-system deletion
+
+**Decision status: RESOLVED.** Deletion from active systems must not be
+falsely equated with instantaneous physical destruction of every bit in
+every backup. Backup lifecycle may differ where validly required or
+permitted. Attributable data retained only in backup must not silently
+return to ordinary operational use merely because a backup exists. Exact
+backup retention, restoration, deletion, and physical-erasure mechanics
+remain deferred.
+
+## 84 — Derived data is not automatically deletion-exempt
+
+**Decision status: RESOLVED.** Being derived does not itself remove an
+artifact from privacy, retention, or deletion obligations. If derived data
+remains attributable or linkable, it requires an applicable
+retention/deletion disposition. Derived is not Anonymous.
+
+## 85 — Retained records remain subject to minimization
+
+**Decision status: RESOLVED.** Where a record may legitimately remain after
+a deletion boundary, unnecessary identity linkage must not be preserved
+merely for referential convenience. Retention authority does not eliminate
+minimization requirements. No schema or implementation is prescribed.
+
+## 86 — Final Account deletion includes attributable Training History
+
+**Decision status: RESOLVED.** When Account deletion reaches `DELETED`,
+attributable Training History also enters its applicable deletion
+disposition. It may remain attributable only where an independent valid
+purpose and applicable privacy/legal basis authorizes that continued
+retention. Historical, analytical, or potential AHF utility alone is
+insufficient. This does not retroactively falsify historical truth, require
+deletion before the applicable deletion lifecycle, apply to data already
+validly transformed into Anonymous Learning Data, or define
+jurisdiction-specific mandatory retention.
+
+## 87 — Source deletion does not automatically falsify valid derived facts
+
+**Decision status: RESOLVED.** Deleting a source, raw, or intermediate
+artifact does not automatically require falsifying or deleting a
+legitimately established factual domain result derived from it. A retained
+derived result, if attributable, remains subject to its own
+retention/deletion contract. This is not blanket retention authority.
+
+## 88 — Privacy transformation is not deletion evasion
+
+**Decision status: RESOLVED.** AHF must not use anonymization or
+de-identification as an automatic escape hatch after a deletion obligation
+or request arises. Privacy transformation requires its own valid purpose,
+eligibility, privacy/legal basis, and compliance with the established
+irreversible transformation boundary. This does not prohibit a validly
+authorized transformation where the applicable contract permits it.
+
+## 89 — Pending deletion does not authorize new secondary purposes
+
+**Decision status: RESOLVED.** While an Account is `PENDING_DELETION`, the
+grace period does not authorize new attributable secondary uses that were
+not already validly applicable before the deletion request. Legitimate
+operations needed for the deletion/recovery lifecycle and other
+independently valid obligations remain possible.
+
+## 90 — Recovery does not recreate erased data
+
+**Decision status: RESOLVED.** Explicit Account recovery during the valid
+grace period may restore active lifecycle treatment for data that
+legitimately still exists. Recovery must not fabricate or claim restoration
+of data already legitimately and irreversibly deleted under an applicable
+policy. Login alone does not cancel deletion.
+
+## Retention & Deletion Foundation status after Part 2
+
+`RETENTION_AND_DELETION_SEMANTICS = IN_PROGRESS`. Decisions #81–#90 are
+resolved, but a final Foundation gap-analysis is still required. Neither
+this checkpoint nor Part 1 marks the category `FOUNDATION-COMPLETE`.
+
+Exact retention durations, backup durations and mechanics, physical
+deletion implementation, de-identification algorithms, jurisdiction-specific
+legal requirements, storage/schema/API choices, Research retention duration,
+Anonymous Learning retention duration, and security/encryption implementation
+remain **UNRESOLVED**. The unresolved matters recorded in the earlier
+checkpoints and the Foundation unresolved register remain open.
+
+`OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0` remains **UNRESOLVED**; its
+resolution task remains unexecuted and **BLOCKED**. Security/Privacy
+trust-boundary invariants are not resolved here. The next conceptual Owner
+discussion is `RETENTION_AND_DELETION_FINAL_GAP_ANALYSIS`; this does not
+resolve that topic or create implementation-ready work.
+
+## Eighth-checkpoint governance and consistency note
+
+The pre-checkpoint decision count was ten (#81–#90), at the normal maximum
+between canonical checkpoints. Publication of this checkpoint resets the
+decision counter to **zero** using the existing checkpoint convention; no
+parallel tracking mechanism is created.
+
+These decisions preserve the resolved Identity/Persistence Account lifecycle,
+purpose-aware retention, historical lineage, and irreversible Anonymous
+Learning boundary; the resolved Execution/Outcome/Recovery historical-truth
+distinction; and Privacy decisions #71–#80 on explicit purpose, data-class
+lifecycle, and independent attributable-retention basis. No other Owner gate
+or unresolved implementation choice is changed.
