@@ -18,6 +18,8 @@ The second checkpoint below adds decisions #121–#130 and its focused
 Experience / Interaction Model gap review.
 The third checkpoint below adds decisions #131–#140 for Design System /
 Cross-Screen Consistency without closing that category.
+The fourth checkpoint below adds decisions #141–#150 and its focused
+Design System / Cross-Screen Consistency gap review.
 The earlier proposed UX Checkpoint 1 was stopped before publication; it
 canonicalized nothing. The superseded *unresolved status* of those questions
 is preserved in Git history and identified in the earlier Execution and
@@ -396,5 +398,140 @@ here. The Privacy Owner gate remains **RESOLVED**. Product implementation is
 not authorized.
 
 Checkpoint 3 canonicalizes decisions #131–#140. Its pre-checkpoint decision
+count of 10 resets to **zero** on publication under the existing checkpoint
+convention. Earlier checkpoint content and numbering remain preserved.
+
+## Checkpoint 4 — Design System / Cross-Screen Consistency, Part 2
+
+These Owner-approved decisions extend the Clean-Start Foundation design
+contract without choosing layouts, numerical dimensions, technology, or
+implementation.
+
+### #141 — Safe-area and viewport constraints are system-level concerns
+
+**Status: RESOLVED.** The Workout Experience Shell accommodates applicable
+device safe areas, viewport constraints, browser/application chrome,
+supported orientation, and responsive geometry. Device geometry must not
+make domain-critical information or consequential controls inaccessible.
+Safe-area implementation and breakpoints remain deferred.
+
+### #142 — Interactive target semantics differ from visible icon size
+
+**Status: RESOLVED.** Visible icon or graphic size does not alone define the
+interactive hit target. Controls provide reliable interaction targets
+consistent with later Accessibility requirements. No numerical minimum is
+frozen here; exact values belong to Accessibility and design specification.
+
+### #143 — Domain-critical hierarchy outranks decoration
+
+**Status: RESOLVED.** Mentor, backgrounds, illustrations, lighting, effects,
+and other non-critical presentation must not obscure the current obligation,
+relevant progress, or consequential controls. Mentor or exercise
+visualization may receive strong emphasis while preserving access to that
+domain-critical information. Exact visual weighting remains deferred.
+
+### #144 — Adaptive exercise visualization preserves instruction
+
+**Status: RESOLVED.** Contextual Mentor framing or cropping must not remove
+body information materially required to understand the exercise. When
+instruction depends on relevant body regions or whole-body alignment,
+composition preserves that information. Camera parameters, framing, Mentor
+scale, aspect ratio, and 3D technology remain deferred.
+
+### #145 — Layout adaptation minimizes unnecessary discontinuity
+
+**Status: RESOLVED.** Legitimate state or exercise changes may alter
+composition, but stable information and controls should not move arbitrarily
+without a genuine presentation need. The Design System reduces unnecessary
+relearning or search during Workout transitions. This is continuity, not a
+pixel-lock rule.
+
+### #146 — Motion communicates state; it does not define domain state
+
+**Status: RESOLVED.** Motion may communicate a canonical state change.
+Animation completion is not domain-transition authority unless a future
+explicit domain contract says otherwise. Workout correctness does not depend
+on decorative or presentation animation success. The motion system remains
+deferred.
+
+### #147 — Component semantic states are explicit
+
+**Status: RESOLVED.** Interactive components can clearly represent their
+applicable semantic states without hidden ambiguity. Available, active,
+disabled, loading, and unavailable are illustrative examples, not a frozen
+universal state schema. Component specifications remain deferred.
+
+### #148 — Degraded presentation remains coherent
+
+**Status: RESOLVED.** Failure or unavailability of Mentor rendering, visual
+assets, animation, or other non-critical presentation enhancements does not
+destroy the coherent Workout Experience Shell. Critical execution
+information and valid User controls remain usable under canonical domain
+rules. Mentor, sensing, and presentation enhancement are not base Workout
+execution authority.
+
+### #149 — Orientation support is capability-driven, not symmetric by default
+
+**Status: RESOLVED.** The explicit Owner decision is:
+
+```text
+ORIENTATION_MODEL = RESPONSIVE_CAPABILITY_WITHOUT_UNIVERSAL_ORIENTATION_PARITY
+```
+
+Foundation does not universally prohibit either portrait or landscape. It also
+does not require equal portrait/landscape support for every Workout state on
+every device class. Supported orientation behavior may later be specified by
+device class, Workout use case, exercise/presentation need, and validated UX
+requirements. This preserves responsive capability without imposing
+universal design and testing parity. Exact support matrices remain deferred.
+
+### #150 — Viewport and orientation changes do not change domain truth
+
+**Status: RESOLVED.** Rotation, resize, viewport change, or equivalent
+presentation geometry change does not by itself restart or create a Set,
+alter performed progress, Prescription, or Workout Passport, create a new
+execution state, or change completion truth. Presentation may recompose
+around the same canonical execution state.
+
+## Checkpoint 4 consistency and Design System gap review
+
+Decisions #131–#150 were reviewed against Experience / Interaction
+#111–#130 and the resolved Prescription, Execution, Recovery, Mentor, and
+Privacy / Sensing boundaries. They do not impose portrait-only architecture
+or universal orientation parity; let orientation changes restart execution;
+fix Mentor aspect ratio; let Mentor obscure required execution information;
+give decorative motion domain authority; equate icon size with hit-target
+size; equate presentation failure with Workout failure; let responsive
+adaptation mutate domain truth; or promote old prototype geometry to
+Clean-Start authority. `MENTOR_LAYOUT_MODEL = CONTEXTUAL_ADAPTIVE` remains
+binding.
+
+The Foundation-semantic topics required for this category are addressed by
+the two Design System checkpoints: shared Workout Shell and cross-state
+consistency (#131–#133); responsive behavior and theme (#134–#135);
+reusable vocabulary and component semantics (#136–#137, #142, #147);
+information hierarchy and continuity (#138, #143, #145); contextual Mentor
+and exercise geometry (#139–#140, #144); safe-area/viewport behavior (#141);
+motion versus domain state (#146); degraded presentation (#148); and
+orientation and viewport semantics (#149–#150). No remaining
+**Foundation-semantic** gap was identified in Design System / Cross-Screen
+Consistency. Exact visual specifications, accessibility values, support
+matrices, technology, and implementation remain deferred; category closure
+does not make them implementation-ready.
+
+```text
+EXPERIENCE_INTERACTION_MODEL = FOUNDATION-COMPLETE
+DESIGN_SYSTEM_CROSS_SCREEN_CONSISTENCY = FOUNDATION-COMPLETE
+MENTOR_LAYOUT_MODEL = CONTEXTUAL_ADAPTIVE
+ORIENTATION_MODEL = RESPONSIVE_CAPABILITY_WITHOUT_UNIVERSAL_ORIENTATION_PARITY
+OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0 = UNRESOLVED
+OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0 = UNRESOLVED
+```
+
+`LOCALIZATION`, `ACCESSIBILITY`, and
+`UX_PERFORMANCE_PERCEIVED_PERFORMANCE` remain open. The Privacy Owner gate
+remains **RESOLVED**. Product implementation is not authorized.
+
+Checkpoint 4 canonicalizes decisions #141–#150. Its pre-checkpoint decision
 count of 10 resets to **zero** on publication under the existing checkpoint
 convention. Earlier checkpoint content and numbering remain preserved.

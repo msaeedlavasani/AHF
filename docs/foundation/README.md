@@ -54,12 +54,12 @@ evidence and does not compete with it. Deferred legal and implementation
 matters remain **UNRESOLVED**.
 
 The [UX Experience / Interaction Owner Decision Checkpoint](decisions/ux-experience-interaction-owner-checkpoint-v0.md)
-records approved decisions #111–#140 and the rejection of Skip Rest and
-Restart Current Set. Experience / Interaction is **FOUNDATION-COMPLETE**;
-Design System / Cross-Screen Consistency is **IN_PROGRESS**, with a contextual,
-adaptive Mentor layout rather than mandatory fixed geometry. This remains an
-interim checkpoint: the UX Owner gate is **UNRESOLVED** and implementation is
-not authorized.
+records approved decisions #111–#150 and the rejection of Skip Rest and
+Restart Current Set. Experience / Interaction and Design System / Cross-Screen
+Consistency are **FOUNDATION-COMPLETE**. Mentor layout is contextual and
+adaptive; orientation support does not require universal parity. This remains
+an interim checkpoint: the UX Owner gate is **UNRESOLVED** and implementation
+is not authorized.
 
 ## Canonical work selection
 
