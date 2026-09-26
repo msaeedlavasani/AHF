@@ -23,7 +23,7 @@ decisions:
     state: RESOLVED
   - id: OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0
     title: Owner gate for Privacy, Sensing, and Account Lifecycle resolution
-    state: UNRESOLVED
+    state: RESOLVED
   - id: OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
     title: Owner gate for UX, Design, Localization, Accessibility, and Performance resolution
     state: UNRESOLVED
@@ -38,7 +38,7 @@ decisions:
     state: RESOLVED
   - id: PRIVACY_SENSING_AND_ACCOUNT_LIFECYCLE@v0
     title: Privacy, Sensing, and Account Lifecycle v0
-    state: DRAFT
+    state: RESOLVED
   - id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0
     title: UX, Design, Localization, Accessibility, and Performance v0
     state: DRAFT

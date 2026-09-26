@@ -118,7 +118,7 @@ artifacts:
     path: docs/foundation/decisions/execution-outcome-recovery-contracts-v0.md
   - id: PRIVACY_SENSING_ACCOUNT_LIFECYCLE_DOC@v0
     title: Resolved Privacy, Sensing, and Account Lifecycle document
-    state: MISSING
+    state: AVAILABLE
     path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
   - id: UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE_DOC@v0
     title: Resolved UX, Design, Localization, Accessibility, and Performance document

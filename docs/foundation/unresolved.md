@@ -89,12 +89,16 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 
 The following Owner gates remain explicitly **UNRESOLVED**:
 
-- Privacy, Sensing, and Account Lifecycle resolution — approved interim
-  decisions are preserved in
-  [`decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md`](decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md),
-  but the Owner gate remains **UNRESOLVED**.
 - UX, Design, Localization, Accessibility, and Performance resolution
 - Architecture, Operations, and Tooling boundary resolution
+
+The Privacy, Sensing, and Account Lifecycle Owner gate and v0 contract are
+**RESOLVED** in
+[`decisions/privacy-sensing-account-lifecycle-v0.md`](decisions/privacy-sensing-account-lifecycle-v0.md).
+Its interim checkpoint remains preserved as historical Owner-decision evidence
+in [`decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md`](decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md).
+The legal, policy-specific, security-implementation, and architecture details
+listed above remain **UNRESOLVED** despite the Foundation semantic gate closure.
 
 The Identity and Persistence Owner gate and v0 contract are **RESOLVED** in
 [`decisions/identity-and-persistence-boundaries-v0.md`](decisions/identity-and-persistence-boundaries-v0.md).
@@ -109,8 +113,9 @@ are not resolved; their machine-readable output placeholders remain **DRAFT**.
 The repository-native DAG records their prerequisites and must not resolve them
 automatically.
 
-Cross-gate unresolved requirements remain explicit: `ACCOUNT_SHARING_IDENTITY_CONFIDENCE`
-and privacy, de-identification, and account-deletion implementation concerns
-route to `OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0`. `STREAK_CREDIT_POLICY`
-is routed to an appropriate future Product/Engagement contract; no Owner gate
-is invented here.
+Cross-gate unresolved requirements remain explicit:
+`ACCOUNT_SHARING_IDENTITY_CONFIDENCE` and privacy, de-identification, and
+account-deletion implementation concerns remain deferred for later applicable
+product, legal, security, and architecture work under the resolved Privacy
+boundary. `STREAK_CREDIT_POLICY` is routed to an appropriate future
+Product/Engagement contract; no Owner gate is invented here.

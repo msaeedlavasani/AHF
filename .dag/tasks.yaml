@@ -1504,7 +1504,20 @@ tasks:
           type: file_contains
           path: docs/foundation/decisions/privacy-sensing-account-lifecycle-v0.md
           text: "Status: RESOLVED"
-    attempts: []
+    attempts:
+      - id: FOUNDATION-RESOLVE-PRIVACY-SENSING-AND-ACCOUNT-LIFECYCLE/attempt-1
+        outcome: PASSED
+        evidence:
+          - resolved_contract_document
+        validations:
+          - resolved_status_is_recorded
+        produced:
+          - type: DECISION
+            id: PRIVACY_SENSING_AND_ACCOUNT_LIFECYCLE@v0
+            state: RESOLVED
+          - type: ARTIFACT
+            id: PRIVACY_SENSING_ACCOUNT_LIFECYCLE_DOC@v0
+            state: AVAILABLE
     publication:
       mode: REQUIRED
       remote: origin

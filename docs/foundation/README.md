@@ -36,6 +36,7 @@ The resolved v0 Foundation consists of:
 5. [Clean-Start Foundation Completeness](05-clean-start-foundation-completeness.md)
 6. [Execution, Outcome, and Recovery Contracts](decisions/execution-outcome-recovery-contracts-v0.md)
 7. [Identity and Persistence Boundaries](decisions/identity-and-persistence-boundaries-v0.md)
+8. [Privacy, Sensing, and Account Lifecycle](decisions/privacy-sensing-account-lifecycle-v0.md)
 
 The [unresolved register](unresolved.md) records matters that remain open. The [candidate-tool register](candidate-tools.md) records evaluation status without selecting a stack. The [`decisions/`](decisions/) directory is reserved for later Foundation decision records.
 
@@ -46,9 +47,11 @@ is the resolved canonical decision; the checkpoint remains historical evidence
 and does not compete with or replace that contract.
 
 The [Privacy, Sensing, and Account Lifecycle Owner Decision Checkpoint](decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md)
-preserves approved interim decisions for its Owner gate, which remains
-**UNRESOLVED**. The checkpoint is evidence for later resolution, not gate
-resolution.
+preserves the approved interim decision history. The [resolved Privacy,
+Sensing, and Account Lifecycle v0 contract](decisions/privacy-sensing-account-lifecycle-v0.md)
+is the current canonical gate resolution; the checkpoint remains historical
+evidence and does not compete with it. Deferred legal and implementation
+matters remain **UNRESOLVED**.
 
 ## Canonical work selection
 
