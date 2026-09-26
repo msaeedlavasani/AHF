@@ -1466,3 +1466,132 @@ Privacy decisions on optional sensing, Research purpose separation, raw
 sensing restrictions, and attributable-data deletion. The unresolved
 implementation and legal matters in the Foundation register remain open.
 No other Owner gate or unresolved implementation choice is changed.
+
+## Tenth interim checkpoint — Security/Trust Boundaries Closure
+
+The following ten Owner decisions (#101–#110) are **RESOLVED** within this
+checkpoint. They complete the Foundation-level Security/Privacy
+Trust-Boundary invariants for the current Privacy gate. They do not resolve
+the overall Privacy Owner gate or authorize its downstream resolution task.
+
+## 101 — Credentials do not establish data authority
+
+**Decision status: RESOLVED.** Possession of a service credential, API key,
+database credential, privileged runtime identity, or equivalent technical
+capability does not itself authorize every access or use technically possible
+through it. Purpose and access authority remain independently governed.
+
+## 102 — Privileged human access is exceptional
+
+**Decision status: RESOLVED.** Privileged human access to attributable or
+private data is not the normal product-operation path. Where validly
+necessary, it remains bounded by authorized purpose and appropriate
+necessity. Exact RBAC, approval, break-glass, and audit mechanisms remain
+deferred to Architecture/Security.
+
+## 103 — Third-party processing is a trust-boundary crossing
+
+**Decision status: RESOLVED.** Using an external or third-party provider for
+storage, inference, observability, processing, or another function does not
+automatically authorize transfer of privacy-relevant data to that provider.
+Such transfer is a trust-boundary crossing that must be permitted by the
+applicable data classification, purpose, eligibility, and privacy/legal
+authority. No vendor or provider is selected.
+
+## 104 — Boundary crossings remain data-minimized
+
+**Decision status: RESOLVED.** Even when a trust-boundary crossing is
+authorized, only data necessary for its authorized purpose should cross it.
+Authority to use one required subset does not automatically authorize
+transmission of all context or data technically available to the caller.
+Exact payload and API architecture remain deferred.
+
+## 105 — Ordinary sensing does not authorize remote/raw expansion
+
+**Decision status: RESOLVED.** Ordinary Sensing activation alone does not
+authorize durable storage, upload, or transmission of raw camera frames or
+video to remote or secondary systems. The ordinary camera stream remains
+ephemeral by default; processing is distinct from retention; and raw
+persistence or upload requires a separate applicable purpose and contract.
+This does not choose local, cloud, or hybrid inference architecture.
+
+## 106 — Research authority does not flow backward into ordinary operation
+
+**Decision status: RESOLVED.** Research enrollment or authority may permit
+applicable Research contribution under its contract. It does not silently
+expand ordinary Workout or Sensing collection, retention, or access outside
+the Research purpose. Ordinary Sensing and Research remain distinct purpose
+domains.
+
+## 107 — Anonymous Learning does not authorize re-identification
+
+**Decision status: RESOLVED.** The existence or use of Anonymous Learning
+Data does not itself authorize attempts to re-identify it or reconnect it
+to User identity. A system requiring usable reverse identity mapping for
+ordinary operation has not maintained the intended Anonymous boundary.
+Existing irreversible privacy-transformation requirements remain binding.
+
+## 108 — Failure/recovery must preserve privacy authority
+
+**Decision status: RESOLVED.** Backup restoration, disaster recovery, retry,
+migration, synchronization, and other operational recovery must not silently
+reactivate attributable data for ordinary use when the applicable authority
+or retention lifecycle no longer permits that use. Exact recovery and
+security architecture remain deferred.
+
+## 109 — Security incidents do not create consent or purpose authority
+
+**Decision status: RESOLVED.** A security incident, compromise,
+investigation, or containment event does not itself create Ordinary Sensing
+activation, Research enrollment, User consent, secondary-use authority, or
+learning-purpose authority. Independently applicable security or legal
+obligations may govern incident handling, but do not become unrelated
+data-use authority. Exact incident-response process remains deferred.
+
+## 110 — Foundation privacy boundaries must be enforceable
+
+**Decision status: RESOLVED.** Later architecture must be capable of real
+enforcement of the Foundation privacy/trust contracts. Merely documenting
+boundaries while making them practically unenforceable is not
+Foundation-compatible. This includes, as applicable, least privilege,
+purpose-domain separation, authorized boundary crossing, minimization,
+raw-sensing restrictions, Research separation, the Anonymous Learning
+boundary, and retention/deletion authority. No implementation technology
+is selected.
+
+## Security/Privacy Trust-Boundary Foundation status
+
+`SECURITY_PRIVACY_TRUST_BOUNDARIES = FOUNDATION-COMPLETE` for the current
+Privacy gate's Foundation-level invariants after decisions #94–#110. This
+does not mean security implementation or Architecture/Ops/Security readiness
+is complete. Encryption implementation and algorithms, key management,
+IAM/RBAC technology, network segmentation/topology, secret management,
+database security architecture, local/cloud inference architecture,
+cloud/provider/vendor selection, observability vendor, incident-response
+technology and process details, backup implementation, and concrete
+security monitoring remain **UNRESOLVED**.
+
+`RETENTION_AND_DELETION_SEMANTICS = FOUNDATION-COMPLETE` remains unchanged.
+`OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0` remains **UNRESOLVED**;
+its resolution task remains unexecuted and **BLOCKED**. The next step is
+`PRIVACY_GATE_FINAL_CLOSURE_REVIEW` across the entire canonical Privacy
+decision set and deferred register before the Owner gate can be considered
+resolved. No implementation-ready work is created here.
+
+## Tenth-checkpoint governance and consistency note
+
+The pre-checkpoint decision count was ten (#101–#110), at the normal maximum
+between canonical checkpoints. Publication of this checkpoint resets the
+decision counter to **zero** using the existing checkpoint convention; no
+parallel tracking mechanism is created.
+
+The focused review found no contradiction with decisions #94–#100 or earlier
+Privacy contracts: credentials and privileged access remain subject to least
+privilege; third-party transfers and minimized payloads obey authorized
+boundary crossing; ordinary raw sensing and Research remain separately
+governed; Anonymous Learning has no usable reverse User mapping; operational
+recovery and incidents do not manufacture authority; and enforceability does
+not select a security stack. The base Workout remains executable without
+sensing or live server connectivity. All previously deferred legal,
+implementation, and architecture matters remain open. No other Owner gate
+is changed.
