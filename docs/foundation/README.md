@@ -53,6 +53,11 @@ is the current canonical gate resolution; the checkpoint remains historical
 evidence and does not compete with it. Deferred legal and implementation
 matters remain **UNRESOLVED**.
 
+The [UX Experience / Interaction Owner Decision Checkpoint](decisions/ux-experience-interaction-owner-checkpoint-v0.md)
+records approved decisions #111–#120 and the rejection of Skip Rest and
+Restart Current Set. It is an interim checkpoint: the UX Owner gate remains
+**UNRESOLVED** and the Experience / Interaction Model remains **IN_PROGRESS**.
+
 ## Canonical work selection
 
 The repository-native Task/DAG is the canonical mechanism for determining executable project work after its bootstrap by `AHF-CLEAN-FOUNDATION-002`.

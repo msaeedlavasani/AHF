@@ -60,6 +60,10 @@ artifacts:
     title: Owner-approved interim checkpoint for the unresolved Privacy, Sensing, and Account Lifecycle gate
     state: AVAILABLE
     path: docs/foundation/decisions/privacy-sensing-account-lifecycle-owner-checkpoint-v0.md
+  - id: OWNER_GATE_UX_EXPERIENCE_INTERACTION_CHECKPOINT@v0
+    title: Owner-approved interim UX Experience and Interaction checkpoint
+    state: AVAILABLE
+    path: docs/foundation/decisions/ux-experience-interaction-owner-checkpoint-v0.md
   - id: CLEAN_START_FOUNDATION_COMPLETENESS_DOC@v0
     title: Clean-Start Foundation Completeness canonical document
     state: AVAILABLE

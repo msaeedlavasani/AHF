@@ -74,8 +74,11 @@ Values or state such as prescribed repetitions, duration, performed
 repetitions, valid repetitions, pause state, and Sync Status are not
 automatically independent domain entities. If Restart Current Set is later
 adopted, a new attempt must preserve previous evidence and remain distinct
-from the prescribed Set and Set Execution. Restart Current Set remains
-unresolved; no attempt schema is defined here.
+from the prescribed Set and Set Execution. At publication, Restart Current Set
+was unresolved and no attempt schema was defined. That historical open status
+is **SUPERSEDED** by the Owner's **REJECTED** decision in the
+[UX Experience / Interaction checkpoint](ux-experience-interaction-owner-checkpoint-v0.md);
+the conditional attempt rule does not introduce a restart capability.
 
 ## 2. Account, profiles, and Training History
 
@@ -373,9 +376,8 @@ This contract does not resolve:
   treatment;
 - detailed User/Training Profile, Set Result, or Workout Outcome schema,
   date-of-birth representation, or attribute-level authority rules;
-- workout-day/timezone identity, adherence/scoring formula, Skip Rest
-  capability, or a separate permanent End Workout action;
-- Restart Current Set existence or attempt schema;
+- workout-day/timezone identity, adherence/scoring formula, or a separate
+  permanent End Workout action;
 - detailed Skip/substitution/Defer policy, skip-reason taxonomy, adjustment
   schema/provenance taxonomy, or allowed-substitution validation;
 - Streak Credit Policy, Freeze economics, Streak eligibility formula,

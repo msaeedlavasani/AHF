@@ -72,8 +72,6 @@ The following matters are explicitly unresolved. They must not be guessed, silen
 - Draft persistence and execution-package serialization
 - user-meaningful persistence failure UX
 - date-of-birth representation and detailed User/Training Profile schema
-- whether Restart Current Set exists as a product capability
-- whether Skip Rest exists
 - whether a separate permanent End Workout action exists in addition to Exit
 - detailed Skip/Defer policy ownership
 - Workout Passport serialization/schema
@@ -108,6 +106,12 @@ in [`decisions/identity-persistence-owner-checkpoint-v0.md`](decisions/identity-
 The Execution, Outcome, and Recovery Owner gate and v0 contract are also
 **RESOLVED** in
 [`decisions/execution-outcome-recovery-contracts-v0.md`](decisions/execution-outcome-recovery-contracts-v0.md).
+The previously open Skip Rest and Restart Current Set questions are now
+**REJECTED** by the Owner in the
+[UX Experience / Interaction checkpoint](decisions/ux-experience-interaction-owner-checkpoint-v0.md);
+the earlier unresolved statements in the Execution and Identity contracts
+are historical, not current open questions. The UX Owner gate remains
+**UNRESOLVED**, and `EXPERIENCE_INTERACTION_MODEL` remains **IN_PROGRESS**.
 The remaining boundary decisions and the final Clean-Start Foundation Baseline
 are not resolved; their machine-readable output placeholders remain **DRAFT**.
 The repository-native DAG records their prerequisites and must not resolve them

@@ -153,16 +153,23 @@ Neither action rewrites the historical Prescription.
 
 Detailed policy governing when Skip or Defer are permitted remains outside
 this decision where not already specified by the Passport contract.
+This general Skip/Defer distinction does not authorize Skip Rest; the later
+[UX Experience / Interaction checkpoint](ux-experience-interaction-owner-checkpoint-v0.md)
+records the Owner's **REJECTED** decision for that specific control.
 
 ## 10. Restart Current Set
 
-The existence of a Restart Current Set product capability remains
-**UNRESOLVED**.
+At publication of this contract, the existence of a Restart Current Set
+product capability was **UNRESOLVED**. That historical open status is
+**SUPERSEDED** by the Owner's **REJECTED** decision in the
+[UX Experience / Interaction checkpoint](ux-experience-interaction-owner-checkpoint-v0.md).
+Restart Current Set is not an approved active-Workout control.
 
 If later adopted, its semantics must preserve prior execution evidence rather
 than pretending the abandoned attempt never occurred.
 
-Restart Current Set is not mandatory in this contract.
+The earlier conditional attempt-evidence rule above does not introduce a
+restart capability or an equivalent reset mechanism.
 
 ## 11. Rest
 
@@ -180,7 +187,10 @@ obligation.
 
 A separately prescribed recovery or cooldown obligation may exist.
 
-Whether Skip Rest is a supported product capability remains **UNRESOLVED**.
+At publication of this contract, Skip Rest was **UNRESOLVED**. That historical
+open status is **SUPERSEDED** by the Owner's **REJECTED** decision in the
+[UX Experience / Interaction checkpoint](ux-experience-interaction-owner-checkpoint-v0.md).
+Prescribed Rest cannot be removed ad hoc by the User during execution.
 
 ## 12. Workout completion
 
@@ -286,10 +296,9 @@ decisions.
 ## Explicitly unresolved and deferred
 
 The following remain **UNRESOLVED** and must not be inferred from this
-contract:
+contract. Restart Current Set and Skip Rest were open at publication but are
+now **REJECTED** by the later UX Experience / Interaction checkpoint:
 
-- whether Restart Current Set exists as a product capability;
-- whether Skip Rest exists;
 - whether a separate explicit permanent End Workout action exists in addition
   to Exit;
 - detailed Skip/Defer policy ownership;
