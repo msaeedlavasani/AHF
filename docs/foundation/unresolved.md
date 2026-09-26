@@ -119,8 +119,11 @@ focused review also marks `DESIGN_SYSTEM_CROSS_SCREEN_CONSISTENCY`
 `ORIENTATION_MODEL = RESPONSIVE_CAPABILITY_WITHOUT_UNIVERSAL_ORIENTATION_PARITY`.
 UX Checkpoint 5 marks `LOCALIZATION` **FOUNDATION-COMPLETE**, with `en` and
 `fa` as first-class locales and live locale change without execution reset.
-Accessibility and UX Performance remain open. Translation technology, exact
-copy, catalog format, routing, and fallback implementation remain deferred.
+UX Checkpoint 6 marks `ACCESSIBILITY` **FOUNDATION-COMPLETE**, without
+altering Prescription or execution truth. UX Performance remains open.
+Translation technology, exact copy, catalog format, routing, and fallback
+implementation remain deferred. Exact Accessibility thresholds, standards
+version, metadata, keyboard mappings, and tooling remain deferred.
 The checkpoint does not canonicalize old prototype geometry or authorize
 implementation.
 The remaining boundary decisions and the final Clean-Start Foundation Baseline

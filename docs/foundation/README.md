@@ -54,12 +54,12 @@ evidence and does not compete with it. Deferred legal and implementation
 matters remain **UNRESOLVED**.
 
 The [UX Experience / Interaction Owner Decision Checkpoint](decisions/ux-experience-interaction-owner-checkpoint-v0.md)
-records approved decisions #111–#160 and the rejection of Skip Rest and
+records approved decisions #111–#170 and the rejection of Skip Rest and
 Restart Current Set. Experience / Interaction, Design System / Cross-Screen
-Consistency, and Localization are **FOUNDATION-COMPLETE**. English and Persian
-are first-class locales, and locale changes during a live Workout do not reset
-execution. This remains an interim checkpoint: the UX Owner gate is
-**UNRESOLVED** and implementation is not authorized.
+Consistency, Localization, and Accessibility are **FOUNDATION-COMPLETE**.
+Accessibility adaptations preserve issued Prescription and execution truth.
+This remains an interim checkpoint: UX Performance and the UX Owner gate are
+**UNRESOLVED**, and implementation is not authorized.
 
 ## Canonical work selection
 

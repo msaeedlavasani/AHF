@@ -22,6 +22,8 @@ The fourth checkpoint below adds decisions #141–#150 and its focused
 Design System / Cross-Screen Consistency gap review.
 The fifth checkpoint below adds Localization decisions #151–#160 and its
 focused Foundation-semantic gap review.
+The sixth checkpoint below adds Accessibility decisions #161–#170 and its
+focused Foundation-semantic gap review.
 The earlier proposed UX Checkpoint 1 was stopped before publication; it
 canonicalized nothing. The superseded *unresolved status* of those questions
 is preserved in Git history and identified in the earlier Execution and
@@ -667,5 +669,138 @@ Privacy Owner gate remains **RESOLVED**. Product implementation is not
 authorized.
 
 Checkpoint 5 canonicalizes decisions #151–#160. Its pre-checkpoint decision
+count of 10 resets to **zero** on publication under the existing checkpoint
+convention. Earlier checkpoint content and numbering remain preserved.
+
+## Checkpoint 6 — Accessibility
+
+These Owner-approved decisions establish Accessibility as a Foundation
+product/UX contract. Accessibility changes how a Workout is perceived and
+operated, not its issued Prescription or factual execution truth.
+
+### #161 — Accessibility is a product invariant, not a compliance patch
+
+**Status: RESOLVED.** Accessibility is a product/UX invariant, not a
+post-implementation compliance layer. Base Workout usability must not
+unnecessarily depend on vision, hearing, fine pointer precision, animation,
+or another single presentation/interaction modality where equivalent
+product meaning can legitimately be conveyed another way. This governs
+product interaction and presentation; it does not claim every physical
+exercise is universally performable by every User.
+
+### #162 — Critical meaning does not rely on color alone
+
+**Status: RESOLVED.** Color must not be the sole carrier of consequential
+meaning, including execution or progress state, warnings/errors, observed
+validity/quality, selection, or disabled/unavailable state. Text, shape,
+iconography, component state, or other accessible signals may carry
+additional semantics. Exact visual design remains deferred.
+
+### #163 — Critical meaning does not rely on audio alone
+
+**Status: RESOLVED.** Mentor voice, audio cues, sound, and spoken coaching
+may improve hands-free execution. Critical instructions, state transitions,
+consequential feedback, and User controls/state must not be available only
+through audio. Muted, unavailable, unsupported, or inaccessible audio does
+not invalidate the base Workout. Mentor/audio enhancement is not an
+execution dependency.
+
+### #164 — Critical meaning does not rely on motion alone
+
+**Status: RESOLVED.** Animation, flashing, Mentor movement, transition
+motion, and other visual movement must not be the sole carrier of critical
+product meaning. Critical state and feedback remain understandable through
+appropriate non-motion semantics. Motion may communicate canonical state;
+it does not define domain state, as decision #146 establishes.
+
+### #165 — Active Workout tolerates reduced presentation motion
+
+**Status: RESOLVED.** When User or platform requests reduced motion, UX can
+reduce or eliminate non-essential animation without breaking execution,
+canonical timing truth, comprehension of the current obligation or progress,
+or control availability. Domain-significant time itself is not removed.
+Reduced-motion implementation remains deferred.
+
+### #166 — Consequential interaction avoids unnecessary precision
+
+**Status: RESOLVED.** Consequential controls have reliable interaction
+targets. Tiny visual controls or precision-heavy gestures are not the only
+path for applicable actions such as Pause, Resume, and Exit Workout. No
+numerical target dimension is frozen; thresholds belong to later
+Accessibility/design specification and freshness review.
+
+### #167 — Keyboard and focus semantics apply where supported
+
+**Status: RESOLVED.** On supported surfaces where keyboard/focus navigation
+is relevant, interactive components provide coherent focus semantics,
+order, state communication, and operation. This does not make the mobile
+active Workout keyboard-first. Mappings and technology remain deferred.
+
+### #168 — Assistive presentation preserves domain semantics
+
+**Status: RESOLVED.** Assistive presentation conveys the same domain and
+interaction meaning as visual presentation. A disabled control is not
+reported as available; progress, control purpose, and current execution
+state are not misrepresented. Accessible names or descriptions do not invent
+domain truth. Exact metadata implementation remains deferred.
+
+### #169 — UI does not add time pressure beyond Prescription
+
+**Status: RESOLVED.** A legitimately `TIME_BASED` issued Prescription keeps
+its prescribed active duration; Accessibility does not fabricate, remove,
+or redefine it. UI does not unnecessarily add separate timeout or time
+pressure merely for reading instructions, understanding state, locating or
+operating controls, or consuming presentation. Pause/Resume and Recovery
+retain their canonical semantics.
+
+### #170 — Accessibility adaptation does not mutate domain truth
+
+**Status: RESOLVED.** Font scaling, zoom, screen-reader presentation,
+reduced motion, alternative presentation, larger targets, or similar
+Accessibility adaptations do not by themselves alter Workout Passport,
+Prescription, `REP_BASED`/`TIME_BASED` mode, Set/Rest truth, performed
+progress, observed evidence, Outcome, or historical truth. A materially
+different training Prescription requires valid Prescription/Adaptation
+logic, not silent accessibility rendering.
+
+## Checkpoint 6 consistency and Accessibility gap review
+
+Decisions #161–#170 were reviewed against the Product Constitution,
+Experience / Interaction #111–#130, Design System #131–#150, Localization
+#151–#160, and resolved Prescription / Execution, Recovery, Identity /
+Persistence, and Privacy / Sensing boundaries. They do not silently change
+Prescription or switch Set mode; change domain timing through reduced
+motion; make animation completion execution authority; require audio for
+base Workout; rely on color alone for consequential meaning; equate tiny
+visible icons with sufficient hit targets; let assistive presentation
+report different domain truth; justify UI-reading timeouts by a
+`TIME_BASED` Prescription; make mobile Workout keyboard-first; or claim
+every physical exercise is universally accessible.
+
+The required Foundation-semantic topics are covered: modality independence
+(#161); color, audio, and motion semantics (#162–#164); reduced motion
+(#165); interaction precision (#166); applicable keyboard/focus behavior
+(#167); assistive semantic truth (#168); time pressure (#169); and the
+Accessibility-versus-Prescription boundary (#170). No remaining
+**Foundation-semantic** Accessibility gap was identified. Exact target
+dimensions, contrast ratios, typography scale limits, ARIA and screen-reader
+implementation, keyboard mappings, WCAG/tooling version selection,
+automated tooling, and framework APIs remain deferred for later specification
+or Foundation Freshness & Operationalization review. Category closure does
+not make these choices implementation-ready.
+
+```text
+EXPERIENCE_INTERACTION_MODEL = FOUNDATION-COMPLETE
+DESIGN_SYSTEM_CROSS_SCREEN_CONSISTENCY = FOUNDATION-COMPLETE
+LOCALIZATION = FOUNDATION-COMPLETE
+ACCESSIBILITY = FOUNDATION-COMPLETE
+OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0 = UNRESOLVED
+OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0 = UNRESOLVED
+```
+
+`UX_PERFORMANCE_PERCEIVED_PERFORMANCE` remains open. The Privacy Owner gate
+remains **RESOLVED**. Product implementation is not authorized.
+
+Checkpoint 6 canonicalizes decisions #161–#170. Its pre-checkpoint decision
 count of 10 resets to **zero** on publication under the existing checkpoint
 convention. Earlier checkpoint content and numbering remain preserved.
