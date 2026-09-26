@@ -111,7 +111,10 @@ The previously open Skip Rest and Restart Current Set questions are now
 [UX Experience / Interaction checkpoint](decisions/ux-experience-interaction-owner-checkpoint-v0.md);
 the earlier unresolved statements in the Execution and Identity contracts
 are historical, not current open questions. The UX Owner gate remains
-**UNRESOLVED**, and `EXPERIENCE_INTERACTION_MODEL` remains **IN_PROGRESS**.
+**UNRESOLVED**. UX Checkpoint 2's focused review marks
+`EXPERIENCE_INTERACTION_MODEL` **FOUNDATION-COMPLETE**, while Design System,
+Localization, Accessibility, and UX Performance remain open. This does not
+authorize implementation.
 The remaining boundary decisions and the final Clean-Start Foundation Baseline
 are not resolved; their machine-readable output placeholders remain **DRAFT**.
 The repository-native DAG records their prerequisites and must not resolve them
