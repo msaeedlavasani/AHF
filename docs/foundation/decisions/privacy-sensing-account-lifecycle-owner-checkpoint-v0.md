@@ -1332,3 +1332,137 @@ Learning boundary; the resolved Execution/Outcome/Recovery historical-truth
 distinction; and Privacy decisions #71–#80 on explicit purpose, data-class
 lifecycle, and independent attributable-retention basis. No other Owner gate
 or unresolved implementation choice is changed.
+
+## Ninth interim checkpoint — Retention Closure and Security/Trust Boundaries Part 1
+
+The following ten Owner decisions (#91–#100) are **RESOLVED** within this
+checkpoint. Decisions #91–#93 complete the Foundation-level Retention &
+Deletion semantic invariants for the current Privacy gate. Decisions
+#94–#100 begin, but do not complete, Security/Privacy Trust Boundaries.
+Neither group resolves the Privacy Owner gate or authorizes its downstream
+resolution task.
+
+## 91 — Retention policy ownership must be determinable
+
+**Decision status: RESOLVED.** For each attributable data class, AHF must be
+able to determine the applicable retention/deletion contract governing its
+lifecycle. Attributable data must not persist without an applicable
+policy/contract owning that lifecycle. Exact durations, final taxonomy, and
+schema are not specified here.
+
+## 92 — Mandatory/legal retention is scoped, not blanket authority
+
+**Decision status: RESOLVED.** Where an independently applicable legal,
+regulatory, or contractual obligation validly requires continued
+attributable retention, AHF may retain the required data to the required
+extent and for the applicable purpose. That authority does not automatically
+authorize unrelated product use, learning/model improvement, Research use,
+secondary analytics, or other repurposing. Exact jurisdiction-specific
+obligations remain deferred.
+
+## 93 — Deletion disposition must be auditable
+
+**Decision status: RESOLVED.** AHF must be able to establish, at the
+appropriate domain/governance level, the disposition resulting from an
+applicable deletion lifecycle. Proving disposition does not require
+retaining the deleted payload, unnecessary User identity linkage, or
+unnecessary sensitive evidence. Exact audit events, schema, and technology
+remain deferred.
+
+## Retention & Deletion Foundation status after #91–#93
+
+`RETENTION_AND_DELETION_SEMANTICS = FOUNDATION-COMPLETE` for the current
+Privacy gate's Foundation-level semantic invariants after decisions
+#71–#93. This does not mean retention/deletion implementation, class-specific
+policy, or legal work is complete. Exact retention durations, temporary
+buffer lifetimes, Research Dataset and Anonymous Learning Lab retention,
+backup retention/deletion and physical deletion mechanics,
+de-identification algorithms, re-identification thresholds,
+jurisdiction-specific anonymous-data definitions and mandatory retention,
+storage/schema/API, and exact audit implementation remain **UNRESOLVED**.
+
+## 94 — Least privilege
+
+**Decision status: RESOLVED.** Access to Personal, Training, Sensing,
+Research, Operational, or other privacy-relevant data must be limited to
+actors or components requiring that access for an authorized purpose. Data
+availability does not itself establish access authority. No IAM or security
+technology is selected.
+
+## 95 — Purpose/trust-domain separation
+
+**Decision status: RESOLVED.** Operational/User data, Research data, and
+Anonymous Learning data remain conceptually distinct purpose/trust domains.
+This does not require separate databases, clouds, services, or any particular
+physical topology. Physical architecture remains deferred.
+
+## 96 — Trust-boundary crossing requires authority
+
+**Decision status: RESOLVED.** Movement, exposure, or use of data across
+privacy/trust domains must not occur merely as an incidental implementation
+consequence. A boundary crossing requires applicable purpose, eligibility,
+and privacy/legal authority under its governing contract. No API or network
+architecture is defined.
+
+## 97 — Anonymous Learning must not depend on User identity lookup
+
+**Decision status: RESOLVED.** Normal operation of the Anonymous Learning
+domain must not require usable reverse lookup to User identity. If operating
+on those records as User-linked records requires a usable identity mapping,
+the intended anonymity boundary has not been crossed. Existing Anonymous
+Learning requirements remain authoritative.
+
+## 98 — Observability/debugging obeys privacy boundaries
+
+**Decision status: RESOLVED.** Logs, traces, crash reports, debugging
+artifacts, observability pipelines, and similar operational mechanisms must
+not become hidden bypasses around data-access restrictions, retention
+contracts, raw sensing restrictions, Research boundaries, or Anonymous
+Learning boundaries. No observability tool or logging schema is selected.
+
+## 99 — Technical possession is not access authority
+
+**Decision status: RESOLVED.** Technical ability to access data does not
+itself authorize access or use by components, services, agents, operators,
+administrators, or internal tools. Access and use remain governed by
+applicable role, purpose, and privacy boundaries. No concrete role hierarchy
+or IAM implementation is defined.
+
+## 100 — Unauthorized trust-boundary operations fail closed
+
+**Decision status: RESOLVED.** If AHF cannot establish the authority needed
+for a privacy-sensitive trust-boundary operation, it must not silently
+broaden access, expose or export data, repurpose data, or cross the boundary
+merely to preserve feature operation. This applies to the privacy-sensitive
+operation, **not** to the base Workout. Sensing remains optional, the base
+Workout remains executable without it, and network/server availability is
+not in the active Workout's critical path. No runtime or security
+implementation is selected.
+
+## Security/Privacy Trust-Boundary Foundation status
+
+`SECURITY_PRIVACY_TRUST_BOUNDARIES = IN_PROGRESS`. Decisions #94–#100 are
+resolved, but a final Foundation gap-analysis remains required. This category
+is not `FOUNDATION-COMPLETE` and no security implementation is selected.
+
+`OWNER_GATE_PRIVACY_SENSING_ACCOUNT_LIFECYCLE@v0` remains **UNRESOLVED**; its
+resolution task remains unexecuted and **BLOCKED**. The remaining Foundation
+category for the current Privacy gate is Security/Privacy Trust Boundaries,
+subject to post-checkpoint gap analysis. The next conceptual Owner topic is
+`SECURITY_PRIVACY_TRUST_BOUNDARIES_FINAL_GAP_ANALYSIS`; no implementation-ready
+work is created.
+
+## Ninth-checkpoint governance and consistency note
+
+The pre-checkpoint decision count was ten (#91–#100), at the normal maximum
+between canonical checkpoints. Publication of this checkpoint resets the
+decision counter to **zero** using the existing checkpoint convention; no
+parallel tracking mechanism is created.
+
+These decisions preserve the resolved Identity/Persistence purpose-aware
+retention and irreversible Anonymous Learning boundary, the resolved
+Execution/Outcome/Recovery offline-first Workout contract, and earlier
+Privacy decisions on optional sensing, Research purpose separation, raw
+sensing restrictions, and attributable-data deletion. The unresolved
+implementation and legal matters in the Foundation register remain open.
+No other Owner gate or unresolved implementation choice is changed.
