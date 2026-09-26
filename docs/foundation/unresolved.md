@@ -113,8 +113,10 @@ the earlier unresolved statements in the Execution and Identity contracts
 are historical, not current open questions. The UX Owner gate remains
 **UNRESOLVED**. UX Checkpoint 2's focused review marks
 `EXPERIENCE_INTERACTION_MODEL` **FOUNDATION-COMPLETE**, while Design System,
-Localization, Accessibility, and UX Performance remain open. This does not
-authorize implementation.
+Localization, Accessibility, and UX Performance remain open. UX Checkpoint 3
+records `DESIGN_SYSTEM_CROSS_SCREEN_CONSISTENCY` **IN_PROGRESS** and
+`MENTOR_LAYOUT_MODEL = CONTEXTUAL_ADAPTIVE`; it does not canonicalize old
+prototype geometry or authorize implementation.
 The remaining boundary decisions and the final Clean-Start Foundation Baseline
 are not resolved; their machine-readable output placeholders remain **DRAFT**.
 The repository-native DAG records their prerequisites and must not resolve them

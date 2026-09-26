@@ -16,6 +16,8 @@ The first checkpoint recorded Owner-approved UX decisions #111–#120 and the
 explicit resolution of two previously open active-Workout control questions.
 The second checkpoint below adds decisions #121–#130 and its focused
 Experience / Interaction Model gap review.
+The third checkpoint below adds decisions #131–#140 for Design System /
+Cross-Screen Consistency without closing that category.
 The earlier proposed UX Checkpoint 1 was stopped before publication; it
 canonicalized nothing. The superseded *unresolved status* of those questions
 is preserved in Git history and identified in the earlier Execution and
@@ -265,3 +267,134 @@ Checkpoint 2 canonicalizes decisions #121–#130. Its pre-checkpoint decision
 count of 10 resets to **zero** on publication under the existing checkpoint
 convention; Checkpoint 1's decision numbering and historical status remain
 preserved above.
+
+## Checkpoint 3 — Design System / Cross-Screen Consistency, Part 1
+
+The following Owner-approved decisions establish the first Foundation-level
+Design System / Cross-Screen Consistency contract. They do not specify screen
+layouts, component technology, or implementation.
+
+### #131 — One coherent Workout Experience Shell
+
+**Status: RESOLVED.** Workout states belong to one coherent Workout
+experience, not unrelated standalone pages. Applicable start/entry,
+preparation, active execution, rest, results, pause, and exit-related
+experiences preserve recognizable Session continuity. This does not require
+identical layouts; exact shell geometry remains deferred.
+
+### #132 — Domain-state changes do not justify arbitrary UX restructuring
+
+**Status: RESOLVED.** Execution-state changes may legitimately change
+content, emphasis, available information, and state-specific presentation.
+They must not arbitrarily rebuild interaction grammar, hierarchy, or
+navigation without a genuine state-specific need. Exact compositions remain
+deferred.
+
+### #133 — Cross-screen consistency is semantic, not pixel identity
+
+**Status: RESOLVED.** Consistency does not require identical geometry or
+composition across Workout states. State-appropriate layouts preserve a
+coherent design language, hierarchy, control semantics, interaction grammar,
+and Session continuity. Pixel-identical layouts are not required or frozen.
+
+### #134 — Responsive adaptation preserves interaction meaning
+
+**Status: RESOLVED.** Mobile, tablet, desktop, and future supported
+viewports may adapt layout and geometry without silently changing the
+semantic meaning or authority of controls and domain information. Exit
+Workout remains the same domain action regardless of placement. Breakpoints
+and responsive implementation remain deferred.
+
+### #135 — Theme is presentation, not product structure
+
+**Status: RESOLVED.** Dark, Light, and future themes may alter appropriate
+presentation properties such as color, surfaces, lighting, and contrast.
+Theme does not change domain state, Prescription, execution authority,
+information meaning, or available product authority. Theme presentation
+must satisfy later accessibility requirements. Exact tokens remain deferred.
+
+### #136 — Reusable design-system vocabulary
+
+**Status: RESOLVED.** Future implementation expresses recurring visual and
+system decisions through reusable design-system vocabulary rather than
+inventing independent styling per screen. Applicable concepts may include
+typography, spacing, radii, surfaces, elevation, motion, component states,
+and color/contrast roles. Token format, design-system or component library,
+CSS technology, and UI framework remain unselected.
+
+### #137 — Shared semantics require predictable component behavior
+
+**Status: RESOLVED.** Controls or components with the same semantic role
+behave and communicate state predictably across the Workout experience.
+Context-specific presentation may differ, but semantic meaning must not
+change covertly. Visual instances need not be identical.
+
+### #138 — Workout-critical information has stable hierarchy
+
+**Status: RESOLVED.** Across the Workout experience, the User can understand
+without repeated relearning where they are, the current obligation,
+relevant progress, and which actions are actually available. The hierarchy
+stays coherent while state-specific composition changes. Placement,
+typography, copy, and visual weight remain deferred.
+
+### #139 — Mentor is contextual and spatially adaptive
+
+**Status: RESOLVED.** The explicit Owner decision is:
+
+```text
+MENTOR_LAYOUT_MODEL = CONTEXTUAL_ADAPTIVE
+```
+
+Mentor is important guidance/presentation where relevant, not a mandatory
+fixed-geometry structural slot. It may adapt to exercise geometry and
+orientation, viewport, Workout state, available space, and other legitimate
+presentation needs. A standing Squat may suit vertical full-body composition;
+a floor Plank or Push-up may suit wider or horizontal composition. Mentor may
+be smaller, secondary, or absent where appropriate.
+
+Adaptation of Mentor composition does not license arbitrary reinvention of
+the Workout Experience Shell, information hierarchy, or control semantics.
+Mentor remains guidance, not execution authority or a base Workout
+dependency.
+
+### #140 — Exercise visualization accommodates exercise geometry
+
+**Status: RESOLVED.** The Design System must not impose one universal fixed
+aspect ratio, framing, or spatial composition on all exercise visualization.
+It must accommodate vertical/standing, horizontal/floor, and future movement
+geometry. This flexibility concerns presentation, not domain truth or
+control authority. Camera framing, 3D parameters, aspect ratios, Mentor
+dimensions, breakpoints, and animation implementation remain deferred.
+
+## Checkpoint 3 consistency and historical-prototype boundary
+
+Decisions #131–#140 preserve the Product Constitution, decisions #111–#130,
+and the resolved Prescription / Execution, Mentor, and Privacy / Sensing
+boundaries. Mentor is neither required for base Workout execution nor an
+execution-state authority. No universal exercise framing or pixel-identical
+Workout layout is imposed. Responsive adaptation and theme cannot change
+control meaning or product authority. State-specific composition remains
+within a coherent Workout shell.
+
+An older prototype rule described as “Frozen Dark mobile geometry” is
+historical design evidence only. It was not a Clean-Start Foundation rule and
+is not made universally authoritative for Workout states, themes, or
+viewports. No old prototype geometry is adopted by this checkpoint.
+
+```text
+EXPERIENCE_INTERACTION_MODEL = FOUNDATION-COMPLETE
+DESIGN_SYSTEM_CROSS_SCREEN_CONSISTENCY = IN_PROGRESS
+MENTOR_LAYOUT_MODEL = CONTEXTUAL_ADAPTIVE
+OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0 = UNRESOLVED
+OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0 = UNRESOLVED
+```
+
+Further Foundation-level Design System / Cross-Screen Consistency gap
+analysis is required before category closure. `LOCALIZATION`,
+`ACCESSIBILITY`, and `UX_PERFORMANCE_PERCEIVED_PERFORMANCE` are not resolved
+here. The Privacy Owner gate remains **RESOLVED**. Product implementation is
+not authorized.
+
+Checkpoint 3 canonicalizes decisions #131–#140. Its pre-checkpoint decision
+count of 10 resets to **zero** on publication under the existing checkpoint
+convention. Earlier checkpoint content and numbering remain preserved.
