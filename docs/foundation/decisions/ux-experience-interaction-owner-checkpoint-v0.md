@@ -20,6 +20,8 @@ The third checkpoint below adds decisions #131–#140 for Design System /
 Cross-Screen Consistency without closing that category.
 The fourth checkpoint below adds decisions #141–#150 and its focused
 Design System / Cross-Screen Consistency gap review.
+The fifth checkpoint below adds Localization decisions #151–#160 and its
+focused Foundation-semantic gap review.
 The earlier proposed UX Checkpoint 1 was stopped before publication; it
 canonicalized nothing. The superseded *unresolved status* of those questions
 is preserved in Git history and identified in the earlier Execution and
@@ -533,5 +535,137 @@ OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0 = UNRESOLVED
 remains **RESOLVED**. Product implementation is not authorized.
 
 Checkpoint 4 canonicalizes decisions #141–#150. Its pre-checkpoint decision
+count of 10 resets to **zero** on publication under the existing checkpoint
+convention. Earlier checkpoint content and numbering remain preserved.
+
+## Checkpoint 5 — Localization
+
+These Owner-approved decisions establish Foundation-level Localization
+behavior without selecting translation technology, message formats, or
+localized copy.
+
+### #151 — Localization is product behavior, not post-build translation
+
+**Status: RESOLVED.** Localization is part of product and UX behavior, not a
+translation layer added after an English-specific interface is built.
+Future UX and component architecture must be localization-aware. No
+implementation technology is selected.
+
+### #152 — English and Persian are first-class product locales
+
+**Status: RESOLVED.** The initial canonical product locale scope is English
+(`en`) and Persian (`fa`). Both are first-class product locales; neither is
+a lower-quality translation-only version of the other. Later product
+decisions may add future locales, but this checkpoint commits to none.
+
+### #153 — Locale does not alter domain truth
+
+**Status: RESOLVED.** Locale is presentation/context, not domain authority.
+Changing it does not alter Prescription, Workout Passport, Workout Session
+identity, execution state, performed progress, observed evidence,
+Results/Outcome, or historical truth.
+
+### #154 — RTL and LTR are system-level directionality semantics
+
+**Status: RESOLVED.** Persian requires proper RTL support and English proper
+LTR support. RTL is not merely ad-hoc text alignment; future UX and layout
+implementation must support direction-aware composition. CSS and UI
+mechanisms remain deferred.
+
+### #155 — Directional adaptation preserves semantic meaning
+
+**Status: RESOLVED.** RTL/LTR presentation may mirror or recompose
+appropriate layout relationships without changing chronology, progress
+meaning, execution or control authority, or domain state. Not every icon or
+asset is assumed to mirror; direction-sensitive visuals follow their
+semantic meaning. Exact asset and icon rules remain deferred.
+
+### #156 — Localized content may change geometry
+
+**Status: RESOLVED.** The Design System accommodates different localized
+content lengths and geometry rather than treating English text dimensions
+as universal. Labels, instructions, coaching, number/date/time presentation,
+and other user-facing copy may require different space. Layout avoids
+destructive truncation or semantic loss. Exact copy and typography remain
+deferred.
+
+### #157 — Domain identity is independent of localized labels
+
+**Status: RESOLVED.** Canonical entities and states have stable semantic
+identity independent of display names. “Squat” and “اسکات” can denote the
+same Exercise identity. Language change creates no new domain entity and
+does not corrupt persistence, execution, history, or analytics/evidence
+relationships. Identifier schema remains deferred to Architecture.
+
+### #158 — Historical truth is locale-independent
+
+**Status: RESOLVED.** Historical and domain facts do not use localized
+display strings as authoritative identity. A historical fact can later be
+presented in another supported locale without rewriting the fact. Localized
+display text is presentation, not historical identity.
+
+### #159 — Guidance follows the active locale where capability exists
+
+**Status: RESOLVED.** User-facing system, Mentor, and coaching guidance
+should follow the active product locale where that capability exists. The
+product must not claim unavailable localized capability. Missing optional
+localized enhancement, such as future Mentor voice, does not invalidate the
+base Workout. Translation and voice capability remain deferred; Mentor
+presentation is not execution authority.
+
+### #160 — Locale may change during the same live Workout Session
+
+**Status: RESOLVED.** The explicit Owner decision is:
+
+```text
+LIVE_WORKOUT_LOCALE_CHANGE = ALLOWED_WITHOUT_EXECUTION_RESET
+```
+
+A User may switch between supported locales during an active Workout
+without creating a new execution. Localized copy, directionality,
+applicable layout, and available localized guidance may update while the
+same Workout Session, issued Workout Passport, current obligation, Set/Rest
+state, performed progress, active-time/timer truth, evidence, and Outcome
+history remain intact. Locale change alone does not restart a Set or
+Workout, create duplicate execution, reset progress, alter Prescription,
+cause a domain transition, or erase evidence.
+
+## Checkpoint 5 consistency and Localization gap review
+
+Decisions #151–#160 were reviewed against the Product Constitution,
+Experience / Interaction #111–#130, Design System #131–#150, and resolved
+Prescription / Execution, Recovery, Identity / Persistence, and Privacy /
+Sensing boundaries. They do not make English the domain language or Persian
+a secondary locale; reduce RTL to alignment; mirror every visual by default;
+use translated labels as entity IDs; change Session identity or reset
+Set/Rest/progress/timer on a locale switch; mutate the issued Passport;
+store historical truth only as localized display text; make optional
+localized Mentor capability a Workout dependency; or make English text
+geometry universal.
+
+The required Foundation-semantic topics are covered: initial supported
+locale scope (#152), RTL/LTR and directional meaning (#154–#155), domain
+versus display identity and historical truth (#153, #157–#158), localized
+geometry (#156), active-locale guidance (#159), and live Workout locale
+changes without execution reset (#160). No remaining **Foundation-semantic**
+Localization gap was identified. Message catalogs, routing, locale fallback,
+exact copy, translation workflow, and implementation remain deferred; this
+category closure does not make them implementation-ready.
+
+```text
+SUPPORTED_FOUNDATION_LOCALES = en, fa
+LIVE_WORKOUT_LOCALE_CHANGE = ALLOWED_WITHOUT_EXECUTION_RESET
+EXPERIENCE_INTERACTION_MODEL = FOUNDATION-COMPLETE
+DESIGN_SYSTEM_CROSS_SCREEN_CONSISTENCY = FOUNDATION-COMPLETE
+LOCALIZATION = FOUNDATION-COMPLETE
+OWNER_GATE_UX_DESIGN_LOCALIZATION_ACCESSIBILITY_PERFORMANCE@v0 = UNRESOLVED
+OWNER_GATE_ARCHITECTURE_OPERATIONS_TOOLING@v0 = UNRESOLVED
+```
+
+`ACCESSIBILITY` and `UX_PERFORMANCE_PERCEIVED_PERFORMANCE` remain open. The
+Privacy Owner gate remains **RESOLVED**. Product implementation is not
+authorized.
+
+Checkpoint 5 canonicalizes decisions #151–#160. Its pre-checkpoint decision
 count of 10 resets to **zero** on publication under the existing checkpoint
 convention. Earlier checkpoint content and numbering remain preserved.
